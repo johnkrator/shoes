@@ -11,10 +11,10 @@ const ReviewsCarousel = () => {
                 <CarouselContent>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
-                            <div className="flex gap-5 items-center">
+                            <div className="flex gap-3 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold whitespace-nowrap">Elsbeth Blu</p>
+                                    <p className="font-bold whitespace-nowrap text-sm">Elsbeth Blu</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
@@ -35,10 +35,10 @@ const ReviewsCarousel = () => {
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
-                            <div className="flex gap-5 items-center">
+                            <div className="flex gap-3 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold whitespace-nowrap">Phill K</p>
+                                    <p className="font-bold whitespace-nowrap text-sm">Phill K</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
@@ -59,10 +59,10 @@ const ReviewsCarousel = () => {
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
-                            <div className="flex gap-5 items-center">
+                            <div className="flex gap-3 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold whitespace-nowrap">Elsbeth Blu</p>
+                                    <p className="font-bold whitespace-nowrap text-sm">Elsbeth Blu</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
@@ -83,10 +83,10 @@ const ReviewsCarousel = () => {
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
-                            <div className="flex gap-5 items-center">
+                            <div className="flex gap-3 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold whitespace-nowrap">Phill K</p>
+                                    <p className="font-bold whitespace-nowrap text-sm">Phill K</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
