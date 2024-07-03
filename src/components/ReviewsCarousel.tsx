@@ -10,7 +10,7 @@ const ReviewsCarousel = () => {
             <Carousel>
                 <CarouselContent>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
                             <div className="flex gap-5 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -34,7 +34,7 @@ const ReviewsCarousel = () => {
                         </div>
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
                             <div className="flex gap-5 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -58,7 +58,7 @@ const ReviewsCarousel = () => {
                         </div>
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
                             <div className="flex gap-5 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -82,7 +82,7 @@ const ReviewsCarousel = () => {
                         </div>
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
                             <div className="flex gap-5 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>

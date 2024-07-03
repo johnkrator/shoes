@@ -26,7 +26,7 @@ const Navigation = () => {
                     <div>
                         <DropdownMenu>
                             <DropdownMenuTrigger>
-                                Join | Sign In
+                                <span className="whitespace-nowrap">Join | Sign In</span>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
