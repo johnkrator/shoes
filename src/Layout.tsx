@@ -1,9 +1,8 @@
 import {Outlet} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Container from "@/Container.tsx";
 import Navigation from "@/components/navbar/Navigation.tsx";
-import Footer from "@/components/Footer.tsx";
+import Footer from "@/components/footer/Footer.tsx";
 
 const Layout = () => {
     return (
@@ -11,9 +10,7 @@ const Layout = () => {
             <ToastContainer/>
             <Navigation/>
             <div style={{flex: 1}}>
-                <Container>
-                    <Outlet/>
-                </Container>
+                <Outlet/>
             </div>
             <Footer/>
         </div>
