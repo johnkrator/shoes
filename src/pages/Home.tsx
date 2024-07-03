@@ -1,7 +1,9 @@
+import {Button} from "@/components/ui/button.tsx";
+
 const Home = () => {
     return (
         <div>
-            Home
+            <Button>Submit</Button>
         </div>
     );
 };
