@@ -14,7 +14,7 @@ const ReviewsCarousel = () => {
                             <div className="flex gap-5 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold">Elsbeth Blu</p>
+                                    <p className="font-bold whitespace-nowrap">Elsbeth Blu</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
@@ -38,7 +38,7 @@ const ReviewsCarousel = () => {
                             <div className="flex gap-5 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold">Phill K</p>
+                                    <p className="font-bold whitespace-nowrap">Phill K</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
@@ -62,7 +62,7 @@ const ReviewsCarousel = () => {
                             <div className="flex gap-5 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold">Elsbeth Blu</p>
+                                    <p className="font-bold whitespace-nowrap">Elsbeth Blu</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
@@ -86,7 +86,7 @@ const ReviewsCarousel = () => {
                             <div className="flex gap-5 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
-                                    <p className="font-bold">Phill K</p>
+                                    <p className="font-bold whitespace-nowrap">Phill K</p>
                                     <div className="flex items-center">
                                         <IoStar className="text-[#f67018]"/>
                                         <IoStar className="text-[#f67018]"/>
