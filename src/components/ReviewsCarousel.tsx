@@ -10,7 +10,7 @@ const ReviewsCarousel = () => {
             <Carousel>
                 <CarouselContent>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-5 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -26,7 +26,7 @@ const ReviewsCarousel = () => {
                             </div>
 
                             <div>
-                                <p className="font-bold text-sm">
+                                <p className="font-bold text-xs">
                                     I love my Nike Air Max! The comfort and support are unmatched, and the stylish
                                     design always gets compliments. Perfect for both my workouts and daily wear!
                                 </p>
@@ -34,7 +34,7 @@ const ReviewsCarousel = () => {
                         </div>
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-5 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -50,7 +50,7 @@ const ReviewsCarousel = () => {
                             </div>
 
                             <div>
-                                <p className="font-bold text-sm">
+                                <p className="font-bold text-xs">
                                     The Nike Air Max exceeded my expectations with its incredible cushioning and sleek
                                     look. These shoes are perfect for long runs and casual outings alike
                                 </p>
@@ -58,7 +58,7 @@ const ReviewsCarousel = () => {
                         </div>
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-5 items-center">
                                 <img src={lady} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -74,7 +74,7 @@ const ReviewsCarousel = () => {
                             </div>
 
                             <div>
-                                <p className="font-bold text-sm">
+                                <p className="font-bold text-xs">
                                     I love my Nike Air Max! The comfort and support are unmatched, and the stylish
                                     design always gets compliments. Perfect for both my workouts and daily wear!
                                 </p>
@@ -82,7 +82,7 @@ const ReviewsCarousel = () => {
                         </div>
                     </CarouselItem>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[16rem]">
+                        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-5 items-center">
                                 <img src={man} className="object-cover rounded-full w-[100px] h-[102px]" alt=""/>
                                 <div>
@@ -98,7 +98,7 @@ const ReviewsCarousel = () => {
                             </div>
 
                             <div>
-                                <p className="font-bold text-sm">
+                                <p className="font-bold text-xs">
                                     The Nike Air Max exceeded my expectations with its incredible cushioning and sleek
                                     look. These shoes are perfect for long runs and casual outings alike
                                 </p>
