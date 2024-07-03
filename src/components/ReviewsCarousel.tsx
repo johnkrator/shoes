@@ -2,11 +2,11 @@ import lady from "@/assets/Ellipse 2310 (1).png";
 import man from "@/assets/Ellipse 2310.png";
 import {IoStar} from "react-icons/io5";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
-
+import Container from "@/Container.tsx";
 
 const ReviewsCarousel = () => {
     return (
-        <div className="">
+        <Container>
             <Carousel>
                 <CarouselContent>
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
@@ -111,7 +111,7 @@ const ReviewsCarousel = () => {
                     <CarouselNext/>
                 </div>
             </Carousel>
-        </div>
+        </Container>
     );
 };
 
