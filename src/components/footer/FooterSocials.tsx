@@ -7,7 +7,9 @@ import Logo from "@/components/navbar/Logo.tsx";
 const FooterSocials = () => {
     return (
         <div className="flex flex-col gap-10 w-[40vw]">
-            <Logo/>
+            <div className="flex justify-start">
+                <Logo/>
+            </div>
 
             <div className="flex items-center gap-5">
                 <img src={facebook} className="w-[24px] h-[24px]" alt="facebook logo"/>

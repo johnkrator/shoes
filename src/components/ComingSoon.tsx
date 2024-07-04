@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Container from "@/Container.tsx";
 
 interface TimeLeft {
     days: number;
@@ -39,16 +40,18 @@ const ComingSoon: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-            <h1 className="text-4xl font-bold mb-8">Coming <span className="text-[#e0551b]">Soon!</span></h1>
-            <div className="flex space-x-4">
-                <TimeBlock value={timeLeft.days} label="Days"/>
-                <TimeBlock value={timeLeft.hours} label="Hours"/>
-                <TimeBlock value={timeLeft.minutes} label="Minutes"/>
-                <TimeBlock value={timeLeft.seconds} label="Seconds"/>
+        <Container>
+            <div className="flex flex-col items-center justify-center min-h-screen">
+                <h1 className="text-4xl font-bold mb-8">Coming <span className="text-[#e0551b]">Soon!</span></h1>
+                <div className="flex space-x-4">
+                    <TimeBlock value={timeLeft.days} label="Days"/>
+                    <TimeBlock value={timeLeft.hours} label="Hours"/>
+                    <TimeBlock value={timeLeft.minutes} label="Minutes"/>
+                    <TimeBlock value={timeLeft.seconds} label="Seconds"/>
+                </div>
+                <p className="mt-8 text-sm text-[#e0551b] font-bold">Stay tuned for something amazing!</p>
             </div>
-            <p className="mt-8 text-sm text-[#e0551b] font-bold">Stay tuned for something amazing!</p>
-        </div>
+        </Container>
     );
 };
 

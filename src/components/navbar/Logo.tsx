@@ -1,11 +1,12 @@
 import {Link} from "react-router-dom";
-import logo from "@/assets/logo.png";
+import {FaShopware} from "react-icons/fa";
 
 const Logo = () => {
     return (
         <div>
-            <Link to="/">
-                <img src={logo} className="md:w-[143.7px] w-[100px] md:h-[54px] h-[40px] object-cover" alt="logo"/>
+            <Link className="flex flex-col items-center" to="/">
+                <FaShopware className="object-cover text-[#e0551b]" size={40}/>
+                <span className="text-xs text-white font-bold capitalize">shoes</span>
             </Link>
         </div>
     );
