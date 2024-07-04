@@ -6,7 +6,7 @@ import LazyImage from "@/components/LazyImage.tsx";
 const AboutComponent = () => {
     return (
         <div
-            className="lg:my-10 my-32 lg:py-0 py-10 bg-gradient-to-t from-[#180a01] to-[#6e3002] text-[#fff]">
+            className="lg:my-10 my-32 lg:py-0 py-10 bg-custom-brown-gradient text-[#fff]">
             <Container>
                 <div className="flex lg:flex-row flex-col justify-center items-center gap-20">
                     <LazyImage

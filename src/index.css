@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,32 @@ html,
 body,
 :root {
     height: 100%;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@layer utilities {
+    .bg-custom-gradient {
+        background: linear-gradient(
+                to right,
+                #FF773E,
+                #FFC4AC,
+                #FFFFFF,
+                #FFCEB9,
+                #FF814C
+        );
+    }
+
+    .bg-custom-brown-gradient {
+        background: linear-gradient(
+                to top,
+                #180A00,
+                #421D02,
+                #7E3602,
+                #1E0E02
+        );
+    }
 }
 
 /* For Chrome, Edge, and Safari */
