@@ -1,7 +1,12 @@
+import Container from "@/Container.tsx";
+import ComingSoon from "@/components/ComingSoon.tsx";
+
 const Favorites = () => {
     return (
         <div>
-            Favorites
+            <Container>
+                <ComingSoon/>
+            </Container>
         </div>
     );
 };

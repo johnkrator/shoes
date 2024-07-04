@@ -1,7 +1,12 @@
+import Container from "@/Container.tsx";
+import ComingSoon from "@/components/ComingSoon.tsx";
+
 const Register = () => {
     return (
         <div>
-            Register
+            <Container>
+                <ComingSoon/>
+            </Container>
         </div>
     );
 };
