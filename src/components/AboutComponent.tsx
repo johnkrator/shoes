@@ -1,6 +1,7 @@
 import rider from "@/assets/pngwing.com (17) 1.png";
 import Container from "@/Container.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import LazyImage from "@/components/LazyImage.tsx";
 
 const AboutComponent = () => {
     return (
@@ -8,7 +9,7 @@ const AboutComponent = () => {
             className="lg:my-10 my-32 lg:py-0 py-10 bg-gradient-to-t from-[#180a01] to-[#6e3002] text-[#fff]">
             <Container>
                 <div className="flex lg:flex-row flex-col justify-center items-center gap-20">
-                    <img src={rider} className="object-cover w-[472px] h-[600px] -mt-32" alt=""/>
+                    <LazyImage src={rider} className="object-cover w-[472px] h-[600px] -mt-32" alt=""/>
                     <div className="flex flex-col gap-5">
                         <h1 className="text-[#E0551B] text-2xl font-bold">About us</h1>
                         <h1 className="text-[40px] font-bold leading-10">

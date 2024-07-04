@@ -1,6 +1,7 @@
 import heroImage from "@/assets/pngwing.com 1.png";
 import Container from "@/Container.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import LazyImage from "@/components/LazyImage.tsx";
 
 const HeroSection = () => {
     return (
@@ -20,7 +21,7 @@ const HeroSection = () => {
                     </div>
 
                     <div className="">
-                        <img src={heroImage} alt="hero" className="lg:w-[530px] lg:h-[402px]"/>
+                        <LazyImage src={heroImage} alt="hero" className="lg:w-[530px] lg:h-[402px]"/>
                     </div>
                 </div>
             </Container>
