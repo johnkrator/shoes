@@ -10,6 +10,7 @@ import {
     PaginationLink, PaginationNext,
     PaginationPrevious
 } from "@/components/ui/pagination.tsx";
+import LazyImage from "@/components/LazyImage.tsx";
 
 const ProductCard = () => {
     const itemsPerPage = 5; // Adjust this value as needed
@@ -32,9 +33,9 @@ const ProductCard = () => {
                     <Link to={`/product/${product.id}`}>
                         <div key={product.id} className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3">
                             <div className="overflow-hidden w-full relative group rounded-lg">
-                                <img src={product.image}
-                                     className="w-[210px] h-[160px] object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
-                                     alt=""/>
+                                <LazyImage src={product.image}
+                                           className="w-[210px] h-[160px] object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                                           alt=""/>
                             </div>
 
                             <div className="flex flex-col gap-2 pt-2">

@@ -3,6 +3,7 @@ import man from "@/assets/Ellipse 2310.png";
 import {IoStar} from "react-icons/io5";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
 import Container from "@/Container.tsx";
+import LazyImage from "@/components/LazyImage.tsx";
 
 const ReviewsCarousel = () => {
     return (
@@ -12,7 +13,7 @@ const ReviewsCarousel = () => {
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col  justify-center gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-3 items-center">
-                                <img src={lady} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
+                                <LazyImage src={lady} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
                                 <div>
                                     <p className="font-bold whitespace-nowrap text-sm">Elsbeth Blu</p>
                                     <div className="flex items-center">
@@ -36,7 +37,7 @@ const ReviewsCarousel = () => {
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col justify-center  gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-3 items-center">
-                                <img src={man} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
+                                <LazyImage src={man} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
                                 <div>
                                     <p className="font-bold whitespace-nowrap text-sm">Phill K</p>
                                     <div className="flex items-center">
@@ -60,7 +61,7 @@ const ReviewsCarousel = () => {
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col  justify-center gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-3 items-center">
-                                <img src={lady} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
+                                <LazyImage src={lady} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
                                 <div>
                                     <p className="font-bold whitespace-nowrap text-sm">Elsbeth Blu</p>
                                     <div className="flex items-center">
@@ -84,7 +85,7 @@ const ReviewsCarousel = () => {
                     <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                         <div className="flex flex-col justify-center  gap-3 bg-white rounded-xl p-5 w-full h-[250px]">
                             <div className="flex gap-3 items-center">
-                                <img src={man} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
+                                <LazyImage src={man} className="object-cover rounded-full w-[80px] h-[80px]" alt=""/>
                                 <div>
                                     <p className="font-bold whitespace-nowrap text-sm">Phill K</p>
                                     <div className="flex items-center">
