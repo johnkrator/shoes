@@ -6,7 +6,7 @@ import Products from "@/components/products/Products.tsx";
 
 const Home = () => {
     return (
-        <div>
+        <div className="flex flex-col overflow-x-hidden">
             <HeroSection/>
             <Products/>
             <AboutComponent/>
