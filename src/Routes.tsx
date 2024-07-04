@@ -8,7 +8,7 @@ import About from "@/pages/About.tsx";
 import Contact from "@/pages/Contact.tsx";
 import Shop from "@/pages/Shop.tsx";
 import Cart from "@/pages/Cart.tsx";
-import ProductDetails from "@/pages/ProductDetails.tsx";
+import ProductDetails from "@/pages/products/ProductDetails.tsx";
 import Favorites from "@/pages/Favorites.tsx";
 import ErrorPage from "@/ErrorPage.tsx";
 
