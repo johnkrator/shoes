@@ -46,7 +46,7 @@ const Navigation = () => {
                     </div>
 
                     {/*applies to both mobile and desktop*/}
-                    <div className="md:block hidden">
+                    <div className="lg:block hidden">
                         <QueryItems/>
                     </div>
                 </div>
