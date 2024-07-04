@@ -21,7 +21,11 @@ const HeroSection = () => {
                     </div>
 
                     <div className="">
-                        <LazyImage src={heroImage} alt="hero" className="lg:w-[530px] lg:h-[402px]"/>
+                        <LazyImage
+                            src={heroImage}
+                            alt="hero"
+                            className="lg:w-[530px] lg:h-[402px]"
+                        />
                     </div>
                 </div>
             </Container>
