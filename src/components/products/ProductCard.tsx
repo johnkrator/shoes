@@ -13,7 +13,7 @@ import {
 import LazyImage from "@/components/LazyImage.tsx";
 
 const ProductCard = () => {
-    const itemsPerPage = 5; // Adjust this value as needed
+    const itemsPerPage = 4; // Adjust this value as needed
     const [currentPage, setCurrentPage] = useState(1);
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -28,14 +28,16 @@ const ProductCard = () => {
 
     return (
         <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {currentItems.map((product) => (
                     <Link to={`/product/${product.id}`}>
                         <div key={product.id} className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3">
                             <div className="overflow-hidden w-full relative group rounded-lg">
-                                <LazyImage src={product.image}
-                                           className="w-[210px] h-[160px] object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
-                                           alt=""/>
+                                <LazyImage
+                                    src={product.image}
+                                    className="w-[210px] h-[160px] object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                                    alt={`Image of ${product.name}`}
+                                />
                             </div>
 
                             <div className="flex flex-col gap-2 pt-2">

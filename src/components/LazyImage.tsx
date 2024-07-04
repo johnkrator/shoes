@@ -6,10 +6,27 @@ interface LazyImageProps {
     className?: string;
 }
 
-const LazyImage = forwardRef<HTMLDivElement, LazyImageProps>(
-    ({src, alt, className}, ref: ForwardedRef<HTMLDivElement>) => {
+const LazyImage = forwardRef<HTMLImageElement, LazyImageProps>(
+    ({src, alt, className}, forwardedRef: ForwardedRef<HTMLImageElement>) => {
         const [inView, setInView] = useState(false);
-        const imgRef = useRef<HTMLImageElement | HTMLDivElement>(null);
+        const [isLoaded, setIsLoaded] = useState(false);
+        const [error, setError] = useState(false);
+        const localRef = useRef<HTMLImageElement | null>(null);
+
+        const setRefs = React.useCallback(
+            (node: HTMLImageElement | null) => {
+                // Set localRef
+                localRef.current = node;
+
+                // Set forwardedRef
+                if (typeof forwardedRef === "function") {
+                    forwardedRef(node);
+                } else if (forwardedRef) {
+                    forwardedRef.current = node;
+                }
+            },
+            [forwardedRef]
+        );
 
         useEffect(() => {
             const observer = new IntersectionObserver(
@@ -24,34 +41,49 @@ const LazyImage = forwardRef<HTMLDivElement, LazyImageProps>(
                 }
             );
 
-            if (imgRef.current) {
-                observer.observe(imgRef.current);
+            const currentRef = localRef.current;
+            if (currentRef) {
+                observer.observe(currentRef);
             }
 
             return () => {
-                if (imgRef.current) {
-                    observer.unobserve(imgRef.current);
+                if (currentRef) {
+                    observer.unobserve(currentRef);
                 }
             };
         }, []);
 
+        const handleLoad = () => {
+            setIsLoaded(true);
+        };
+
+        const handleError = () => {
+            setError(true);
+        };
+
         return (
-            <div ref={ref} className={className}>
+            <div className={className}>
                 {inView ? (
                     <img
-                        ref={imgRef as React.RefObject<HTMLImageElement>}
+                        ref={setRefs}
                         src={src}
                         alt={alt}
-                        className="object-cover w-full h-full transition-transform duration-500 ease-in-out transform group-hover:scale-110 rounded-xl"
+                        onLoad={handleLoad}
+                        onError={handleError}
+                        className={`object-cover w-full h-full transition-transform duration-500 ease-in-out transform group-hover:scale-110 rounded-xl ${
+                            isLoaded ? "opacity-100" : "opacity-0"
+                        }`}
                     />
                 ) : (
                     <div
-                        ref={imgRef as React.RefObject<HTMLDivElement>}
+                        ref={setRefs}
                         className="w-full h-full bg-transparent backdrop-blur-md rounded-xl"
                     />
                 )}
+                {error && <div>Error loading image</div>}
             </div>
         );
-    });
+    }
+);
 
 export default LazyImage;

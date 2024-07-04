@@ -18,8 +18,11 @@ const ProductDetailsComponent = () => {
                         running, casual wear, <br/> and sports activities.
                     </p>
                     <div className="flex items-center gap-3">
-                        <LazyImage src={star} className="object-cover w-[22.6px] h-[21.34px] bg-[#fceee8] rounded-full"
-                                   alt="star image"/>
+                        <LazyImage
+                            src={star}
+                            className="object-cover w-[22.6px] h-[21.34px] bg-[#fceee8] rounded-full"
+                            alt="star image"
+                        />
                         <div className="flex flex-col">
                             <h5 className="font-bold">Best quality shoes</h5>
                             <p className="text-sm">features the latest designer shoes</p>
