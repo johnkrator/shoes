@@ -1,13 +1,14 @@
-import React, {useEffect, useRef, useState, forwardRef, ForwardedRef} from "react";
+import React, {useEffect, useRef, useState, forwardRef, ForwardedRef, CSSProperties} from "react";
 
 interface LazyImageProps {
     src: string;
     alt: string;
     className?: string;
+    style?: CSSProperties;
 }
 
 const LazyImage = forwardRef<HTMLImageElement, LazyImageProps>(
-    ({src, alt, className}, forwardedRef: ForwardedRef<HTMLImageElement>) => {
+    ({src, alt, className, style}, forwardedRef: ForwardedRef<HTMLImageElement>) => {
         const [inView, setInView] = useState(false);
         const [isLoaded, setIsLoaded] = useState(false);
         const [error, setError] = useState(false);
@@ -15,10 +16,7 @@ const LazyImage = forwardRef<HTMLImageElement, LazyImageProps>(
 
         const setRefs = React.useCallback(
             (node: HTMLImageElement | null) => {
-                // Set localRef
                 localRef.current = node;
-
-                // Set forwardedRef
                 if (typeof forwardedRef === "function") {
                     forwardedRef(node);
                 } else if (forwardedRef) {
@@ -62,7 +60,7 @@ const LazyImage = forwardRef<HTMLImageElement, LazyImageProps>(
         };
 
         return (
-            <div className={className}>
+            <div className={className} style={style}>
                 {inView ? (
                     <img
                         ref={setRefs}
