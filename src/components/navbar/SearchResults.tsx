@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from "react";
 import {useLocation, Link} from "react-router-dom";
-import {productData} from "@/components/products/productData.ts";
 import Container from "@/Container.tsx";
+import {useGetProductsQuery} from "@/redux/api/productApiSlice.ts";
+import LazyImage from "@/components/LazyImage.tsx";
+import {SkeletonCard} from "@/components/Loader.tsx";
 
 interface Product {
-    id: number;
+    _id: string;
     name: string;
     price: number;
-    image: string;
+    discount_price: number;
+    images: string[];
+    description: string;
 }
 
 const SearchResults: React.FC = () => {
@@ -16,60 +20,64 @@ const SearchResults: React.FC = () => {
     const query = searchParams.get("q") || "";
 
     const [results, setResults] = useState<Product[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+
+    const {data, isLoading, error} = useGetProductsQuery({});
 
     useEffect(() => {
-        const searchProducts = () => {
-            setIsLoading(true);
-            setError(null);
-
-            try {
-                const filteredProducts = productData.filter((product) =>
-                    product.name.toLowerCase().includes(query.toLowerCase()) ||
-                    product.price.toString().includes(query) ||
-                    // Add more fields to search through as needed
-                    product.description?.toLowerCase().includes(query.toLowerCase())
-                );
-                setResults(filteredProducts);
-            } catch (err) {
-                setError("An error occurred while searching for products.");
-                console.error(err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        if (query) {
-            searchProducts();
+        if (data && query) {
+            const filteredProducts = data.data.filter((product: Product) =>
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.price.toString().includes(query) ||
+                product.description.toLowerCase().includes(query.toLowerCase())
+            );
+            setResults(filteredProducts);
         }
-    }, [query]);
+    }, [data, query]);
+
+    if (isLoading) return (
+        <Container>
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
+                {[...Array(4)].map((_, index) => (
+                    <SkeletonCard key={index}/>
+                ))}
+            </div>
+        </Container>
+    );
+
+    if (error) return <Container>
+        <div>Error: {error.toString()}</div>
+    </Container>;
 
     return (
         <Container>
             <div className="mx-auto py-10">
                 <h1 className="text-3xl font-bold mb-4">Search Results for: {query}</h1>
 
-                {isLoading && <p className="text-gray-600">Loading results...</p>}
-
-                {error && <p className="text-red-500">{error}</p>}
-
-                {!isLoading && !error && results.length === 0 && (
+                {results.length === 0 && (
                     <p className="text-gray-600">No results found for "{query}"</p>
                 )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {results.map((product) => (
-                        <Link to={`/product/${product.id}`} key={product.id}>
+                        <Link to={`/product/${product._id}`} key={product._id}>
                             <div className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3">
                                 <div className="overflow-hidden w-full relative group rounded-lg">
-                                    <img src={product.image}
-                                         className="w-[210px] h-[160px] object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
-                                         alt=""/>
+                                    <LazyImage
+                                        src={product.images[0]}
+                                        className="w-full h-[300px] object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                                        alt={`Image of ${product.name}`}
+                                    />
                                 </div>
                                 <div className="flex flex-col gap-2 pt-2">
-                                    <h2 className="font-bold">{product.name}</h2>
-                                    <h2 className="font-bold">$ {product.price}</h2>
+                                    <h2 className="font-bold">{product.name.substring(0, 25)}...</h2>
+                                    <h2 className="font-bold">
+                                        $ {product.discount_price || product.price}
+                                        {product.discount_price && (
+                                            <span className="ml-2 text-sm line-through text-gray-500">
+                        ${product.price}
+                      </span>
+                                        )}
+                                    </h2>
                                 </div>
                             </div>
                         </Link>
