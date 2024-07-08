@@ -54,11 +54,11 @@ const Register = () => {
             toast.error("Invalid email format");
             return false;
         }
-        if (password.length < 8) {
-            toast.error("Password must be at least 8 characters long");
+        if (!/^[a-zA-Z0-9]{8,30}$/.test(password)) {
+            toast.error("Password must be 8-30 characters long and include only letters and numbers");
             return false;
         }
-        if (!/^\d{10}$/.test(phoneNumber)) {
+        if (!/^0\d{10}$/.test(phoneNumber)) {
             toast.error("Invalid phone number format");
             return false;
         }
@@ -94,7 +94,7 @@ const Register = () => {
                     <h1 className="text-2xl font-bold">Create Your Account</h1>
 
                     <form onSubmit={handleSubmit}>
-                        <div className="flex md:flex-row flex-col items-center md:gap-1 my-[2rem]">
+                        <div className="flex md:flex-row flex-col items-center md:gap-2 my-[2rem]">
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="firstName" className="block text-sm font-bold">
                                     First Name

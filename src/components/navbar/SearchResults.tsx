@@ -73,9 +73,9 @@ const SearchResults: React.FC = () => {
                                     <h2 className="font-bold">
                                         $ {product.discount_price || product.price}
                                         {product.discount_price && (
-                                            <span className="ml-2 text-sm line-through text-gray-500">
-                        ${product.price}
-                      </span>
+                                            <p className="ml-2 text-sm line-through text-gray-500">
+                                                ${product.price}
+                                            </p>
                                         )}
                                     </h2>
                                 </div>
