@@ -21,7 +21,7 @@ const Favorites = () => {
                 {favorites.length > 0 ? (
                     <div className="flex flex-col gap-5">
                         <h1 className="text-base font-bold">Your Favorites</h1>
-                        <ProductCard products={favorites}/>
+                        <ProductCard/>
                     </div>
                 ) : (
                     <p>You haven't added any favorites yet.</p>

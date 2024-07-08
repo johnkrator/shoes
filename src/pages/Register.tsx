@@ -1,6 +1,6 @@
 import Container from "@/Container.tsx";
-import React, {useState} from "react";
-import {Link, useLocation} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
@@ -10,6 +10,11 @@ import facebook from "@/assets/Group 49573.png";
 import google from "@/assets/Group 49576.png";
 import twitter from "@/assets/Group 49575.png";
 import LazyImage from "@/components/LazyImage.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {useRegisterMutation} from "@/redux/api/userApiSlice.ts";
+import {RootState} from "@/redux/store.ts";
+import {toast} from "react-toastify";
+import {setCredentials} from "@/redux/features/authSlice.ts";
 
 const Register = () => {
     const [firstName, setFirstName] = useState("");
@@ -19,19 +24,68 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [register, {isLoading}] = useRegisterMutation();
+
+    const {userInfo} = useSelector((state: RootState) => state.auth);
+    console.log("userInfo in Register:", userInfo);
+
     const {search} = useLocation();
     const searchParam = new URLSearchParams(search);
     const redirect = searchParam.get("redirect") || "/";
 
+    useEffect(() => {
+        if (userInfo && redirect !== "/register") {
+            navigate(redirect);
+        }
+    }, [navigate, redirect, userInfo]);
+    console.log("Register component rendered");
+    console.log("userInfo:", userInfo);
+    console.log("redirect:", redirect);
+
+    const validateForm = () => {
+        if (!firstName || !lastName || !email || !password || !phoneNumber) {
+            toast.error("All fields are required");
+            return false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast.error("Invalid email format");
+            return false;
+        }
+        if (password.length < 8) {
+            toast.error("Password must be at least 8 characters long");
+            return false;
+        }
+        if (!/^\d{10}$/.test(phoneNumber)) {
+            toast.error("Invalid phone number format");
+            return false;
+        }
+        return true;
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
+
+        try {
+            const response = await register({firstName, lastName, email, password, phoneNumber}).unwrap();
+            dispatch(setCredentials({...response}));
+            navigate(redirect);
+            toast.success("User successfully registered!");
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.data?.message || error.message || "An error occurred during registration");
+        }
     };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
-    let isLoading;
 
     return (
         <div>
@@ -49,7 +103,7 @@ const Register = () => {
                                     className="w-[15rem] border border-gray-500"
                                     type="text"
                                     placeholder="Enter your first name"
-                                    id="username"
+                                    id="firstName"
                                     value={firstName}
                                     onChange={(e) => setFirstName(e.target.value)}
                                 />
