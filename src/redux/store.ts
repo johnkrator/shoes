@@ -2,11 +2,15 @@ import {configureStore} from "@reduxjs/toolkit";
 import {setupListeners} from "@reduxjs/toolkit/query/react";
 import {getFavoritesFromLocalStorage} from "../utils/localStorage.ts";
 import {apiSlice} from "./api/apiSlice.ts";
+import favoriteReducer from "@/redux/features/favoriteSlice.ts";
 
 const initialFavorites = getFavoritesFromLocalStorage() || [];
 
 const store = configureStore({
-    reducer: {},
+    reducer: {
+        [apiSlice.reducerPath]: apiSlice.reducer,
+        favorites: favoriteReducer,
+    },
 
     preloadedState: {
         favorites: initialFavorites,
