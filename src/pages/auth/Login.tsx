@@ -1,34 +1,67 @@
 import Container from "@/Container.tsx";
 import {Input} from "@/components/ui/input.tsx";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 import {Button} from "@/components/ui/button.tsx";
 import {Loader} from "lucide-react";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Separator} from "@/components/ui/separator.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
 import facebook from "@/assets/Group 49573.png";
 import google from "@/assets/Group 49576.png";
 import twitter from "@/assets/Group 49575.png";
+import {useDispatch, useSelector} from "react-redux";
+import {useLoginMutation} from "@/redux/api/userApiSlice.ts";
+import {RootState} from "@/redux/store.ts";
+import {setCredentials} from "@/redux/features/authSlice.ts";
+import {toast} from "react-toastify";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-    };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
+    const [login, {isLoading}] = useLoginMutation();
+
+    const {userInfo} = useSelector((state: RootState) => state.auth);
 
     const {search} = useLocation();
     const searchParam = new URLSearchParams(search);
     const redirect = searchParam.get("redirect") || "/";
 
-    let isLoading;
+    useEffect(() => {
+        if (userInfo) {
+            navigate(redirect);
+        }
+    }, [navigate, redirect, userInfo]);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const res = await login({email, password}).unwrap();
+            console.log(res);
+            dispatch(setCredentials({...res}));
+            navigate(redirect);
+            toast.success("Login successful", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined
+            });
+        } catch (error: any) {
+            toast.error(error?.data?.message || error.message);
+        }
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div>

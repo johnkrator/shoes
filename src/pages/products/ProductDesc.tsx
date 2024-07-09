@@ -9,6 +9,8 @@ import Container from "@/Container.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
 import {useCreateReviewMutation, useGetProductDetailsQuery} from "@/redux/api/productApiSlice.ts";
 import {addToCart} from "@/redux/features/cartSlice.ts";
+import {SkeletonDemo} from "@/components/Loader.tsx";
+import {Textarea} from "@/components/ui/textarea.tsx";
 
 interface Product {
     _id: string;
@@ -19,6 +21,14 @@ interface Product {
     images: string[];
     colors: string[];
     sizes: string[];
+}
+
+// Define a type for the possible error structure
+interface ApiError {
+    status?: number;
+    data?: {
+        message?: string;
+    };
 }
 
 const ProductDesc: React.FC = () => {
@@ -44,7 +54,8 @@ const ProductDesc: React.FC = () => {
                 autoClose: 2000,
             });
             refetch();
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as ApiError;
             toast.error(error.data?.message || "Something went wrong", {
                 position: "top-center",
                 autoClose: 2000,
@@ -59,8 +70,17 @@ const ProductDesc: React.FC = () => {
         }
     };
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {JSON.stringify(error)}</div>;
+    if (isLoading) return <SkeletonDemo/>;
+    if (error) {
+        let errorMessage = "An error occurred";
+        if (typeof error === "object" && error !== null) {
+            const apiError = error as ApiError;
+            if (apiError.status) {
+                errorMessage = `Error ${apiError.status}: ${apiError.data?.message || "Unknown error"}`;
+            }
+        }
+        return <div>Error: {errorMessage}</div>;
+    }
     if (!data?.Product) return <div>No product data available</div>;
 
     const product: Product = data.Product;
@@ -179,6 +199,26 @@ const ProductDesc: React.FC = () => {
                                 <p>{product.description}</p>
                             </div>
                         </div>
+
+                        <div className="flex gap-20">
+                            <div className="flex flex-col gap-2">
+                                <h4 className="text-base font-bold">Specifications</h4>
+                                <div>
+                                    <p className="text-sm"><span className="font-bold">Model:</span> AM072</p>
+                                    <p className="text-sm"><span className="font-bold">Weight:</span> 0.8 Kg</p>
+                                    <p className="text-sm"><span className="font-bold">Material:</span> Canvas</p>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <h4 className="text-base font-bold">Features</h4>
+                                <div>
+                                    <p className="text-sm">Style: Leisure</p>
+                                    <p className="text-sm">Upper material: Canvas</p>
+                                    <p className="text-sm">Sole material: Rubber</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -189,31 +229,31 @@ const ProductDesc: React.FC = () => {
                     <h2 className="text-xl font-bold mb-2">Write a Customer Review</h2>
                     <div className="mb-2">
                         <label htmlFor="rating" className="block mb-1">Rating</label>
-                        <select
-                            id="rating"
-                            value={rating}
-                            onChange={(e) => setRating(Number(e.target.value))}
-                            className="w-full p-2 border rounded"
-                        >
-                            <option value="">Select...</option>
-                            <option value="1">1 - Poor</option>
-                            <option value="2">2 - Fair</option>
-                            <option value="3">3 - Good</option>
-                            <option value="4">4 - Very Good</option>
-                            <option value="5">5 - Excellent</option>
-                        </select>
+                        <Select onValueChange={(value) => setRating(Number(value))}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select a rating..."/>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="1">1 - Poor</SelectItem>
+                                <SelectItem value="2">2 - Fair</SelectItem>
+                                <SelectItem value="3">3 - Good</SelectItem>
+                                <SelectItem value="4">4 - Very Good</SelectItem>
+                                <SelectItem value="5">5 - Excellent</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div className="mb-2">
                         <label htmlFor="comment" className="block mb-1">Comment</label>
-                        <textarea
+                        <Textarea
                             id="comment"
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             className="w-full p-2 border rounded"
                             rows={3}
-                        ></textarea>
+                        />
                     </div>
-                    <Button type="submit" disabled={loadingProductReview}>
+                    <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold" type="submit"
+                            disabled={loadingProductReview}>
                         Submit
                     </Button>
                 </form>
