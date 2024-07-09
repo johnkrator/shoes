@@ -134,7 +134,9 @@ const Profile = () => {
                         </div>
 
                         <div className="flex flex-row gap-2 items-center">
-                            <Button disabled={loadingUpdateProfile} type="submit">
+                            <Button
+                                className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold"
+                                disabled={loadingUpdateProfile} type="submit">
                                 Update Profile
                             </Button>
 
