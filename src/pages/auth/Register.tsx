@@ -15,6 +15,7 @@ import {useRegisterMutation} from "@/redux/api/userApiSlice.ts";
 import {RootState} from "@/redux/store.ts";
 import {toast} from "react-toastify";
 import {setCredentials} from "@/redux/features/authSlice.ts";
+import {toastConfig} from "@/components/toastConfig.ts";
 
 const Register = () => {
     const [firstName, setFirstName] = useState("");
@@ -47,19 +48,19 @@ const Register = () => {
 
     const validateForm = () => {
         if (!firstName || !lastName || !email || !password || !phoneNumber) {
-            toast.error("All fields are required");
+            toast.error("All fields are required", toastConfig);
             return false;
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            toast.error("Invalid email format");
+            toast.error("Invalid email format", toastConfig);
             return false;
         }
         if (!/^[a-zA-Z0-9]{8,30}$/.test(password)) {
-            toast.error("Password must be 8-30 characters long and include only letters and numbers");
+            toast.error("Password must be 8-30 characters long and include only letters and numbers", toastConfig);
             return false;
         }
         if (!/^0\d{10}$/.test(phoneNumber)) {
-            toast.error("Invalid phone number format");
+            toast.error("Invalid phone number format", toastConfig);
             return false;
         }
         return true;
@@ -76,10 +77,10 @@ const Register = () => {
             const response = await register({firstName, lastName, email, password, phoneNumber}).unwrap();
             dispatch(setCredentials({...response}));
             navigate(redirect);
-            toast.success("User successfully registered!");
+            toast.success("User successfully registered!", toastConfig);
         } catch (error: any) {
             console.error(error);
-            toast.error(error?.data?.message || error.message || "An error occurred during registration");
+            toast.error(error?.data?.message || error.message || "An error occurred during registration", toastConfig);
         }
     };
 

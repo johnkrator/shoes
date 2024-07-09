@@ -15,6 +15,7 @@ import {useLoginMutation} from "@/redux/api/userApiSlice.ts";
 import {RootState} from "@/redux/store.ts";
 import {setCredentials} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
+import {toastConfig} from "@/components/toastConfig.ts";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -45,15 +46,7 @@ const Login = () => {
             console.log(res);
             dispatch(setCredentials({...res}));
             navigate(redirect);
-            toast.success("Login successful", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined
-            });
+            toast.success("Login successful", toastConfig);
         } catch (error: any) {
             toast.error(error?.data?.message || error.message);
         }
