@@ -2,6 +2,7 @@ import heroImage from "@/assets/pngwing.com 1.png";
 import Container from "@/Container.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
+import {Link} from "react-router-dom";
 
 const HeroSection = () => {
     return (
@@ -15,9 +16,11 @@ const HeroSection = () => {
                         <p className="text-[20px] leading-[23.7px]">
                             Step into comfort and style with our <br/> premium selection of footwear.
                         </p>
-                        <Button className="bg-[#E0551B] hover:bg-[#E0551B] w-[98px]">
-                            Shop Now
-                        </Button>
+                        <Link to="/shop">
+                            <Button className="bg-[#E0551B] hover:bg-[#E0551B] w-[98px]">
+                                Shop Now
+                            </Button>
+                        </Link>
                     </div>
 
                     <div className="">

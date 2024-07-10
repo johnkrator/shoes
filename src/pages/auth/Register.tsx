@@ -4,7 +4,6 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
-import {Loader} from "lucide-react";
 import {Separator} from "@/components/ui/separator.tsx";
 import facebook from "@/assets/Group 49573.png";
 import google from "@/assets/Group 49576.png";
@@ -16,6 +15,7 @@ import {RootState} from "@/redux/store.ts";
 import {toast} from "react-toastify";
 import {setCredentials} from "@/redux/features/authSlice.ts";
 import {toastConfig} from "@/components/toastConfig.ts";
+import {SkeletonDemo} from "@/components/Loader.tsx";
 
 const Register = () => {
     const [firstName, setFirstName] = useState("");
@@ -31,20 +31,16 @@ const Register = () => {
     const [register, {isLoading}] = useRegisterMutation();
 
     const {userInfo} = useSelector((state: RootState) => state.auth);
-    console.log("userInfo in Register:", userInfo);
 
     const {search} = useLocation();
     const searchParam = new URLSearchParams(search);
-    const redirect = searchParam.get("redirect") || "/";
+    const redirect = searchParam.get("redirect") || "/login";
 
     useEffect(() => {
         if (userInfo && redirect !== "/register") {
             navigate(redirect);
         }
     }, [navigate, redirect, userInfo]);
-    console.log("Register component rendered");
-    console.log("userInfo:", userInfo);
-    console.log("redirect:", redirect);
 
     const validateForm = () => {
         if (!firstName || !lastName || !email || !password || !phoneNumber) {
@@ -198,7 +194,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        {isLoading && <Loader/>}
+                        {isLoading && <SkeletonDemo/>}
                     </form>
                 </section>
 
