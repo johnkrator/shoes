@@ -64,6 +64,7 @@ const Cart: React.FC = () => (
     <div className="my-10">
         <Container>
             <ProgressSteps step1={true} step2={false} step3={false}/>
+
             <div className="flex flex-col gap-10">
                 <div className="flex lg:flex-row flex-col gap-5">
                     <div className="flex flex-col gap-2 lg:w-[60rem]">
@@ -154,12 +155,30 @@ const Cart: React.FC = () => (
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="flex flex-col gap-3">
                                 <h1 className="font-bold text-2xl">Order Summary</h1>
                                 <Separator/>
 
                                 <div className="flex flex-col gap-3">
-
+                                    <div className="flex justify-between">
+                                        <p>Product Total</p>
+                                        <p>$150.00</p>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <div>
+                                            <p>Shipping Standard</p>
+                                            <p>Sat July, 28th</p>
+                                        </div>
+                                        <p>$0.00</p>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <p>You saved</p>
+                                        <p>-$15.00</p>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <p>Sales tax</p>
+                                        <p>TBD</p>
+                                    </div>
                                 </div>
                             </div>
 
