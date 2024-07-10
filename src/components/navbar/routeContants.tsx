@@ -1,11 +1,28 @@
 import React, {ChangeEvent, FormEvent, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 import {IoSearchOutline} from "react-icons/io5";
 import {FaRegHeart} from "react-icons/fa";
 import {MdOutlineShoppingCart} from "react-icons/md";
 import {RiExchangeDollarFill} from "react-icons/ri";
-import {Link} from "react-router-dom";
 import {Input} from "@/components/ui/input.tsx";
+
+// Define the structure of a cart item
+interface CartItem {
+    _id: string;
+    name: string;
+    qty: number;
+    image: string;
+    price: number;
+    countInStock: number;
+}
+
+// Define the structure of the Redux state
+interface RootState {
+    cart: {
+        cartItems: CartItem[];
+    };
+}
 
 export const headerLinks = [
     {
@@ -29,6 +46,12 @@ export const headerLinks = [
 export const QueryItems: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState<string>("");
     const navigate = useNavigate();
+
+    // Get cart items from Redux state
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+
+    // Calculate total number of items in cart
+    const itemCount = cartItems.reduce((total, item) => total + item.qty, 0);
 
     const handleSearch = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -54,10 +77,18 @@ export const QueryItems: React.FC = () => {
                 <Link to="/favorites">
                     <FaRegHeart size={25}/>
                 </Link>
-                <Link to="/cart">
+                <Link to="/cart" className="relative">
                     <MdOutlineShoppingCart size={25}/>
+                    {itemCount > 0 && (
+                        <span
+                            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {itemCount}
+            </span>
+                    )}
                 </Link>
             </div>
         </div>
     );
 };
+
+export default QueryItems;

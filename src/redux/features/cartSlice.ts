@@ -12,7 +12,6 @@ interface ShippingAddress {
     city: string;
     postalCode: string;
     country: string;
-    // Define the properties of the ShippingAddress interface
 }
 
 interface CartState {

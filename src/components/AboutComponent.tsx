@@ -2,6 +2,7 @@ import rider from "@/assets/pngwing.com (17) 1.png";
 import Container from "@/Container.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
+import {Link} from "react-router-dom";
 
 const AboutComponent = () => {
     return (
@@ -24,9 +25,11 @@ const AboutComponent = () => {
                             quality, and style, ensuring every <br/> step you take is a confident one.
                         </p>
 
-                        <Button className="bg-[#E0551B] hover:bg-[#E0551B] w-[98px]">
-                            Explore more
-                        </Button>
+                        <Link to="/shop">
+                            <Button className="bg-[#E0551B] hover:bg-[#E0551B] w-[98px]">
+                                Explore more
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </Container>

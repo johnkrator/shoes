@@ -1,5 +1,6 @@
 import {FaRegEnvelope} from "react-icons/fa";
 import {BsTelephoneFill} from "react-icons/bs";
+import {Link} from "react-router-dom";
 
 const FooterLinks = () => {
     return (
@@ -7,8 +8,12 @@ const FooterLinks = () => {
             className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-11 lg:mt-0 mt-10 w-[60vw]">
             <ul className="flex flex-col gap-3">
                 <h1 className="font-bold">My account</h1>
-                <li>Login/Register</li>
-                <li>My account</li>
+                <Link to="/login">
+                    <li>Login/Register</li>
+                </Link>
+                <Link to="/profile">
+                    <li>My account</li>
+                </Link>
                 <li>Order Status</li>
                 <li>Order History</li>
                 <li>Track my order</li>
@@ -16,7 +21,9 @@ const FooterLinks = () => {
 
             <ul className="flex flex-col gap-3">
                 <h1 className="font-bold">Help</h1>
-                <li>Get Help</li>
+                <Link to="/contact">
+                    <li>Get Help</li>
+                </Link>
                 <li>Order Status</li>
                 <li>Returns</li>
                 <li>Payment Options</li>
@@ -24,7 +31,9 @@ const FooterLinks = () => {
 
             <ul className="flex flex-col gap-3">
                 <h1 className="font-bold">Company</h1>
-                <li>About us</li>
+                <Link to="/about">
+                    <li>About us</li>
+                </Link>
                 <li>News</li>
                 <li>Service</li>
                 <li>Our policy</li>
