@@ -1,11 +1,11 @@
 import Container from "@/Container.tsx";
-import ComingSoon from "@/components/ComingSoon.tsx";
+import ProductCard from "@/components/products/ProductCard.tsx";
 
 const Shop = () => {
     return (
-        <div>
+        <div className="my-10">
             <Container>
-                <ComingSoon/>
+                <ProductCard/>
             </Container>
         </div>
     );

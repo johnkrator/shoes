@@ -3,7 +3,6 @@ import {Input} from "@/components/ui/input.tsx";
 import React, {useEffect, useState} from "react";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 import {Button} from "@/components/ui/button.tsx";
-import {Loader} from "lucide-react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Separator} from "@/components/ui/separator.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
@@ -16,6 +15,7 @@ import {RootState} from "@/redux/store.ts";
 import {setCredentials} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
+import {SkeletonDemo} from "@/components/Loader.tsx";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -119,7 +119,7 @@ const Login = () => {
                             </div>
                         </div>
 
-                        {isLoading && <Loader/>}
+                        {isLoading && <SkeletonDemo/>}
                     </form>
                 </section>
 

@@ -7,7 +7,7 @@ import Register from "@/pages/auth/Register.tsx";
 import About from "@/pages/About.tsx";
 import Contact from "@/pages/Contact.tsx";
 import Shop from "@/pages/Shop.tsx";
-import Cart from "@/pages/Cart.tsx";
+import Cart from "@/pages/cart/Cart.tsx";
 import ProductDetails from "@/pages/products/ProductDetails.tsx";
 import Favorites from "@/pages/Favorites.tsx";
 import ErrorPage from "@/ErrorPage.tsx";
