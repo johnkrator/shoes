@@ -94,7 +94,7 @@ const ProductDesc: React.FC = () => {
                         <div className="overflow-hidden w-full relative group rounded-lg">
                             <LazyImage
                                 src={product.images[0]}
-                                className="bg-[#fae5dd] md:w-[781px] md:h-[420px] py-5 rounded-xl object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                                className="bg-[#fae5dd] md:w-[781px] md:h-[420px] p-5 rounded-xl object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
                                 alt={`Image of ${product.name}`}
                             />
                         </div>
@@ -105,7 +105,7 @@ const ProductDesc: React.FC = () => {
                                 <div key={index} className="overflow-hidden w-full relative group rounded-lg">
                                     <LazyImage
                                         src={image}
-                                        className="bg-[#fae5dd] md:w-[382px] md:h-[258px] py-5 rounded-xl object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                                        className="bg-[#fae5dd] md:w-[382px] md:h-[258px] p-5 rounded-xl object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110"
                                         alt={`Image of ${product.name}`}
                                     />
                                 </div>
