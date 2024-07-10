@@ -11,6 +11,14 @@ import {Separator} from "@/components/ui/separator.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Label} from "@/components/ui/label";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+
 
 interface CartItemProps {
     title: string;
@@ -18,11 +26,10 @@ interface CartItemProps {
     size: string;
     itemNumber: string;
     eachPrice: string;
-    quantityPrice: string;
     subtotal: string;
 }
 
-const CartItem: React.FC<CartItemProps> = ({title, color, size, itemNumber, eachPrice, quantityPrice, subtotal}) => (
+const CartItem: React.FC<CartItemProps> = ({title, color, size, itemNumber, eachPrice, subtotal}) => (
     <div className="flex flex-col gap-2 bg-[#472810] text-white px-5 py-3">
         <h1 className="font-bold md:text-base text-sm">{title}</h1>
         <div className="flex md:flex-row flex-col md:gap-20 gap-10">
@@ -42,14 +49,23 @@ const CartItem: React.FC<CartItemProps> = ({title, color, size, itemNumber, each
                     </div>
                 </div>
             </div>
-            <div className="flex gap-10">
+            <div className="flex lg:flex-row flex-col lg:gap-10 gap-5">
                 <div>
                     <h4 className="font-bold mb-2">Each</h4>
                     <p className="text-sm">{eachPrice}</p>
                 </div>
-                <div>
+                <div className="">
                     <h4 className="font-bold mb-2">Quantity</h4>
-                    <p className="text-sm">{quantityPrice}</p>
+                    <Select defaultValue="1">
+                        <SelectTrigger className="w-[180px] bg-white text-black">
+                            <SelectValue/>
+                        </SelectTrigger>
+                        <SelectContent className="bg-white">
+                            <SelectItem value="1" className="text-black">1</SelectItem>
+                            <SelectItem value="2" className="text-black">2</SelectItem>
+                            <SelectItem value="3" className="text-black">3</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div>
                     <h4 className="font-bold mb-2">Subtotal</h4>
@@ -83,7 +99,6 @@ const Cart: React.FC = () => (
                                 size="Burgundy + Rose / 35"
                                 itemNumber="195017986758"
                                 eachPrice="$150.00"
-                                quantityPrice="$135.00"
                                 subtotal="$135.00"
                             />
                             <Separator/>
@@ -93,7 +108,6 @@ const Cart: React.FC = () => (
                                 size="Burgundy + Rose / 35"
                                 itemNumber="195017986758"
                                 eachPrice="$150.00"
-                                quantityPrice="$135.00"
                                 subtotal="$135.00"
                             />
                         </div>
@@ -125,7 +139,11 @@ const Cart: React.FC = () => (
                                                 className="flex flex-col gap-3 bg-[#7B6C60] text-white p-5">
                                         <div>
                                             <div className="flex items-center space-x-2">
-                                                <RadioGroupItem value="option-one" id="option-one"/>
+                                                <RadioGroupItem
+                                                    value="option-one"
+                                                    id="option-one"
+                                                    className="border-[#FF773E] data-[state=checked]:bg-[#FF773E] data-[state=checked]:border-[#FF773E]"
+                                                />
                                                 <Label htmlFor="option-one">Standard - FREE</Label>
                                             </div>
                                             <p>Delivers by Sat July, 28th</p>
@@ -135,7 +153,11 @@ const Cart: React.FC = () => (
 
                                         <div>
                                             <div className="flex items-center space-x-2">
-                                                <RadioGroupItem value="option-two" id="option-two"/>
+                                                <RadioGroupItem
+                                                    value="option-two"
+                                                    id="option-two"
+                                                    className="border-[#FF773E] data-[state=checked]:bg-[#FF773E] data-[state=checked]:border-[#FF773E]"
+                                                />
                                                 <Label htmlFor="option-two">EXPRESS - $15.00</Label>
                                             </div>
                                             <p>Delivers by Thu July, 18th</p>
@@ -145,8 +167,12 @@ const Cart: React.FC = () => (
 
                                         <div>
                                             <div className="flex items-center space-x-2">
-                                                <RadioGroupItem value="option-three" id="option-three"/>
-                                                <Label htmlFor="option-two">RUSH - $30.00</Label>
+                                                <RadioGroupItem
+                                                    value="option-three"
+                                                    id="option-three"
+                                                    className="border-[#FF773E] data-[state=checked]:bg-[#FF773E] data-[state=checked]:border-[#FF773E]"
+                                                />
+                                                <Label htmlFor="option-three">RUSH - $30.00</Label>
                                             </div>
                                             <p>Delivers by Sun July, 14th</p>
                                         </div>
