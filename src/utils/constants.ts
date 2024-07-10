@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://nextgen-shoes-backend.vercel.app";
+export const BASE_URL = "" || "https://nextgen-shoes-backend.vercel.app";
 export const USERS_URL = `${BASE_URL}/api/users`;
 export const CATEGORIES_URL = `${BASE_URL}/api/categories`;
 export const PRODUCT_URL = `${BASE_URL}/api/products`;
