@@ -25,7 +25,6 @@ const authSlice = createSlice({
     }
 });
 
-console.log("Initial auth state:", initialState);
 export const {setCredentials, logout} = authSlice.actions;
 
 export default authSlice.reducer;
