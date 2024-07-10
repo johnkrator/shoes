@@ -87,7 +87,6 @@ const Cart: React.FC = () => {
                         <p className="text-sm">Size: {item.size || "N/A"}</p>
                         <p className="text-sm">Item #: {item._id}</p>
                         <div className="mt-3 flex gap-3 text-[#FF750A] font-bold underline">
-                            <p className="cursor-pointer capitalize">edit</p>
                             <p
                                 className="cursor-pointer capitalize"
                                 onClick={() => handleRemoveFromCart(item._id)}
