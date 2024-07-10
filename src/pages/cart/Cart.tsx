@@ -63,7 +63,7 @@ const CartItem: React.FC<CartItemProps> = ({title, color, size, itemNumber, each
 const Cart: React.FC = () => (
     <div className="my-10">
         <Container>
-            <ProgressSteps step1={true} step2={false} step3={false}/>
+            <ProgressSteps step1={true} step2={true} step3={false} step4={false} step5={false}/>
 
             <div className="flex flex-col gap-10">
                 <div className="flex lg:flex-row flex-col gap-5">
