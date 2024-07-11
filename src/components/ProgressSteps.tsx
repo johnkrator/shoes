@@ -5,26 +5,18 @@ interface ProgressStepsProps {
     step1: boolean;
     step2: boolean;
     step3: boolean;
-    step4: boolean;
-    step5: boolean;
 }
 
-const ProgressSteps: React.FC<ProgressStepsProps> = ({step1, step2, step3, step4, step5}) => {
+const ProgressSteps: React.FC<ProgressStepsProps> = ({step1, step2, step3}) => {
     return (
         <div className="flex justify-center items-center space-x-2 sm:space-x-4 my-10 px-4 overflow-x-auto w-full">
-            <Step label="Login" completed={step1}/>
+            <Step label="Cart" completed={step1}/>
 
             <Line completed={step1}/>
-            <Step label="Cart" completed={step2}/>
+            <Step label="Checkout" completed={step2}/>
 
             <Line completed={step2}/>
-            <Step label="Checkout" completed={step3}/>
-
-            <Line completed={step3}/>
-            <Step label="Review" completed={step4}/>
-
-            <Line completed={step4}/>
-            <Step label="Complete" completed={step5}/>
+            <Step label="Complete" completed={step3}/>
         </div>
     );
 };
