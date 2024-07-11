@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "@/redux/features/cartSlice.ts";
@@ -68,7 +68,7 @@ const Cart: React.FC = () => {
         {label: "RUSH - $30.00", value: "rush", price: 30, date: "Sun July, 14th"},
     ];
 
-    const [selectedShipping, setSelectedShipping] = React.useState(shippingOptions[0]);
+    const [selectedShipping, setSelectedShipping] = useState(shippingOptions[0]);
 
     const renderCartItem = (item: CartItem) => (
         <div key={item._id} className="flex flex-col gap-2 bg-[#472810] text-white px-3 py-3 sm:px-5">
@@ -144,7 +144,7 @@ const Cart: React.FC = () => {
     return (
         <div className="my-10">
             <Container>
-                <ProgressSteps step1={true} step2={true} step3={false} step4={false} step5={false}/>
+                <ProgressSteps step1={true} step2={false} step3={false}/>
 
                 {cartItems.length === 0 ? (
                     <div>
