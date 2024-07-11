@@ -71,24 +71,26 @@ const Cart: React.FC = () => {
     const [selectedShipping, setSelectedShipping] = React.useState(shippingOptions[0]);
 
     const renderCartItem = (item: CartItem) => (
-        <div key={item._id} className="flex flex-col gap-2 bg-[#472810] text-white px-5 py-3">
-            <h1 className="font-bold md:text-base text-sm">{item.name}</h1>
-            <div className="flex md:flex-row flex-col md:gap-20 gap-10">
-                <div className="flex md:flex-row flex-col gap-3">
+        <div key={item._id} className="flex flex-col gap-2 bg-[#472810] text-white px-3 py-3 sm:px-5">
+            <h1 className="font-bold text-sm sm:text-base">{item.name}</h1>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
+                <div className="flex lg:flex-row flex-col gap-3">
                     {item.images && item.images.length > 0 && (
                         <LazyImage
                             src={item.images[0]}
                             alt={item.name}
-                            className="md:w-[140px] md:h-[140px] h-[180px] object-cover"
+                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover"
                         />
                     )}
-                    <div>
-                        <p className="text-sm">Color: {item.colors ? item.colors[0] : "N/A"}</p>
-                        <p className="text-sm">Size: {item.size || "N/A"}</p>
-                        <p className="text-sm">Item #: {item._id}</p>
-                        <div className="mt-3 flex gap-3 text-[#FF750A] font-bold underline">
+                    <div className="flex flex-col justify-between">
+                        <div>
+                            <p className="text-xs sm:text-sm">Color: {item.colors ? item.colors[0] : "N/A"}</p>
+                            <p className="text-xs sm:text-sm">Size: {item.size || "N/A"}</p>
+                            <p className="text-xs sm:text-sm">Item #: {item._id}</p>
+                        </div>
+                        <div className="mt-2">
                             <p
-                                className="cursor-pointer capitalize"
+                                className="cursor-pointer capitalize text-xs sm:text-sm text-[#FF750A] font-bold underline"
                                 onClick={() => handleRemoveFromCart(item._id)}
                             >
                                 remove
@@ -96,23 +98,23 @@ const Cart: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex lg:flex-row flex-col lg:gap-10 gap-5">
+                <div className="flex justify-between w-full sm:w-auto gap-2 sm:gap-5">
                     <div>
-                        <h4 className="font-bold mb-2">Each</h4>
-                        <p className="text-sm">
+                        <h4 className="font-bold mb-1 text-sm">Each</h4>
+                        <p className="text-xs sm:text-sm">
                             ${item.discount_price ? item.discount_price.toFixed(2) : item.price.toFixed(2)}
                         </p>
                         {item.discount_price && (
-                            <p className="text-sm line-through text-gray-400">${item.price.toFixed(2)}</p>
+                            <p className="text-xs sm:text-sm line-through text-gray-400">${item.price.toFixed(2)}</p>
                         )}
                     </div>
-                    <div className="">
-                        <h4 className="font-bold mb-2">Quantity</h4>
+                    <div>
+                        <h4 className="font-bold mb-1 text-sm">Quantity</h4>
                         <Select
                             value={item.qty.toString()}
                             onValueChange={(value) => handleAddToCart(item, Number(value))}
                         >
-                            <SelectTrigger className="w-[180px] bg-white text-black">
+                            <SelectTrigger className="w-20 sm:w-24 bg-white text-black text-xs sm:text-sm">
                                 <SelectValue/>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -120,7 +122,7 @@ const Cart: React.FC = () => {
                                     <SelectItem
                                         key={x + 1}
                                         value={(x + 1).toString()}
-                                        className="text-black"
+                                        className="text-black text-xs sm:text-sm"
                                     >
                                         {x + 1}
                                     </SelectItem>
@@ -129,8 +131,8 @@ const Cart: React.FC = () => {
                         </Select>
                     </div>
                     <div>
-                        <h4 className="font-bold mb-2">Subtotal</h4>
-                        <p className="text-sm">
+                        <h4 className="font-bold mb-1 text-sm">Subtotal</h4>
+                        <p className="text-xs sm:text-sm">
                             ${((item.discount_price || item.price) * item.qty).toFixed(2)}
                         </p>
                     </div>
@@ -154,15 +156,15 @@ const Cart: React.FC = () => {
                         </h1>
                     </div>
                 ) : (
-                    <div className="flex lg:flex-row flex-col gap-5">
-                        <div className="flex flex-col gap-2 lg:w-[60rem]">
-                            <h1 className="text-[40px] font-bold whitespace-nowrap">Shopping Cart</h1>
+                    <div className="flex flex-col lg:flex-row gap-5">
+                        <div className="flex flex-col gap-2 w-full lg:w-3/5">
+                            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Shopping Cart</h1>
                             <Link to="/shop" className="flex items-center underline">
                                 <GoChevronLeft/>
                                 <span>Continue Shopping</span>
                             </Link>
                             <div className="flex flex-col gap-3">
-                                <p className="whitespace-nowrap md:text-base text-sm text-center font-bold bg-[#7B6C60] text-white md:p-5 p-2">
+                                <p className="text-sm sm:text-base text-center font-bold bg-[#7B6C60] text-white p-2 sm:p-5">
                                     Estimated Delivery Date:{" "}
                                     <span className="text-[#FF750A]">{selectedShipping.date}</span>
                                 </p>
@@ -175,7 +177,7 @@ const Cart: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-3 lg:w-[40rem]">
+                        <div className="flex flex-col gap-3 w-full lg:w-2/5">
                             <Button
                                 className="w-full bg-[#FF773E] hover:bg-[#FF773E] shadow-md rounded-xl font-bold"
                                 onClick={handleCheckout}
@@ -184,21 +186,21 @@ const Cart: React.FC = () => {
                             </Button>
 
                             <div className="flex flex-col gap-3 w-full">
-                                <div className="flex flex-row gap-5">
+                                <div className="flex flex-row gap-3 sm:gap-5">
                                     <LazyImage
                                         src={paypal}
                                         alt="paypal"
-                                        className="w-[165px] h-[60px] object-cover shadow-md rounded-xl p-2 cursor-pointer"
+                                        className="w-[48%] h-[60px] object-cover shadow-md rounded-xl p-2 cursor-pointer"
                                     />
                                     <LazyImage
                                         src={googlePay}
                                         alt="google pay"
-                                        className="w-[165px] h-[60px] object-cover shadow-md rounded-xl p-2 cursor-pointer"
+                                        className="w-[48%] h-[60px] object-cover shadow-md rounded-xl p-2 cursor-pointer"
                                     />
                                 </div>
 
                                 <div>
-                                    <h1 className="font-bold text-2xl">Shipping Options</h1>
+                                    <h1 className="font-bold text-xl sm:text-2xl">Shipping Options</h1>
                                     <div>
                                         <RadioGroup
                                             value={selectedShipping.value}
@@ -208,7 +210,7 @@ const Cart: React.FC = () => {
                                                     shippingOptions[0]
                                                 )
                                             }
-                                            className="flex flex-col gap-3 bg-[#7B6C60] text-white p-5"
+                                            className="flex flex-col gap-3 bg-[#7B6C60] text-white p-3 sm:p-5"
                                         >
                                             {shippingOptions.map((option) => (
                                                 <div key={option.value}>
@@ -218,9 +220,10 @@ const Cart: React.FC = () => {
                                                             id={option.value}
                                                             className="border-[#FF773E] data-[state=checked]:bg-[#FF773E] data-[state=checked]:border-[#FF773E]"
                                                         />
-                                                        <Label htmlFor={option.value}>{option.label}</Label>
+                                                        <Label htmlFor={option.value}
+                                                               className="text-sm sm:text-base">{option.label}</Label>
                                                     </div>
-                                                    <p>Delivers by {option.date}</p>
+                                                    <p className="text-xs sm:text-sm">Delivers by {option.date}</p>
                                                 </div>
                                             ))}
                                         </RadioGroup>
@@ -228,10 +231,10 @@ const Cart: React.FC = () => {
                                 </div>
 
                                 <div className="flex flex-col gap-3">
-                                    <h1 className="font-bold text-2xl">Order Summary</h1>
+                                    <h1 className="font-bold text-xl sm:text-2xl">Order Summary</h1>
                                     <Separator/>
 
-                                    <div className="flex flex-col gap-3">
+                                    <div className="flex flex-col gap-2 text-sm sm:text-base">
                                         <div className="flex justify-between">
                                             <p>Product Total</p>
                                             <p>${subtotal.toFixed(2)}</p>
@@ -239,7 +242,7 @@ const Cart: React.FC = () => {
                                         <div className="flex justify-between">
                                             <div>
                                                 <p>Shipping {selectedShipping.label.split(" - ")[0]}</p>
-                                                <p>{selectedShipping.date}</p>
+                                                <p className="text-xs sm:text-sm">{selectedShipping.date}</p>
                                             </div>
                                             <p>${selectedShipping.price.toFixed(2)}</p>
                                         </div>
