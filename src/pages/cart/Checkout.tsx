@@ -7,7 +7,7 @@ const Checkout = () => {
     return (
         <div>
             <Container>
-                <ProgressSteps step1={true} step2={true} step3={true} step4={false} step5={false}/>
+                <ProgressSteps step1={true} step2={true} step3={false}/>
                 <div>
                     <h1 className="flex flex-col gap-1">
                         Review your order before checkout
