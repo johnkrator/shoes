@@ -13,7 +13,7 @@ import Favorites from "@/pages/Favorites.tsx";
 import ErrorPage from "@/ErrorPage.tsx";
 import Profile from "@/pages/users/Profile.tsx";
 import PrivateRoute from "@/components/PrivateRoute.tsx";
-import Checkout from "@/pages/Checkout.tsx";
+import Checkout from "@/pages/cart/Checkout.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
