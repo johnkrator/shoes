@@ -26,7 +26,9 @@ const FooterLinks = () => {
                 </Link>
                 <li>Order Status</li>
                 <li>Returns</li>
-                <li>Payment Options</li>
+                <Link to="/checkout">
+                    <li>Payment Options</li>
+                </Link>
             </ul>
 
             <ul className="flex flex-col gap-3">
