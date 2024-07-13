@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "@/redux/features/cartSlice.ts";
@@ -29,7 +29,9 @@ interface CartItem {
     countInStock?: number;
     qty: number;
     colors?: string[];
-    size?: string;
+    sizes?: (string | number)[];
+    selectedColor?: string;
+    selectedSize?: string | number;
 }
 
 interface RootState {
@@ -45,8 +47,13 @@ const Cart: React.FC = () => {
     const cart = useSelector((state: RootState) => state.cart);
     const {cartItems} = cart;
 
-    const handleAddToCart = (product: CartItem, qty: number) => {
-        dispatch(addToCart({...product, qty}));
+    const handleAddToCart = (product: CartItem, qty: number, color?: string, size?: string | number) => {
+        dispatch(addToCart({
+            ...product,
+            qty,
+            selectedColor: color !== undefined ? color : product.selectedColor,
+            selectedSize: size !== undefined ? size : product.selectedSize
+        }));
     };
 
     const handleRemoveFromCart = (id: string) => {
@@ -58,8 +65,7 @@ const Cart: React.FC = () => {
     };
 
     const subtotal = cartItems.reduce(
-        (acc, item) => acc + (item.discount_price || item.price) * item.qty,
-        0
+        (acc, item) => acc + (item.discount_price || item.price) * item.qty, 0
     );
 
     const shippingOptions = [
@@ -70,11 +76,15 @@ const Cart: React.FC = () => {
 
     const [selectedShipping, setSelectedShipping] = useState(shippingOptions[0]);
 
+    useEffect(() => {
+        console.log("Current cart items:", cartItems);
+    }, [cartItems]);
+
     const renderCartItem = (item: CartItem) => (
         <div key={item._id} className="flex flex-col gap-2 bg-[#472810] text-white px-3 py-3 sm:px-5">
             <h1 className="font-bold text-sm sm:text-base">{item.name}</h1>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
-                <div className="flex lg:flex-row flex-col gap-3">
+                <div className="flex flex-row gap-3">
                     {item.images && item.images.length > 0 && (
                         <LazyImage
                             src={item.images[0]}
@@ -84,8 +94,46 @@ const Cart: React.FC = () => {
                     )}
                     <div className="flex flex-col justify-between">
                         <div>
-                            <p className="text-xs sm:text-sm">Color: {item.colors ? item.colors[0] : "N/A"}</p>
-                            <p className="text-xs sm:text-sm">Size: {item.size || "N/A"}</p>
+                            <Select
+                                value={item.selectedColor || ""}
+                                onValueChange={(value) => handleAddToCart(item, item.qty, value, item.selectedSize)}
+                            >
+                                <SelectTrigger
+                                    className="w-24 bg-white text-black text-xs sm:text-sm capitalize font-bold">
+                                    <SelectValue placeholder="Color"/>
+                                </SelectTrigger>
+                                <SelectContent className="bg-white">
+                                    {item.colors && item.colors.map((color) => (
+                                        <SelectItem
+                                            key={color}
+                                            value={color}
+                                            className="text-black text-xs sm:text-sm capitalize font-bold"
+                                        >
+                                            {color}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <Select
+                                value={item.selectedSize?.toString() || ""}
+                                onValueChange={(value) => handleAddToCart(item, item.qty, item.selectedColor, value)}
+                            >
+                                <SelectTrigger
+                                    className="w-24 bg-white text-black text-xs sm:text-sm mt-2 capitalize font-bold">
+                                    <SelectValue placeholder="Size"/>
+                                </SelectTrigger>
+                                <SelectContent className="bg-white">
+                                    {item.sizes && item.sizes.map((size) => (
+                                        <SelectItem
+                                            key={size.toString()}
+                                            value={size.toString()}
+                                            className="text-black text-xs sm:text-sm capitalize font-bold"
+                                        >
+                                            {size}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                             <p className="text-xs sm:text-sm">Item #: {item._id}</p>
                         </div>
                         <div className="mt-2">
@@ -112,7 +160,7 @@ const Cart: React.FC = () => {
                         <h4 className="font-bold mb-1 text-sm">Quantity</h4>
                         <Select
                             value={item.qty.toString()}
-                            onValueChange={(value) => handleAddToCart(item, Number(value))}
+                            onValueChange={(value) => handleAddToCart(item, Number(value), item.selectedColor, item.selectedSize)}
                         >
                             <SelectTrigger className="w-20 sm:w-24 bg-white text-black text-xs sm:text-sm">
                                 <SelectValue/>
