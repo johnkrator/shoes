@@ -12,6 +12,7 @@ interface Product {
     discount_price: number;
     images: string[];
     description: string;
+    colors: string[];
 }
 
 const SearchResults: React.FC = () => {
@@ -25,11 +26,16 @@ const SearchResults: React.FC = () => {
 
     useEffect(() => {
         if (data && query) {
-            const filteredProducts = data.data.filter((product: Product) =>
-                product.name.toLowerCase().includes(query.toLowerCase()) ||
-                product.price.toString().includes(query) ||
-                product.description.toLowerCase().includes(query.toLowerCase())
-            );
+            const filteredProducts = data.data.filter((product: Product) => {
+                const searchTerms = query.toLowerCase().split(" ");
+                return searchTerms.every(term =>
+                    product.name.toLowerCase().includes(term) ||
+                    product.description.toLowerCase().includes(term) ||
+                    product.price.toString().includes(term) ||
+                    (product.discount_price && product.discount_price.toString().includes(term)) ||
+                    product.colors.some(color => color.toLowerCase().includes(term))
+                );
+            });
             setResults(filteredProducts);
         }
     }, [data, query]);
@@ -78,6 +84,13 @@ const SearchResults: React.FC = () => {
                                             </p>
                                         )}
                                     </h2>
+                                    <div className="flex flex-wrap gap-1">
+                                        {product.colors.map((color, index) => (
+                                            <span key={index} className="text-sm bg-gray-200 rounded-full px-2 py-1">
+                                                {color}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </Link>

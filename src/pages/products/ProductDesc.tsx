@@ -23,7 +23,6 @@ interface Product {
     sizes: string[];
 }
 
-// Define a type for the possible error structure
 interface ApiError {
     status?: number;
     data?: {
@@ -37,6 +36,8 @@ const ProductDesc: React.FC = () => {
     const dispatch = useDispatch();
 
     const [qty, setQty] = useState(1);
+    const [selectedColor, setSelectedColor] = useState<string | null>(null);
+    const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
 
@@ -64,9 +65,14 @@ const ProductDesc: React.FC = () => {
     };
 
     const handleAddToCart = () => {
-        if (data?.Product) {
-            dispatch(addToCart({...data.Product, qty}));
+        if (data?.Product && selectedSize) {
+            dispatch(addToCart({...data.Product, qty, size: selectedSize}));
             navigate("/cart");
+        } else {
+            toast.error("Please select size before adding to cart", {
+                position: "top-center",
+                autoClose: 2000,
+            });
         }
     };
 
@@ -126,8 +132,8 @@ const ProductDesc: React.FC = () => {
                                     <>
                                         <span className="line-through text-xs">$ {product.price}</span>
                                         <span className="text-[#e0551b] text-xs">
-                                            -{Math.round((1 - product.discount_price / product.price) * 100)}%
-                                        </span>
+                      -{Math.round((1 - product.discount_price / product.price) * 100)}%
+                    </span>
                                     </>
                                 )}
                             </div>
@@ -150,8 +156,11 @@ const ProductDesc: React.FC = () => {
                                 {product.colors.map((color: string, index: number) => (
                                     <div
                                         key={index}
-                                        className="w-[38px] h-[38px] cursor-pointer rounded-full"
+                                        className={`w-[38px] h-[38px] cursor-pointer rounded-full ${
+                                            selectedColor === color ? "border-2 border-black" : ""
+                                        }`}
                                         style={{backgroundColor: color}}
+                                        onClick={() => setSelectedColor(color)}
                                     />
                                 ))}
                             </div>
@@ -162,8 +171,13 @@ const ProductDesc: React.FC = () => {
                             <h4 className="text-base font-bold">Select Size</h4>
                             <div className="flex gap-1">
                                 {product.sizes.map((size: string, index: number) => (
-                                    <p key={index}
-                                       className="w-[38px] h-[38px] cursor-pointer border border-gray-500 bg-[#fbe6dd] flex items-center justify-center font-bold rounded-full">
+                                    <p
+                                        key={index}
+                                        className={`w-[38px] h-[38px] cursor-pointer border ${
+                                            selectedSize === size ? "border-black bg-black text-white" : "border-gray-500 bg-[#fbe6dd]"
+                                        } flex items-center justify-center font-bold rounded-full`}
+                                        onClick={() => setSelectedSize(size)}
+                                    >
                                         {size}
                                     </p>
                                 ))}
@@ -187,8 +201,9 @@ const ProductDesc: React.FC = () => {
 
                         {/* Action buttons */}
                         <div className="flex items-center gap-5">
-                            <Button className="bg-black hover:bg-black font-bold" onClick={handleAddToCart}>Add to
-                                Cart</Button>
+                            <Button className="bg-black hover:bg-black font-bold" onClick={handleAddToCart}>
+                                Add to Cart
+                            </Button>
                             <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold">Buy Now</Button>
                         </div>
 
