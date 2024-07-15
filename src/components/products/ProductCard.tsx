@@ -1,39 +1,25 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {CiHeart} from "react-icons/ci";
 import {FaHeart} from "react-icons/fa";
 import {IoIosArrowRoundForward} from "react-icons/io";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious
-} from "@/components/ui/pagination.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
 import {
     addToFavorites,
     removeFromFavorites,
     selectFavoriteProduct,
-    setFavorites
 } from "@/redux/features/favoriteSlice.ts";
 import {useGetProductsQuery} from "@/redux/api/productApiSlice.ts";
 import {SkeletonCard} from "@/components/Loader.tsx";
+import Pagination from "@/components/Pagination.tsx";
+import {Product} from "@/types/Product.ts";
 
-interface Product {
-    _id: string;
-    name: string;
-    price: number;
-    discount_price: number;
-    description: string;
-    images: string[];
-    colors: string[];
-    sizes: string[];
+interface ProductCardProps {
+    products?: Product[];
 }
 
-const ProductCard: React.FC = () => {
+const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
     const dispatch = useDispatch();
     const favorites = useSelector(selectFavoriteProduct);
     const itemsPerPage = 4;
@@ -41,13 +27,7 @@ const ProductCard: React.FC = () => {
 
     const {data, isLoading, error, isError} = useGetProductsQuery({});
 
-    useEffect(() => {
-        if (data) {
-            console.log("Product data:", data.data);
-        }
-    }, [data]);
-
-    const products = data?.data || [];
+    const products = propProducts || data?.data || [];
     const totalProducts = products.length;
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -59,13 +39,6 @@ const ProductCard: React.FC = () => {
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
-
-    useEffect(() => {
-        const storedFavorites = localStorage.getItem("favorites");
-        if (storedFavorites) {
-            dispatch(setFavorites(JSON.parse(storedFavorites)));
-        }
-    }, [dispatch]);
 
     const toggleFavorite = (product: Product) => {
         if (favorites.some(fav => fav._id === product._id)) {
@@ -133,35 +106,13 @@ const ProductCard: React.FC = () => {
                 ))}
             </div>
 
-            <Pagination className="my-2">
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious
-                            href="#"
-                            onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                            className={currentPage <= 1 ? "pointer-events-none opacity-50" : ""}
-                        />
-                    </PaginationItem>
-                    {[...Array(totalPages)].map((_, index) => (
-                        <PaginationItem key={index}>
-                            <PaginationLink
-                                href="#"
-                                onClick={() => handlePageChange(index + 1)}
-                                isActive={currentPage === index + 1}
-                            >
-                                {index + 1}
-                            </PaginationLink>
-                        </PaginationItem>
-                    ))}
-                    <PaginationItem>
-                        <PaginationNext
-                            href="#"
-                            onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                            className={currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}
-                        />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+            {totalPages > 1 && (
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
+            )}
         </div>
     );
 };
