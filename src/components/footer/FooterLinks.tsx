@@ -46,7 +46,7 @@ const FooterLinks = () => {
                 <h1 className="font-bold">Hotlines</h1>
                 <div className="flex items-center gap-1">
                     <FaRegEnvelope className="text-lg sm:text-xl lg:text-2xl flex-shrink-0"/>
-                    <li className="text-sm sm:text-base">mail@trendyshoes.com</li>
+                    <li className="text-sm">mail@trendyshoes.com</li>
                 </div>
                 <div className="flex items-center gap-1">
                     <BsTelephoneFill className="text-lg sm:text-xl lg:text-2xl flex-shrink-0"/>
