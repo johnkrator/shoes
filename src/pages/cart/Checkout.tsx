@@ -65,7 +65,7 @@ const Checkout = () => {
                     </h1>
                 </div>
 
-                <div className="flex lg:flex-row flex-col gap-5 my-10">
+                <div className="flex lg:flex-row flex-col-reverse gap-5 my-10">
                     <div className="flex flex-col items-center gap-5 lg:w-3/5 w-full">
                         <h1 className="font-bold">Express Checkout</h1>
                         <div
@@ -380,18 +380,18 @@ const Checkout = () => {
                                 <div key={item._id} className="flex flex-row justify-between items-center">
                                     <div className="flex items-center gap-2">
                                         <LazyImage
-                                            className="w-[70px] h-[70px] object-cover"
+                                            className="w-[70px] h-[70px] object-cover min-w-[70px] min-h-[70px]"
                                             src={item.images[0]}
                                             alt={item.name}
                                         />
                                         <div>
-                                            <p className="capitalize font-bold">{item.name}</p>
+                                            <p className="capitalize md:text-base text-xs font-bold">{item.name}</p>
                                             <p className="capitalize text-xs">
                                                 {item.selectedColor} / {item.selectedSize}
                                             </p>
                                         </div>
                                     </div>
-                                    <p className="md:text-base text-sm">
+                                    <p className="md:text-base text-xs">
                                         #{((item.discount_price || item.price) * item.qty).toFixed(2)}
                                     </p>
                                 </div>
