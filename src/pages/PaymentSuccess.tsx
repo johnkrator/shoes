@@ -4,6 +4,7 @@ import confetti from "canvas-confetti";
 import {Button} from "@/components/ui/button.tsx";
 import {GoChevronLeft} from "react-icons/go";
 import {Link} from "react-router-dom";
+import ProgressSteps from "@/components/ProgressSteps.tsx";
 
 const PaymentSuccess = () => {
     useEffect(() => {
@@ -17,7 +18,8 @@ const PaymentSuccess = () => {
 
     return (
         <Container>
-            <div className="flex flex-col items-center justify-center min-h-screen">
+            <ProgressSteps step1={true} step2={true} step3={true}/>
+            <div className="flex flex-col items-center justify-center my-20">
                 <h1 className="text-4xl text-center font-bold mb-4">Payment Successful!</h1>
                 <p className="text-xl text-gray-600">Thank you for your purchase.</p>
                 <div className="flex flex-col gap-2">
