@@ -21,6 +21,7 @@ import amex from "@/assets/Rectangle 74.png";
 import discover from "@/assets/Rectangle 73.png";
 import plus4 from "@/assets/Group 49450.png";
 import {GiPadlock} from "react-icons/gi";
+import ProgressSteps from "@/components/ProgressSteps.tsx";
 
 const Checkout = () => {
     const [email, setEmail] = useState("");
@@ -39,6 +40,7 @@ const Checkout = () => {
     return (
         <div>
             <Container>
+                <ProgressSteps step1={true} step2={true} step3={false}/>
                 <div>
                     <h1 className="flex flex-col gap-1">
                         Review your order before checkout
