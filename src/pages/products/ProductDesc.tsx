@@ -48,12 +48,21 @@ const ProductDesc: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!productId) {
+            toast.error("Product ID is missing", {
+                position: "top-center",
+                autoClose: 2000,
+            });
+            return;
+        }
         try {
             await createReview({productId, rating, comment}).unwrap();
             toast.success("Review submitted successfully", {
                 position: "top-center",
                 autoClose: 2000,
             });
+            setRating(0);
+            setComment("");
             refetch();
         } catch (err: unknown) {
             const error = err as ApiError;
@@ -267,9 +276,12 @@ const ProductDesc: React.FC = () => {
                             rows={3}
                         />
                     </div>
-                    <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold" type="submit"
-                            disabled={loadingProductReview}>
-                        Submit
+                    <Button
+                        className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold"
+                        type="submit"
+                        disabled={loadingProductReview || rating === 0}
+                    >
+                        Submit Review
                     </Button>
                 </form>
             )}
