@@ -13,7 +13,9 @@ import Favorites from "@/pages/Favorites.tsx";
 import ErrorPage from "@/ErrorPage.tsx";
 import Profile from "@/pages/users/Profile.tsx";
 import PrivateRoute from "@/components/PrivateRoute.tsx";
-import Checkout from "@/pages/Checkout.tsx";
+import Checkout from "@/pages/Checkout.tsx"; 
+import OrSeparator from "./components/ui/orSeparator";
+
 
 const Routes = () => {
     return createBrowserRouter([
@@ -32,6 +34,7 @@ const Routes = () => {
                 {path: "favorites", element: <Favorites/>},
                 {path: "search", element: <SearchResults/>},
                 {path: "checkout", element: <Checkout/>},
+                {path: "orSeparator", element: <OrSeparator/>},
 
                 // Only registered users routes
                 {
