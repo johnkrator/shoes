@@ -37,7 +37,7 @@ const PaymentSuccess = () => {
                     </Button>
                     <Link className="flex items-center capitalize font-bold hover:underline" to="/">
                         <GoChevronLeft/>
-                        go to back to homepage
+                        go back to homepage
                     </Link>
                 </div>
             </div>
