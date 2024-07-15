@@ -362,11 +362,13 @@ const Checkout = () => {
                                 an international service provider to Trendy Shoes.
                             </p>
 
-                            <Button
-                                className="flex items-center gap-1 bg-[#FF773E] hover:bg-[#FF773E] text-white font-bold w-full">
-                                <GiPadlock/>
-                                Pay now
-                            </Button>
+                            <Link to="/success">
+                                <Button
+                                    className="flex items-center gap-1 bg-[#FF773E] hover:bg-[#FF773E] text-white font-bold w-full">
+                                    <GiPadlock/>
+                                    Pay now
+                                </Button>
+                            </Link>
                         </div>
                     </div>
 
