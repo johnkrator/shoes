@@ -7,8 +7,6 @@ import {Input} from "@/components/ui/input.tsx";
 import {useState} from "react";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
-import shoe1 from "@/assets/Rectangle 5721.png";
-import shoe2 from "@/assets/Rectangle 5722.png";
 import {Button} from "@/components/ui/button.tsx";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group.tsx";
 import {BsTruck} from "react-icons/bs";
@@ -22,6 +20,8 @@ import discover from "@/assets/Rectangle 73.png";
 import plus4 from "@/assets/Group 49450.png";
 import {GiPadlock} from "react-icons/gi";
 import ProgressSteps from "@/components/ProgressSteps.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "@/redux/store.ts";
 
 const Checkout = () => {
     const [email, setEmail] = useState("");
@@ -36,6 +36,20 @@ const Checkout = () => {
     const [expiryDate, setExpiryDate] = useState("");
     const [securityCode, setSecurityCode] = useState("");
     const [nameOnCard, setNameOnCard] = useState("");
+
+    const {cartItems} = useSelector((state: RootState) => state.cart);
+
+    const subtotal = cartItems.reduce(
+        (acc, item) => acc + (item.discount_price || item.price) * item.qty, 0
+    );
+
+    const shippingCost = 81200; // 81.20 USD
+    const dutiesPercentage = 0.233; // 23.3%
+    const taxesPercentage = 0.137; // 13.7%
+
+    const duties = subtotal * dutiesPercentage;
+    const taxes = subtotal * taxesPercentage;
+    const total = subtotal + shippingCost + duties + taxes;
 
     return (
         <div>
@@ -356,31 +370,30 @@ const Checkout = () => {
                         </div>
                     </div>
 
-                    {/*cart section*/}
+                    {/* Cart section */}
                     <div
-                        className="flex flex-col gap-3 bg-[#472810] text-white rounded-xl md:p-4 p-2 lg:w-2/5 w-full md:h-96">
+                        className="flex flex-col gap-3 bg-[#472810] text-white rounded-xl md:p-4 p-2 lg:w-2/5 w-full md:min-h-96 md:max-h-[calc(70vh-2rem)] overflow-y-auto">
                         <div className="flex flex-col gap-2">
-                            <div className="flex flex-row justify-between items-center">
-                                <div className="flex items-center gap-2">
-                                    <LazyImage className="w-[70px] h-[70px] object-cover" src={shoe1} alt=""/>
-                                    <div>
-                                        <p className="capitalize font-bold">simon</p>
-                                        <p className="capitalize text-xs">Burgundy + Rose / 35</p>
+                            {cartItems.map((item) => (
+                                <div key={item._id} className="flex flex-row justify-between items-center">
+                                    <div className="flex items-center gap-2">
+                                        <LazyImage
+                                            className="w-[70px] h-[70px] object-cover"
+                                            src={item.images[0]}
+                                            alt={item.name}
+                                        />
+                                        <div>
+                                            <p className="capitalize font-bold">{item.name}</p>
+                                            <p className="capitalize text-xs">
+                                                {item.selectedColor} / {item.selectedSize}
+                                            </p>
+                                        </div>
                                     </div>
+                                    <p className="md:text-base text-sm">
+                                        #{((item.discount_price || item.price) * item.qty).toFixed(2)}
+                                    </p>
                                 </div>
-                                <p className="md:text-base text-sm">#212,200.00</p>
-                            </div>
-
-                            <div className="flex flex-row justify-between items-center">
-                                <div className="flex items-center gap-2">
-                                    <LazyImage className="w-[70px] h-[70px] object-cover" src={shoe2} alt=""/>
-                                    <div>
-                                        <p className="capitalize font-bold">frances</p>
-                                        <p className="capitalize text-xs">Pebbled Ivory / 35</p>
-                                    </div>
-                                </div>
-                                <p className="md:text-base text-sm">#369,300.00</p>
-                            </div>
+                            ))}
                         </div>
 
                         <div className="flex md:flex-row flex-col gap-1">
@@ -397,24 +410,24 @@ const Checkout = () => {
                         <div className="flex flex-col gap-2">
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Subtotal</p>
-                                <p className="capitalize text-sm">#581,500.00</p>
+                                <p className="capitalize text-sm">#{subtotal.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Shipping</p>
-                                <p className="capitalize text-sm">#81,200.00</p>
+                                <p className="capitalize text-sm">#{shippingCost.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Duties</p>
-                                <p className="capitalize text-sm">#135,540.00</p>
+                                <p className="capitalize text-sm">#{duties.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Taxes</p>
-                                <p className="capitalize text-sm">#79,429.77</p>
+                                <p className="capitalize text-sm">#{taxes.toFixed(2)}</p>
                             </div>
                             <Separator/>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-lg font-bold">Total</p>
-                                <p className="capitalize font-bold">#874,669.77</p>
+                                <p className="capitalize font-bold">#{total.toFixed(2)}</p>
                             </div>
                         </div>
                     </div>
