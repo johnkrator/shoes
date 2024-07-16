@@ -22,7 +22,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
     const dispatch = useDispatch();
     const favorites = useSelector(selectFavoriteProduct);
-    const itemsPerPage = 4;
+    const itemsPerPage = 3;
     const [currentPage, setCurrentPage] = useState(1);
 
     const {data, isLoading, error, isError} = useGetProductsQuery({});
@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
 
     if (isLoading) return (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
-            {[...Array(4)].map((_, index) => (
+            {[...Array(3)].map((_, index) => (
                 <SkeletonCard key={index}/>
             ))}
         </div>
@@ -60,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
 
     return (
         <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {currentItems.map((product: Product) => (
                     <div key={product._id} className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3">
                         <Link to={`/product/${product._id}`}>
