@@ -14,6 +14,7 @@ import Profile from "@/pages/users/Profile.tsx";
 import PrivateRoute from "@/components/PrivateRoute.tsx";
 import Checkout from "@/pages/cart/Checkout.tsx";
 import PaymentSuccess from "@/pages/PaymentSuccess.tsx";
+import AboutMain from "@/pages/about/AboutMain.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -26,6 +27,7 @@ const Routes = () => {
                 {path: "register", element: <Register/>},
                 {path: "contact", element: <Contact/>},
                 {path: "shop", element: <Shop/>},
+                {path: "about", element: <AboutMain/>},
                 {path: "cart", element: <Cart/>},
                 {path: "product/:id", element: <ProductDetails/>},
                 {path: "favorites", element: <Favorites/>},

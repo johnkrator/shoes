@@ -34,6 +34,10 @@ export const headerLinks = [
         route: "/shop"
     },
     {
+        label: "About",
+        route: "/about"
+    },
+    {
         label: "Help?",
         route: "/contact"
     }
