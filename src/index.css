@@ -36,6 +36,59 @@ body,
     }
 }
 
+.about-hero {
+    background-image: url("@/assets/Rectangle 5758.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.our-leader {
+    background-image: url("@/assets/Rectangle 5767.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    height: 484px;
+    width: 100%;
+}
+
+.section-after-hero-a, .section-after-hero-b {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    max-width: 696px;
+    height: auto;
+    aspect-ratio: 696 / 514;
+    border-radius: 10px;
+}
+
+.section-after-hero-a {
+    background-image: url("@/assets/Rectangle 5761.png");
+}
+
+.section-after-hero-b {
+    background-image: url("@/assets/Rectangle 5763.png");
+}
+
+@media (max-width: 1024px) {
+    .section-after-hero-a, .section-after-hero-b {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-after-hero-a, .section-after-hero-b {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
 /* For Chrome, Edge, and Safari */
 ::-webkit-scrollbar {
     width: 10px; /* Adjust the width as per your preference */
