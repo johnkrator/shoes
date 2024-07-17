@@ -77,16 +77,19 @@ const SearchResults: React.FC = () => {
                                 <div className="flex flex-col gap-2 pt-2">
                                     <h2 className="font-bold">{product.name.substring(0, 25)}...</h2>
                                     <h2 className="font-bold">
-                                        $ {product.discount_price || product.price}
-                                        {product.discount_price && (
-                                            <p className="ml-2 text-sm line-through text-gray-500">
-                                                ${product.price}
-                                            </p>
-                                        )}
+                                        <div className="flex items-center">
+                                            $ {product.discount_price || product.price}
+                                            {product.discount_price && (
+                                                <p className="ml-2 text-xs line-through text-gray-500">
+                                                    ${product.price}
+                                                </p>
+                                            )}
+                                        </div>
                                     </h2>
                                     <div className="flex flex-wrap gap-1">
                                         {product.colors.map((color, index) => (
-                                            <span key={index} className="text-sm bg-gray-200 rounded-full px-2 py-1">
+                                            <span key={index}
+                                                  className="text-sm bg-white font-bold capitalize px-2 py-1">
                                                 {color}
                                             </span>
                                         ))}
