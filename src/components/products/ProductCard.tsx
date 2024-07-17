@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
 
     if (isLoading) return (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
-            {[...Array(3)].map((_, index) => (
+            {[...Array(4)].map((_, index) => (
                 <SkeletonCard key={index}/>
             ))}
         </div>
