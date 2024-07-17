@@ -1,4 +1,4 @@
-import rider from "@/assets/pngwing.com (17) 1.png";
+import rider from "@/assets/pngwing.com (17) 1.webp";
 import Container from "@/Container.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
