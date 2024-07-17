@@ -1,5 +1,5 @@
 import star from "@/assets/Vector11.png";
-import addidas from "@/assets/pngwing.com (12) 1.png";
+import addidas from "@/assets/pngwing.com (12) 1.webp";
 import Container from "@/Container.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
 

@@ -1,4 +1,4 @@
-import heroImage from "@/assets/pngwing.com 1.png";
+import heroImage from "@/assets/pngwing.com 1.webp";
 import Container from "@/Container.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import LazyImage from "@/components/LazyImage.tsx";
