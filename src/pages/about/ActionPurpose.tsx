@@ -1,4 +1,4 @@
-import boots from "@/assets/Rectangle 5764.png";
+import boots from "@/assets/Rectangle 5764.webp";
 import LazyImage from "@/components/LazyImage.tsx";
 
 const ActionPurpose = () => {
