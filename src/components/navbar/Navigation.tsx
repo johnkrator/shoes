@@ -5,7 +5,8 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuTrigger
+    DropdownMenuTrigger,
+    DropdownMenuSeparator
 } from "../ui/dropdown-menu.tsx";
 import MobileView from "./MobileView.tsx";
 import Logo from "./Logo.tsx";
@@ -16,8 +17,23 @@ import {logout} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
 
+interface User {
+    email: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    role: string;
+    status: string;
+    token: string;
+    userId: string;
+}
+
+interface UserInfo {
+    user: User;
+}
+
 const Navigation = () => {
-    const {userInfo} = useSelector((state: RootState) => state.auth);
+    const {userInfo} = useSelector((state: RootState) => state.auth) as { userInfo: UserInfo | null };
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -32,6 +48,8 @@ const Navigation = () => {
         toast.success("Logged out successfully", toastConfig);
         console.log("Logged out successfully");
     };
+
+    const isAdmin = userInfo?.user.role === "admin";
 
     return (
         <div className="sticky top-0 z-20 bg-[#000] text-white shadow">
@@ -62,6 +80,22 @@ const Navigation = () => {
                                                 onClick={handleLogout}>
                                                 Logout
                                             </DropdownMenuItem>
+
+                                            {isAdmin && (
+                                                <>
+                                                    <DropdownMenuSeparator/>
+                                                    <Link className="font-bold" to="/admin/add-product">
+                                                        <DropdownMenuItem className="cursor-pointer capitalize">
+                                                            Add Product
+                                                        </DropdownMenuItem>
+                                                    </Link>
+                                                    <Link className="font-bold" to="/admin/product-list">
+                                                        <DropdownMenuItem className="cursor-pointer capitalize">
+                                                            Product List
+                                                        </DropdownMenuItem>
+                                                    </Link>
+                                                </>
+                                            )}
                                         </>
                                     ) : (
                                         <Link className="font-bold" to="/login">
