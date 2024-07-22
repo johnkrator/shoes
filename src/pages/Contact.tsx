@@ -13,96 +13,97 @@ const Contact = () => {
     const [message, setMessage] = useState("");
 
     const isLoading = false;
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        // Handle form submission logic here
     };
+
     return (
-        <div>
-            <Container>
-                <section className="flex flex-col items-center justify-center min-h-screen">
-                    <h2 className="text-2xl font-bold">Get In Touch</h2>
+        <Container>
+            <section className="flex flex-col items-center justify-center min-h-screen px-4">
+                <h2 className="text-2xl font-bold mb-8">Get In Touch</h2>
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="flex lg:flex-row flex-col items-center lg:gap-2 gap-5 my-[2rem]">
-                            <div className="flex flex-col gap-1 flex-1">
-                                <label htmlFor="firstName" className="block text-sm font-bold">
-                                    Name
-                                </label>
-                                <Input
-                                    className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
-                                    type="text"
-                                    placeholder="Enter Name"
-                                    value={name}
-                                    id="name"
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="flex flex-col gap-1 md:mt-0 mt-[2rem]">
-                                <label htmlFor="lastName" className="block text-sm font-bold">
-                                    Email
-                                </label>
-                                <Input
-                                    className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
-                                    type="email"
-                                    placeholder="Enter Email"
-                                    value={email}
-                                    id="email"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
+                <form onSubmit={handleSubmit} className="w-full max-w-lg">
+                    <div className="flex flex-col md:flex-row md:gap-4 gap-5 mb-6">
+                        <div className="flex flex-col flex-1">
+                            <label htmlFor="name" className="block text-sm font-bold">
+                                Name
+                            </label>
+                            <Input
+                                className="border border-gray-500 p-2 w-full"
+                                type="text"
+                                placeholder="Enter Name"
+                                value={name}
+                                id="name"
+                                onChange={(e) => setName(e.target.value)}
+                            />
                         </div>
 
-                        <div className="flex flex-col gap-1 my-[2rem]">
+                        <div className="flex flex-col flex-1">
                             <label htmlFor="email" className="block text-sm font-bold">
-                                Type of Enquiry
+                                Email
                             </label>
                             <Input
-                                className="md:w-[30rem] border border-gray-500 w-full"
-                                type="text"
-                                placeholder="Enter Type of Enquiry"
-                                value={enquiry}
-                                id="enquiry"
-                                onChange={(e) => setEnquiry(e.target.value)}
+                                className="border border-gray-500 p-2 w-full"
+                                type="email"
+                                placeholder="Enter Email"
+                                value={email}
+                                id="email"
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
+                    </div>
 
-                        <div className="flex flex-col gap-1 my-[2rem]">
-                            <label htmlFor="phoneNumber" className="block text-sm font-bold">
-                                Order Number
-                            </label>
-                            <Input
-                                className="md:w-[30rem] border border-gray-500 w-[20rem]"
-                                type="text"
-                                placeholder="Enter Order Number"
-                                value={orderNumber}
-                                id="orderNumber"
-                                onChange={(e) => setOrderNumber(e.target.value)}
-                            />
-                        </div>
+                    <div className="flex flex-col gap-1 mb-6">
+                        <label htmlFor="enquiry" className="block text-sm font-bold">
+                            Type of Enquiry
+                        </label>
+                        <Input
+                            className="border border-gray-500 p-2 w-full"
+                            type="text"
+                            placeholder="Enter Type of Enquiry"
+                            value={enquiry}
+                            id="enquiry"
+                            onChange={(e) => setEnquiry(e.target.value)}
+                        />
+                    </div>
 
-                        <div className="flex flex-col gap-1 my-[2rem]">
-                            <label htmlFor="phoneNumber" className="block text-sm font-bold">
-                                Message
-                            </label>
-                            <Textarea
-                                className="md:w-[30rem] w-[20rem] border border-gray-500"
-                                placeholder="Enter complete message"
-                                value={message}
-                                id="orderNumber"
-                                onChange={(e) => setMessage(e.target.value)}
-                            />
-                        </div>
+                    <div className="flex flex-col gap-1 mb-6">
+                        <label htmlFor="orderNumber" className="block text-sm font-bold">
+                            Order Number
+                        </label>
+                        <Input
+                            className="border border-gray-500 p-2 w-full"
+                            type="text"
+                            placeholder="Enter Order Number"
+                            value={orderNumber}
+                            id="orderNumber"
+                            onChange={(e) => setOrderNumber(e.target.value)}
+                        />
+                    </div>
 
-                        <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] w-full text-white font-bold">
-                            SEND
-                        </Button>
+                    <div className="flex flex-col gap-1 mb-6">
+                        <label htmlFor="message" className="block text-sm font-bold">
+                            Message
+                        </label>
+                        <Textarea
+                            className="border border-gray-500 p-2 w-full"
+                            placeholder="Enter complete message"
+                            value={message}
+                            id="message"
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                    </div>
 
-                        {isLoading && <SkeletonDemo/>}
-                    </form>
-                </section>
-            </Container>
-        </div>
+                    <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] w-full text-white font-bold mb-4">
+                        SEND
+                    </Button>
+
+                    {isLoading && <SkeletonDemo/>}
+                </form>
+            </section>
+        </Container>
     );
 };
 
