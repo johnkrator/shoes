@@ -32,4 +32,6 @@ export const paymentApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useProcessCartMutation,
+    useApplyVoucherMutation,
+    useProcessOrderQuery,
 } = paymentApiSlice;

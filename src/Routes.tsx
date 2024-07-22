@@ -16,6 +16,9 @@ import Checkout from "@/pages/cart/Checkout.tsx";
 import OrderDetails from "@/pages/order/OrderDetails.tsx";
 import AboutMain from "@/pages/about/AboutMain.tsx";
 import PaymentSuccessConfetti from "@/pages/order/PaymentSuccessConfetti.tsx";
+import AdminRoute from "@/pages/admin/AdminRoute.tsx";
+import ProductList from "@/pages/admin/ProductList.tsx";
+import AddProduct from "@/pages/admin/AddProduct.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -43,6 +46,16 @@ const Routes = () => {
                     children: [
                         {path: "profile", element: <Profile/>},
                         {path: "orders", element: <OrderDetails/>},
+                    ],
+                },
+
+                // Admin user routes
+                {
+                    path: "admin",
+                    element: <AdminRoute/>,
+                    children: [
+                        {path: "add-product", element: <AddProduct/>},
+                        {path: "product-list", element: <ProductList/>},
                     ],
                 },
             ],
