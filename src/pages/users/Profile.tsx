@@ -179,7 +179,7 @@ const Profile = () => {
                             {isLoading ? "Updating..." : "Update Profile"}
                         </Button>
 
-                        <Link to="/user-orders" className="mt-4 text-gray-500 hover:underline">
+                        <Link to="/orders" className="mt-4 text-gray-500 hover:underline">
                             My Orders
                         </Link>
                     </div>

@@ -1,3 +1,7 @@
+import React, {useState, useEffect} from "react";
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {toast} from "react-toastify";
 import Container from "@/Container.tsx";
 import {MdOutlineStar} from "react-icons/md";
 import locator from "@/assets/product-details/Vector.png";
@@ -8,11 +12,77 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import {Button} from "@/components/ui/button.tsx";
+import {Textarea} from "@/components/ui/textarea.tsx";
 import pickup from "@/assets/product-details/Group 49533.png";
 import delivery from "@/assets/product-details/Group 49534.png";
 import returnPolicy from "@/assets/product-details/Group 49535.png";
+import {useCreateReviewMutation, useGetProductDetailsQuery} from "@/redux/api/productApiSlice.ts";
+import LazyImage from "@/components/LazyImage.tsx";
+
+interface Review {
+    _id: string;
+    name: string;
+    rating: number;
+    comment: string;
+    user: string;
+}
 
 const ProductReview = () => {
+    const {id: productId} = useParams<{ id: string }>();
+    const [rating, setRating] = useState<number>(0);
+    const [comment, setComment] = useState("");
+
+    const {data, refetch} = useGetProductDetailsQuery(productId);
+    const [createReview, {isLoading: loadingProductReview}] = useCreateReviewMutation();
+
+    const {userInfo} = useSelector((state: any) => state.auth);
+
+    const [reviews, setReviews] = useState<Review[]>([]);
+
+    useEffect(() => {
+        if (data?.Product?.reviews) {
+            console.log("Reviews from API:", data.Product.reviews);
+            setReviews(data.Product.reviews);
+        }
+    }, [data]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!productId) {
+            toast.error("Product ID is missing", {
+                position: "top-center",
+                autoClose: 2000,
+            });
+            return;
+        }
+        try {
+            const result = await createReview({productId, rating, comment}).unwrap();
+            const newReview: Review = {
+                _id: result._id,
+                name: userInfo.name,
+                rating,
+                comment,
+                user: userInfo._id,
+            };
+            setReviews(prevReviews => [...prevReviews, newReview]);
+            console.log("Updated reviews:", [...reviews, newReview]);
+            toast.success("Review submitted successfully", {
+                position: "top-center",
+                autoClose: 2000,
+            });
+            setRating(0);
+            setComment("");
+            refetch();
+        } catch (err: unknown) {
+            const error = err as { data?: { message?: string } };
+            toast.error(error.data?.message || "Something went wrong", {
+                position: "top-center",
+                autoClose: 2000,
+            });
+        }
+    };
+
     return (
         <div className="bg-[#ff6b2d] text-white">
             <Container>
@@ -20,110 +90,83 @@ const ProductReview = () => {
                     <div className="lg:w-[55vw]">
                         <h1 className="text-[40px] font-bold underline">Reviews</h1>
                         <div className="flex flex-col gap-3 bg-[#fee8e1] text-black rounded-xl p-5">
-                            <div>
-                                <h5><span className="font-bold">Candace Jones.</span> Verified buyer</h5>
-                                <div className="flex items-center gap-1">
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
+                            {reviews.map((review: Review) => (
+                                <div key={review._id}>
+                                    <h5><span className="font-bold">{review.name}</span> Verified buyer</h5>
+                                    <div className="flex items-center gap-1">
+                                        {[...Array(5)].map((_, index) => (
+                                            <MdOutlineStar
+                                                key={index}
+                                                className={index < review.rating ? "text-[#e0551b]" : "text-gray-300"}
+                                            />
+                                        ))}
+                                    </div>
+                                    <p className="text-sm">{review.comment}</p>
                                 </div>
-                                <p className="text-sm">
-                                    These are gorgeous. Bought these for my gym activities. I love them
-                                </p>
-                            </div>
-
-                            <div>
-                                <h5><span className="font-bold">Phill Brown.</span> Verified buyer</h5>
-                                <div className="flex items-center gap-1">
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                </div>
-                                <p className="text-sm">
-                                    These are gorgeous. Bought these for my gym activities. I love them
-                                </p>
-                            </div>
-
-                            <div>
-                                <h5><span className="font-bold">Anonymous.</span></h5>
-                                <div className="flex items-center gap-1">
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                </div>
-                                <p className="text-sm">
-                                    Fabulous sneakers Such a beautiful and unique sneaker I absolutely love them so much
-                                    that I purchased three colors. I get compliments every time I wear them!
-                                </p>
-                            </div>
-
-                            <div>
-                                <h5><span className="font-bold">Wendy Fuutu.</span></h5>
-                                <div className="flex items-center gap-1">
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                    <MdOutlineStar className="text-[#e0551b]"/>
-                                </div>
-                                <p className="text-sm">Amazing and very comfortable.</p>
-                            </div>
+                            ))}
                         </div>
+
+                        {userInfo && (
+                            <form onSubmit={handleSubmit} className="mt-5 bg-[#fee8e1] text-black rounded-xl p-5">
+                                <h2 className="text-xl font-bold mb-2">Write a Customer Review</h2>
+                                <div className="mb-2">
+                                    <label htmlFor="rating" className="block mb-1">Rating</label>
+                                    <Select onValueChange={(value) => setRating(Number(value))}>
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Select a rating..."/>
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="1">1 - Poor</SelectItem>
+                                            <SelectItem value="2">2 - Fair</SelectItem>
+                                            <SelectItem value="3">3 - Good</SelectItem>
+                                            <SelectItem value="4">4 - Very Good</SelectItem>
+                                            <SelectItem value="5">5 - Excellent</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="mb-2">
+                                    <label htmlFor="comment" className="block mb-1">Comment</label>
+                                    <Textarea
+                                        id="comment"
+                                        value={comment}
+                                        onChange={(e) => setComment(e.target.value)}
+                                        className="w-full p-2 border rounded"
+                                        rows={3}
+                                    />
+                                </div>
+                                <Button
+                                    type="submit"
+                                    disabled={loadingProductReview}
+                                    className="bg-[#e0551b] text-white px-4 py-2 rounded hover:bg-[#c94c18] transition-colors"
+                                >
+                                    {loadingProductReview ? "Submitting..." : "Submit"}
+                                </Button>
+                            </form>
+                        )}
                     </div>
 
-                    <div className="flex flex-col gap-5 lg:w-[40vw] bg-[#fee8e1] text-black rounded-xl p-5">
-                        <h4 className="text-[#f46e18] font-bold">Delivery and Returns</h4>
-                        <div className="flex items-center gap-5">
-                            <h5 className="font-bold text-sm">Choose your location</h5>
-                            <img src={locator} className="w-[19px] h-[19px]" alt=""/>
-                        </div>
-                        <div>
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select Address"/>
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="light">Light</SelectItem>
-                                    <SelectItem value="dark">Dark</SelectItem>
-                                    <SelectItem value="system">System</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <img src={pickup} className="w-[68px] h-[51px]" alt=""/>
-                            <div>
-                                <h4 className="text-sm font-bold">Pickup Station</h4>
-                                <p className="text-xs">
-                                    Delivery Fees $ 5 <br/>
-                                    Pickup your package at the station within 2 hours when you make an order
-                                </p>
+                    <div className="lg:w-[35vw] flex flex-col gap-5">
+                        <div className="bg-[#fee8e1] text-black rounded-xl p-5">
+                            <h2 className="text-xl font-bold mb-3">Delivery Options</h2>
+                            <div className="flex items-center gap-2 mb-2">
+                                <LazyImage src={locator} alt="Locator" className="w-6 h-6"/>
+                                <span>Deliver to 1234 Main St, Anytown, USA</span>
+                            </div>
+                            <div className="flex items-center gap-2 mb-2">
+                                <LazyImage src={pickup} alt="Pickup" className="w-6 h-6"/>
+                                <span>Pickup available at nearby stores</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <LazyImage src={delivery} alt="Delivery" className="w-6 h-6"/>
+                                <span>Usually ready in 24 hours</span>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                            <img src={delivery} className="w-[68px] h-[51px]" alt=""/>
-                            <div>
-                                <h4 className="text-sm font-bold">Door Delivery</h4>
-                                <p className="text-xs">
-                                    Delivery fees $15 <br/>
-                                    When you make an order, our delivery agent will contact you shortly.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <img src={returnPolicy} className="w-[68px] h-[51px]" alt=""/>
-                            <div>
-                                <h4 className="text-sm font-bold">Return Policy</h4>
-                                <p className="text-xs">
-                                    Free return within 7 days of eligible items.
-                                </p>
+                        <div className="bg-[#fee8e1] text-black rounded-xl p-5">
+                            <h2 className="text-xl font-bold mb-3">Return Policy</h2>
+                            <div className="flex items-center gap-2">
+                                <LazyImage src={returnPolicy} alt="Return Policy" className="w-6 h-6"/>
+                                <span>This item can be returned within 30 days</span>
                             </div>
                         </div>
                     </div>

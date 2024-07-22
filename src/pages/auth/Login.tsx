@@ -48,7 +48,7 @@ const Login = () => {
             navigate(redirect);
             toast.success("Login successful", toastConfig);
         } catch (error: any) {
-            toast.error(error?.data?.message || error.message);
+            toast.error(error?.data?.message || error.message, toastConfig);
         }
     };
 
@@ -68,7 +68,7 @@ const Login = () => {
                                 Email Address
                             </label>
                             <Input
-                                className="md:w-[30rem] border border-gray-500"
+                                className="md:w-[30rem] w-[20rem] border border-gray-500"
                                 type="text"
                                 placeholder="Enter email"
                                 id="email"
@@ -81,7 +81,7 @@ const Login = () => {
                                    className="block text-sm font-bold">Password</label>
                             <div className="relative">
                                 <Input
-                                    className="md:w-[30rem] border border-gray-500 pr-10"
+                                    className="md:w-[30rem] w-[20rem] border border-gray-500 pr-10"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter password"
                                     id="password"
