@@ -6,16 +6,7 @@ import {FaRegHeart} from "react-icons/fa";
 import {MdOutlineShoppingCart} from "react-icons/md";
 import {RiExchangeDollarFill} from "react-icons/ri";
 import {Input} from "@/components/ui/input.tsx";
-
-// Define the structure of a cart item
-interface CartItem {
-    _id: string;
-    name: string;
-    qty: number;
-    image: string;
-    price: number;
-    countInStock: number;
-}
+import {CartItem} from "@/types/Cart.ts";
 
 // Define the structure of the Redux state
 interface RootState {
@@ -51,7 +42,7 @@ export const QueryItems: React.FC = () => {
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
     // Calculate total number of items in cart
-    const itemCount = cartItems.reduce((total, item) => total + item.qty, 0);
+    const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     const handleSearch = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();

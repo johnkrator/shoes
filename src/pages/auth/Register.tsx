@@ -91,13 +91,13 @@ const Register = () => {
                     <h1 className="text-2xl font-bold">Create Your Account</h1>
 
                     <form onSubmit={handleSubmit}>
-                        <div className="flex md:flex-row flex-col items-center md:gap-2 my-[2rem]">
-                            <div className="flex flex-col gap-1">
+                        <div className="flex lg:flex-row flex-col items-center lg:gap-2 gap-5 my-[2rem]">
+                            <div className="flex flex-col gap-1 flex-1">
                                 <label htmlFor="firstName" className="block text-sm font-bold">
                                     First Name
                                 </label>
                                 <Input
-                                    className="w-[15rem] border border-gray-500"
+                                    className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
                                     type="text"
                                     placeholder="Enter your first name"
                                     id="firstName"
@@ -111,7 +111,7 @@ const Register = () => {
                                     Last Name
                                 </label>
                                 <Input
-                                    className="w-[15rem] border border-gray-500"
+                                    className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
                                     type="text"
                                     placeholder="Enter your Last Name"
                                     id="lastName"

@@ -8,32 +8,34 @@ const FooterLinks = () => {
             className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-11 lg:mt-0 mt-10 w-[60vw]">
             <ul className="flex flex-col gap-3">
                 <h1 className="font-bold">My account</h1>
-                <Link to="/login">
+                <Link className="hover:underline transform duration-300" to="/login">
                     <li>Login/Register</li>
                 </Link>
-                <Link to="/profile">
+                <Link className="hover:underline transform duration-300" to="/profile">
                     <li>My account</li>
                 </Link>
                 <li>Order Status</li>
-                <li>Order History</li>
+                <Link className="hover:underline transform duration-300" to="/orders">
+                    <li>Order History</li>
+                </Link>
                 <li>Track my order</li>
             </ul>
 
             <ul className="flex flex-col gap-3">
                 <h1 className="font-bold">Help</h1>
-                <Link to="/contact">
+                <Link className="hover:underline transform duration-300" to="/contact">
                     <li>Get Help</li>
                 </Link>
                 <li>Order Status</li>
                 <li>Returns</li>
-                <Link to="/checkout">
+                <Link className="hover:underline transform duration-300" to="/checkout">
                     <li>Payment Options</li>
                 </Link>
             </ul>
 
             <ul className="flex flex-col gap-3">
                 <h1 className="font-bold">Company</h1>
-                <Link to="/about">
+                <Link className="hover:underline transform duration-300" to="/about">
                     <li>About us</li>
                 </Link>
                 <li>News</li>
