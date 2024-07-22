@@ -1,10 +1,5 @@
 import {WritableDraft} from "immer";
-
-interface CartItem {
-    price: number;
-    qty: number;
-    // Add other properties of the CartItem interface here
-}
+import {CartItem} from "@/types/Cart.ts";
 
 interface CartState {
     cartItems: CartItem[];
@@ -21,7 +16,7 @@ export const addDecimals = (num: number): string => {
 export const updateCart = (state: WritableDraft<CartState>): void => {
     // Calculate the items price
     state.itemsPrice = addDecimals(
-        state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+        state.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
     );
 
     // Calculate the shipping price

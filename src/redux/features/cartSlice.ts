@@ -1,19 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {updateCart} from "@/utils/cartUtils.ts";
-
-interface CartItem {
-    _id: string;
-    name: string;
-    images: string[];
-    price: number;
-    discount_price?: number;
-    countInStock?: number;
-    qty: number;
-    colors?: string[];
-    sizes?: (string | number)[];
-    selectedColor?: string;
-    selectedSize?: string | number;
-}
+import {CartItem} from "@/types/Cart.ts";
 
 interface ShippingAddress {
     address: string;

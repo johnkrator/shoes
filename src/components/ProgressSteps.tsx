@@ -1,5 +1,5 @@
 import React from "react";
-import {FaCheckSquare} from "react-icons/fa";
+import {IoMdCheckmark} from "react-icons/io";
 
 interface ProgressStepsProps {
     step1: boolean;
@@ -27,7 +27,7 @@ const Step: React.FC<{ label: string; completed: boolean }> = ({label, completed
         <span className="text-xs sm:text-sm md:text-base whitespace-nowrap">{label}</span>
         {completed && (
             <div className="mt-1 sm:mt-2 text-base sm:text-lg text-center">
-                <FaCheckSquare className="text-[#472810]"/>
+                <IoMdCheckmark className="text-[#fff] rounded-full bg-[#472911] font-bold"/>
             </div>
         )}
     </div>
