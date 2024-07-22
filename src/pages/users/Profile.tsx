@@ -84,17 +84,17 @@ const Profile = () => {
 
     return (
         <Container>
-            <section className="flex flex-col items-center justify-center min-h-screen">
-                <h2 className="text-2xl font-bold">Update Profile</h2>
+            <section className="flex flex-col items-center justify-center min-h-screen px-4">
+                <h2 className="text-2xl font-bold mb-8">Update Profile</h2>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="flex md:flex-row flex-col items-center md:gap-2 my-[2rem]">
-                        <div className="flex flex-col gap-1 flex-1">
+                <form onSubmit={handleSubmit} className="w-full max-w-md">
+                    <div className="flex flex-col md:flex-row md:gap-4 gap-1 mb-6">
+                        <div className="flex flex-col flex-1">
                             <label htmlFor="firstName" className="block text-sm font-bold">
                                 First Name
                             </label>
                             <Input
-                                className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
+                                className="border border-gray-500 p-2 w-full"
                                 type="text"
                                 placeholder="Enter your first name"
                                 id="firstName"
@@ -103,14 +103,14 @@ const Profile = () => {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-1 md:mt-0 mt-[2rem]">
+                        <div className="flex flex-col flex-1">
                             <label htmlFor="lastName" className="block text-sm font-bold">
                                 Last Name
                             </label>
                             <Input
-                                className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
+                                className="border border-gray-500 p-2 w-full"
                                 type="text"
-                                placeholder="Enter your Last Name"
+                                placeholder="Enter your last name"
                                 id="lastName"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
@@ -118,12 +118,12 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-1 my-[2rem]">
+                    <div className="flex flex-col gap-1 mb-6">
                         <label htmlFor="email" className="block text-sm font-bold">
                             E-mail Address
                         </label>
                         <Input
-                            className="md:w-[30rem] border border-gray-500 w-full"
+                            className="border border-gray-500 p-2 w-full"
                             type="email"
                             placeholder="Enter email"
                             id="email"
@@ -132,20 +132,19 @@ const Profile = () => {
                         />
                     </div>
 
-                    <div className="flex flex-col gap-1 my-[2rem]">
+                    <div className="flex flex-col gap-1 mb-6">
                         <label htmlFor="password" className="block text-sm font-bold">
                             Password
                         </label>
                         <div className="relative">
                             <Input
-                                className="md:w-[30rem] border border-gray-500 w-full"
+                                className="border border-gray-500 p-2 w-full pr-10"
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Enter new password (optional)"
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-
                             <button
                                 type="button"
                                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
@@ -156,30 +155,30 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-1 my-[2rem]">
+                    <div className="flex flex-col gap-1 mb-6">
                         <label htmlFor="phoneNumber" className="block text-sm font-bold">
                             Phone Number
                         </label>
                         <Input
-                            className="md:w-[30rem] border border-gray-500 w-full"
+                            className="border border-gray-500 p-2 w-full"
                             type="text"
-                            placeholder="Enter Phone Number"
+                            placeholder="Enter phone number"
                             id="phoneNumber"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
                         />
                     </div>
 
-                    <div className="flex md:flex-row flex-col items-center justify-between">
+                    <div className="flex flex-col md:flex-row md:gap-4 items-center justify-between">
                         <Button
-                            className="bg-[#FF773E] hover:bg-[#FF773E] font-bold w-[10rem]"
+                            className="bg-[#FF773E] hover:bg-[#FF773E] font-bold w-full md:w-auto mb-4 md:mb-0"
                             disabled={isLoading}
                             type="submit"
                         >
                             {isLoading ? "Updating..." : "Update Profile"}
                         </Button>
 
-                        <Link to="/orders" className="mt-4 text-gray-500 hover:underline">
+                        <Link to="/orders" className="text-gray-500 hover:underline">
                             My Orders
                         </Link>
                     </div>
