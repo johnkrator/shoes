@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import Container from "@/Container.tsx";
 import {GoChevronLeft} from "react-icons/go";
 import {Separator} from "@/components/ui/separator.tsx";
@@ -13,22 +14,21 @@ import {BsTruck} from "react-icons/bs";
 import {MdOutlineStoreMallDirectory} from "react-icons/md";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {IoLocationOutline} from "react-icons/io5";
+import {GiPadlock} from "react-icons/gi";
+import ProgressSteps from "@/components/ProgressSteps.tsx";
+import {RootState} from "@/redux/store.ts";
+import {useProcessCartMutation} from "@/redux/api/paymentApiSlice.ts";
+import {toast} from "react-toastify";
+import {toastConfig} from "@/components/toastConfig.ts";
 import masterCard from "@/assets/Rectangle 71.png";
 import visa from "@/assets/Rectangle 75.png";
 import amex from "@/assets/Rectangle 74.png";
 import discover from "@/assets/Rectangle 73.png";
 import plus4 from "@/assets/Group 49450.png";
-import {GiPadlock} from "react-icons/gi";
-import ProgressSteps from "@/components/ProgressSteps.tsx";
-import {useSelector} from "react-redux";
-import {RootState} from "@/redux/store.ts";
-import {useProcessCartMutation} from "@/redux/api/paymentApiSlice.ts";
-import {toast} from "react-toastify";
-import {toastConfig} from "@/components/toastConfig.ts";
+import {clearCartItems} from "@/redux/features/cartSlice.ts";
 
 const Checkout = () => {
     const [isProcessing, setIsProcessing] = useState(false);
-    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -47,14 +47,16 @@ const Checkout = () => {
     const [voucherCode, setVoucherCode] = useState("");
 
     const {cartItems} = useSelector((state: RootState) => state.cart);
+    const {userInfo} = useSelector((state: RootState) => state.auth);
     const [processCart] = useProcessCartMutation();
+    const dispatch = useDispatch();
 
     const subtotal = cartItems.reduce(
         (acc, item) => acc + (item.discount_price || item.price) * item.quantity,
         0
     );
 
-    const shippingCost = 1200; // 1200 NGN
+    const shippingCost = 700; // 700 NGN
     const dutiesPercentage = 0.233; // 23.3%
     const taxesPercentage = 0.137; // 13.7%
 
@@ -80,26 +82,16 @@ const Checkout = () => {
             }).unwrap();
 
             if (res.status === "payment link generated successfully") {
-                // Open the payment link in a new window
-                const paymentWindow = window.open(res.paymentlink, "_blank");
+                // Construct the Paystack URL with the token
+                const paystackUrl = new URL(res.paymentlink);
+                paystackUrl.searchParams.append("token", userInfo?.user?.token || "");
+                console.log(`User payment token: ${userInfo?.user?.token}`);
 
-                // Check if the payment window was successfully opened
-                if (paymentWindow) {
-                    // Set up an interval to check if the payment window is closed
-                    const checkWindowClosed = setInterval(() => {
-                        if (paymentWindow.closed) {
-                            clearInterval(checkWindowClosed);
-                            // When the payment window is closed, assume payment is complete
-                            // In a real-world scenario, you'd want to verify the payment status with your backend
-                            setIsProcessing(false);
-                            navigate("/success");
-                        }
-                    }, 1000);
-                } else {
-                    // If the window didn't open, handle the error
-                    setIsProcessing(false);
-                    toast.error("Unable to open payment window. Please try again.", toastConfig);
-                }
+                // Clear the cart
+                dispatch(clearCartItems());
+
+                // Redirect to Paystack
+                window.location.href = paystackUrl.toString();
             } else {
                 setIsProcessing(false);
                 toast.error("Failed to generate payment link. Please try again.", toastConfig);
@@ -145,6 +137,7 @@ const Checkout = () => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="w-full">
+                            {/* Contact Information */}
                             <div className="flex flex-col gap-2 w-full">
                                 <Label className="font-bold">Contact</Label>
                                 <div className="w-full">
@@ -164,6 +157,7 @@ const Checkout = () => {
                                 </div>
                             </div>
 
+                            {/* Delivery Information */}
                             <div className="flex flex-col gap-2 w-full mt-4">
                                 <Label className="font-bold">Delivery</Label>
                                 <RadioGroup value={deliveryType} onValueChange={setDeliveryType}>
@@ -291,6 +285,7 @@ const Checkout = () => {
                                 />
                             </div>
 
+                            {/* Shipping Method */}
                             <div className="flex flex-col gap-2 w-full mt-4">
                                 <Label className="font-bold">Shipping Method</Label>
                                 <RadioGroup defaultValue="option-one">
@@ -323,6 +318,7 @@ const Checkout = () => {
                                 </RadioGroup>
                             </div>
 
+                            {/* Payment Information */}
                             <div className="flex flex-col gap-2 w-full mt-4">
                                 <div className="flex flex-col gap-1">
                                     <Label className="font-bold">Payment</Label>
@@ -336,8 +332,7 @@ const Checkout = () => {
                                             <LazyImage
                                                 src={masterCard}
                                                 alt="mastercard"
-                                                className="w-[70px] h-[35px] object-cover"
-                                            />
+                                                className="w-[70px] h-[35px] object-cover"/>
                                             <LazyImage
                                                 src={visa}
                                                 alt="visa"
@@ -351,7 +346,8 @@ const Checkout = () => {
                                             <LazyImage
                                                 src={discover}
                                                 alt="discover"
-                                                className="w-[70px] h-[35px] object-cover"/>
+                                                className="w-[70px] h-[35px] object-cover"
+                                            />
                                             <LazyImage
                                                 src={plus4}
                                                 alt="plus4"
@@ -406,14 +402,16 @@ const Checkout = () => {
                                 </div>
                             </div>
 
+                            {/* Remember Me */}
                             <div className="flex flex-col gap-2 w-full mt-4">
                                 <Label className="font-bold">Remember me</Label>
                                 <div className="flex items-center gap-2 border border-gray-500 rounded-lg p-5">
-                                    <Checkbox className=""/>
+                                    <Checkbox/>
                                     <Label>Save my information for a faster checkout</Label>
                                 </div>
                             </div>
 
+                            {/* Terms and Conditions */}
                             <div className="flex flex-col gap-2 mt-4">
                                 <p className="text-sm font-bold">
                                     By clicking below and completing your order, you agree to purchase your item(s) from
@@ -443,7 +441,7 @@ const Checkout = () => {
                         </form>
                     </div>
 
-                    {/* Cart section */}
+                    {/* Cart Summary */}
                     <div
                         className="flex flex-col gap-3 bg-[#472810] text-white rounded-xl md:p-4 p-2 lg:w-2/5 w-full md:min-h-96 md:max-h-[calc(70vh-2rem)] overflow-y-auto">
                         <div className="flex flex-col gap-2">
