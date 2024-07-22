@@ -87,17 +87,17 @@ const Register = () => {
     return (
         <div>
             <Container>
-                <section className="flex flex-col items-center justify-center min-h-screen">
-                    <h1 className="text-2xl font-bold">Create Your Account</h1>
+                <section className="flex flex-col items-center justify-center min-h-screen px-4">
+                    <h1 className="text-2xl font-bold mb-8">Create Your Account</h1>
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="flex lg:flex-row flex-col items-center lg:gap-2 gap-5 my-[2rem]">
+                    <form onSubmit={handleSubmit} className="w-full max-w-md">
+                        <div className="flex flex-col md:flex-row md:gap-4 gap-4 mb-6">
                             <div className="flex flex-col gap-1 flex-1">
                                 <label htmlFor="firstName" className="block text-sm font-bold">
                                     First Name
                                 </label>
                                 <Input
-                                    className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
+                                    className="border border-gray-500 p-2"
                                     type="text"
                                     placeholder="Enter your first name"
                                     id="firstName"
@@ -106,14 +106,14 @@ const Register = () => {
                                 />
                             </div>
 
-                            <div className="flex flex-col gap-1 md:mt-0 mt-[2rem]">
+                            <div className="flex flex-col gap-1 flex-1">
                                 <label htmlFor="lastName" className="block text-sm font-bold">
                                     Last Name
                                 </label>
                                 <Input
-                                    className="lg:w-[14.7vw] md:w-[30rem] w-[20rem] border border-gray-500"
+                                    className="border border-gray-500 p-2"
                                     type="text"
-                                    placeholder="Enter your Last Name"
+                                    placeholder="Enter your last name"
                                     id="lastName"
                                     value={lastName}
                                     onChange={(e) => setLastName(e.target.value)}
@@ -121,12 +121,12 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-1 my-[2rem]">
+                        <div className="flex flex-col gap-1 mb-6">
                             <label htmlFor="email" className="block text-sm font-bold">
                                 E-mail Address
                             </label>
                             <Input
-                                className="md:w-[30rem] border border-gray-500 w-full"
+                                className="border border-gray-500 p-2 w-full"
                                 type="email"
                                 placeholder="Enter email"
                                 id="email"
@@ -135,13 +135,13 @@ const Register = () => {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-1 my-[2rem]">
+                        <div className="flex flex-col gap-1 mb-6">
                             <label htmlFor="password" className="block text-sm font-bold">
                                 Password
                             </label>
                             <div className="relative">
                                 <Input
-                                    className="md:w-[30rem] border border-gray-500 w-full"
+                                    className="border border-gray-500 p-2 w-full"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter password"
                                     id="password"
@@ -159,38 +159,37 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-1 my-[2rem]">
+                        <div className="flex flex-col gap-1 mb-6">
                             <label htmlFor="phoneNumber" className="block text-sm font-bold">
                                 Phone Number
                             </label>
                             <Input
-                                className="md:w-[30rem] border border-gray-500 w-full"
+                                className="border border-gray-500 p-2 w-full"
                                 type="text"
-                                placeholder="Enter Phone Number"
+                                placeholder="Enter phone number"
                                 id="phoneNumber"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                             />
                         </div>
 
-                        <div className="flex md:flex-row flex-col items-center justify-between">
+                        <div className="flex flex-col md:flex-row items-center justify-between mb-6">
                             <Button
-                                className="bg-[#FF773E] hover:bg-[#FF773E] font-bold w-[10rem]"
+                                className="bg-[#FF773E] hover:bg-[#FF773E] font-bold w-full md:w-auto mb-4 md:mb-0"
                                 disabled={isLoading}
-                                type="submit">
+                                type="submit"
+                            >
                                 {isLoading ? "Registering..." : "Register"}
                             </Button>
 
-                            <div className="flex justify-start mt-4">
-                                <p className="">
-                                    <span className="font-bold text-xs">Already have an account?</span>
-                                    <Link
-                                        to={redirect ? `/login?redirect=${redirect}` : "/login"}
-                                        className="ml-1 text-gray-500 hover:underline"
-                                    >
-                                        Login
-                                    </Link>
-                                </p>
+                            <div className="text-center">
+                                <span className="font-bold text-xs">Already have an account?</span>
+                                <Link
+                                    to={redirect ? `/login?redirect=${redirect}` : "/login"}
+                                    className="ml-1 text-gray-500 hover:underline"
+                                >
+                                    Login
+                                </Link>
                             </div>
                         </div>
 
@@ -198,7 +197,7 @@ const Register = () => {
                     </form>
                 </section>
 
-                <div className="flex flex-col gap-5 mb-10">
+                <div className="flex flex-col gap-5 mb-10 items-center">
                     <div className="flex items-center justify-center md:gap-10 gap-5">
                         <Separator className="lg:w-[146.14px] w-20"/>
                         <span className="whitespace-nowrap font-bold">Or Sign Up with</span>

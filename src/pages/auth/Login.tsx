@@ -59,16 +59,16 @@ const Login = () => {
     return (
         <div>
             <Container>
-                <section className="flex flex-col items-center justify-center min-h-screen">
-                    <h1 className="text-2xl font-bold">Sign In To Your Account</h1>
+                <section className="flex flex-col items-center justify-center min-h-screen px-4">
+                    <h1 className="text-2xl font-bold mb-8">Sign In To Your Account</h1>
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="flex flex-col gap-1 my-[2rem]">
+                    <form onSubmit={handleSubmit} className="w-full max-w-md">
+                        <div className="flex flex-col gap-1 mb-6">
                             <label htmlFor="email" className="block text-sm font-bold">
                                 Email Address
                             </label>
                             <Input
-                                className="md:w-[30rem] w-[20rem] border border-gray-500"
+                                className="border border-gray-500 p-2 w-full"
                                 type="text"
                                 placeholder="Enter email"
                                 id="email"
@@ -76,12 +76,13 @@ const Login = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div className="flex flex-col gap-1 my-[2rem]">
-                            <label htmlFor="password"
-                                   className="block text-sm font-bold">Password</label>
+                        <div className="flex flex-col gap-1 mb-6">
+                            <label htmlFor="password" className="block text-sm font-bold">
+                                Password
+                            </label>
                             <div className="relative">
                                 <Input
-                                    className="md:w-[30rem] w-[20rem] border border-gray-500 pr-10"
+                                    className="border border-gray-500 p-2 w-full pr-10"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter password"
                                     id="password"
@@ -98,24 +99,23 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <div className="flex md:flex-row flex-col justify-between items-center">
+                        <div className="flex flex-col md:flex-row justify-between items-center mb-6">
                             <Button
                                 disabled={isLoading}
-                                className="bg-[#FF773E] hover:bg-[#FF773E] font-bold w-[10rem]"
-                                type="submit">
+                                className="bg-[#FF773E] hover:bg-[#FF773E] font-bold w-full md:w-auto mb-4 md:mb-0"
+                                type="submit"
+                            >
                                 {isLoading ? "Logging in..." : "Login"}
                             </Button>
 
-                            <div className="flex justify-start mt-4">
-                                <p>
-                                    <span className="font-bold text-xs">New Customer?</span>
-                                    <Link
-                                        to={redirect ? `/register?redirect=${redirect}` : "/register"}
-                                        className="ml-1 text-gray-500 hover:underline"
-                                    >
-                                        Create Account
-                                    </Link>
-                                </p>
+                            <div className="text-center">
+                                <span className="font-bold text-xs">New Customer?</span>
+                                <Link
+                                    to={redirect ? `/register?redirect=${redirect}` : "/register"}
+                                    className="ml-1 text-gray-500 hover:underline"
+                                >
+                                    Create Account
+                                </Link>
                             </div>
                         </div>
 
@@ -123,10 +123,10 @@ const Login = () => {
                     </form>
                 </section>
 
-                <div className="flex flex-col gap-5 mb-10">
+                <div className="flex flex-col gap-5 mb-10 items-center">
                     <div className="flex items-center justify-center md:gap-10 gap-5">
                         <Separator className="lg:w-[146.14px] w-20"/>
-                        <span className="whitespace-nowrap font-bold">Or Sign Up with</span>
+                        <span className="whitespace-nowrap font-bold">Or Sign In with</span>
                         <Separator className="lg:w-[146.14px] w-20"/>
                     </div>
 
