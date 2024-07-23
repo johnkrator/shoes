@@ -17,16 +17,16 @@ interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({currentPage, totalPages, onPageChange}) => {
     return (
         <UIPagination className="my-2">
-            <PaginationContent>
-                <PaginationItem>
+            <PaginationContent className="flex flex-wrap justify-center">
+                <PaginationItem className="mx-1">
                     <PaginationPrevious
                         href="#"
                         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-                        className={currentPage <= 1 ? "pointer-events-none opacity-50" : ""}
+                        className={`${currentPage <= 1 ? "pointer-events-none opacity-50" : ""}`}
                     />
                 </PaginationItem>
                 {[...Array(totalPages)].map((_, index) => (
-                    <PaginationItem key={index}>
+                    <PaginationItem key={index} className="mx-1">
                         <PaginationLink
                             href="#"
                             onClick={() => onPageChange(index + 1)}
@@ -36,11 +36,11 @@ const Pagination: React.FC<PaginationProps> = ({currentPage, totalPages, onPageC
                         </PaginationLink>
                     </PaginationItem>
                 ))}
-                <PaginationItem>
+                <PaginationItem className="mx-1">
                     <PaginationNext
                         href="#"
                         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-                        className={currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}
+                        className={`${currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}`}
                     />
                 </PaginationItem>
             </PaginationContent>
