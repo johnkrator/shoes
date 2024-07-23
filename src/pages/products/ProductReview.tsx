@@ -21,15 +21,7 @@ import {useCreateReviewMutation, useGetProductDetailsQuery} from "@/redux/api/pr
 import LazyImage from "@/components/LazyImage.tsx";
 import Pagination from "@/components/Pagination.tsx";
 import {toastConfig} from "@/components/toastConfig.ts";
-
-interface Review {
-    _id: string;
-    name: string;
-    rating: number;
-    comment: string;
-    user: string;
-    userId: string;
-}
+import {Review} from "@/types/Review.ts";
 
 const REVIEWS_PER_PAGE = 5;
 
