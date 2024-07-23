@@ -19,15 +19,46 @@ E-commerce web application.
 ```
 shoes
 ├── dist
+├── assets
+├── index.html
+├── vite.svg
 ├── node_modules
 ├── public
+│   ├── vite.svg
 ├── src
 │   ├── assets
 │   ├── components
 │   │   ├── footer
+│   │   │   ├── Footer.tsx
+│   │   │   ├── FooterLinks.tsx
+│   │   │   ├── FooterSocials.tsx
+│   │   │   ├── Newsletter.tsx
 │   │   ├── navbar
+│   │   │   ├── Logo.tsx
+│   │   │   ├── MobileView.tsx
+│   │   │   ├── Navigation.tsx
+│   │   │   ├── NavItems.tsx
+│   │   │   ├── routeContants.tsx
+│   │   │   ├── SearchResults.tsx
 │   │   ├── products
+│   │   │   ├── ProductCard.tsx
+│   │   │   ├── productData.ts
+│   │   │   ├── Products.tsx
 │   │   ├── ui
+│   │   │   ├── button.tsx
+│   │   │   ├── carousel.tsx
+│   │   │   ├── checkbox.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── pagination.tsx
+│   │   │   ├── radio-group.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── textarea.tsx
 │   │   ├── AboutComponent.tsx
 │   │   ├── ComingSoon.tsx
 │   │   ├── CustomersReview.tsx
@@ -42,19 +73,63 @@ shoes
 │   │   ├── toastConfig.ts
 │   │   ├── TrackOrderProgressSteps.tsx
 │   ├── lib
+│   │   ├── utils.ts
 │   ├── pages
 │   │   ├── about
+│   │   │   ├── AboutHero.tsx
+│   │   │   ├── AboutMain.tsx
+│   │   │   ├── ActionPurpose.tsx
+│   │   │   ├── GlobalReach.tsx
+│   │   │   ├── OurLeader.tsx
+│   │   │   ├── SectionAfterHero.tsx
+│   │   │   ├── SmallAboutNav.tsx
+│   │   │   ├── Technologies.tsx
+│   │   ├── admin
+│   │   │   ├── AddProduct.tsx
+│   │   │   ├── AdminRoute.tsx
+│   │   │   ├── EditProductModal.tsx
+│   │   │   ├── ProductList.tsx
 │   │   ├── auth
+│   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
 │   │   ├── cart
+│   │   │   ├── Cart.tsx
+│   │   │   ├── Checkout.tsx
 │   │   ├── order
+│   │   │   ├── OrderDetails.tsx
+│   │   │   ├── PaymentSuccessConfetti.tsx
+│   │   │   ├── SuccessMessage.tsx
 │   │   ├── products
+│   │   │   ├── ProductDesc.tsx
+│   │   │   ├── ProductDetails.tsx
+│   │   │   ├── ProductReview.tsx
+│   │   │   ├── SimilarProducts.tsx
+│   │   │   ├── SmallNav.tsx
 │   │   ├── users
+│   │   │   ├── Profile.tsx
+│   │   │   ├── Contact.tsx
+│   │   │   ├── Favorites.tsx
+│   │   │   ├── Home.tsx
+│   │   │   ├── Shop.tsx
 │   ├── redux
 │   │   ├── api
+│   │   │   ├── apiSlice.ts
+│   │   │   ├── cartApiSlice.ts
+│   │   │   ├── paymentApiSlice.ts
+│   │   │   ├── productApiSlice.ts
+│   │   │   ├── userApiSlice.ts
 │   │   ├── features
+│   │   │   ├── authSlice.ts
+│   │   │   ├── cartSlice.ts
+│   │   │   ├── favoriteSlice.ts
 │   │   ├── store.ts
 │   ├── types
+│   │   ├── Cart.ts
+│   │   ├── Product.ts
 │   ├── utils
+│   │   ├── cartUtils.ts
+│   │   ├── constants.ts
+│   │   ├── localStorage.ts
 │   ├── App.tsx
 │   ├── Container.tsx
 │   ├── ErrorPage.tsx
@@ -83,12 +158,22 @@ shoes
 ### Root Directory
 
 - **dist**: Compiled files ready for production deployment.
-- **node_modules**: Contains all npm dependencies.
-- **public**: Static files that are directly served, such as images and fonts.
+- **assets**: Static assets like images, fonts, etc.
+- **index.html**: Main HTML file for the application.
+- **vite.svg**: SVG logo for Vite.
+- **node_modules**: Contains all the npm packages.
+
+### `public` Directory
+
+Contains public assets.
+
+- **vite.svg**: SVG logo for Vite.
 
 ### `src` Directory
 
-- **assets**: Contains static assets like images, fonts, etc.
+Contains the source code of the application.
+
+- **assets**: Static assets like images, fonts, etc.
 - **components**: Contains all reusable UI components.
 
 #### `components` Subdirectories
@@ -104,6 +189,8 @@ shoes
     - `MobileView.tsx`: Navigation for mobile view.
     - `Navigation.tsx`: Main navigation component.
     - `NavItems.tsx`: Navigation items component.
+    - `routeContants.tsx`: Route constants for navigation.
+    - `SearchResults.tsx`: Component for search results.
 
 - **products**: Components related to product display.
     - `ProductCard.tsx`: Component for displaying individual product cards.
@@ -114,16 +201,20 @@ shoes
     - `button.tsx`: Button component.
     - `carousel.tsx`: Carousel component.
     - `checkbox.tsx`: Checkbox component.
+    - `dialog.tsx`: Dialog component.
     - `dropdown-menu.tsx`: Dropdown menu component.
     - `input.tsx`: Input field component.
     - `label.tsx`: Label component.
     - `pagination.tsx`: Pagination component.
-    - `radio-group.tsx`: Radio group component.
-    - `select.tsx`: Select dropdown component.
-    - `separator.tsx`: Separator component.
-    - `sheet.tsx`: Sheet component.
-    - `skeleton.tsx`: Skeleton loading component.
-    - `textarea.tsx`: Textarea component.
+    - `radio-group.tsx`: Radio
+
+group component.
+
+- `select.tsx`: Select dropdown component.
+- `separator.tsx`: Separator component.
+- `sheet.tsx`: Sheet component.
+- `skeleton.tsx`: Skeleton loading component.
+- `textarea.tsx`: Textarea component.
 
 - **AboutComponent.tsx**: Component for the "About Us" section.
 - **ComingSoon.tsx**: Component for "Coming Soon" page.
@@ -143,7 +234,11 @@ shoes
 
 Contains library files and utilities.
 
+- `utils.ts`: Utility functions.
+
 ### `pages` Directory
+
+Contains components for different pages of the application.
 
 - **about**: Components for the about page.
     - `AboutHero.tsx`: Hero section of the about page.
@@ -155,7 +250,15 @@ Contains library files and utilities.
     - `SmallAboutNav.tsx`: Small navigation component for the about page.
     - `Technologies.tsx`: Section about technologies used.
 
+- **admin**: Components for admin functionalities.
+    - `AddProduct.tsx`: Component for adding a new product.
+    - `AdminRoute.tsx`: Component for handling admin routes.
+    - `EditProductModal.tsx`: Modal component for editing a product.
+    - `ProductList.tsx`: Component for displaying a list of products.
+
 - **auth**: Components related to authentication.
+    - `Login.tsx`: Login component.
+    - `Register.tsx`: Register component.
 
 - **cart**: Components related to the shopping cart.
     - `Cart.tsx`: Main cart component.
@@ -238,9 +341,6 @@ Contains utility functions and constants.
 - **tsconfig.json**: TypeScript configuration.
 - **tsconfig.node.json**: TypeScript configuration for Node.
 - **vercel.json**: Vercel deployment configuration.
-
-## Vercel deployment configuration.
-
 - **vite.config.ts**: Vite configuration.
 
 ## Installation
@@ -259,7 +359,7 @@ To start the development server, run the following command:
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`.
+The application will be available at `http://localhost:5173`.
 
 ## Building for Production
 
@@ -309,3 +409,12 @@ vercel
 ```
 
 Ensure you have the Vercel CLI installed and configured with your account.
+
+## Live Deployed URL
+
+https://shoes-jet.vercel.app/
+
+---
+
+This README provides a comprehensive overview of the Shoes E-commerce web application, detailing its structure,
+components, and configurations to help you set up, develop, and deploy the application efficiently.
