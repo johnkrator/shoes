@@ -2,7 +2,6 @@ import {useSelector} from "react-redux";
 import Container from "@/Container.tsx";
 import {selectFavoriteProduct} from "@/redux/features/favoriteSlice.ts";
 import ProductCard from "@/components/products/ProductCard.tsx";
-import {Product} from "@/types/Product.ts";
 
 const Favorites = () => {
     const favorites = useSelector(selectFavoriteProduct) as Product[];
