@@ -4,7 +4,6 @@ import {useSelector} from "react-redux";
 import {IoSearchOutline} from "react-icons/io5";
 import {FaRegHeart} from "react-icons/fa";
 import {MdOutlineShoppingCart} from "react-icons/md";
-import {RiExchangeDollarFill} from "react-icons/ri";
 import {Input} from "@/components/ui/input.tsx";
 import {CartItem} from "@/types/Cart.ts";
 
@@ -64,7 +63,6 @@ export const QueryItems: React.FC = () => {
                 />
             </form>
             <div className="flex gap-5 lg:mt-0 mt-5">
-                <RiExchangeDollarFill size={25}/>
                 <Link to="/favorites">
                     <FaRegHeart size={25}/>
                 </Link>

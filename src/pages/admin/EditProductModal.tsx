@@ -6,7 +6,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import React, {useState} from "react";
-import {useUpdateProductMutation} from "@/redux/api/productApiSlice.ts";
+import {useUpdateProductMutation, useDeleteProductMutation} from "@/redux/api/productApiSlice.ts";
 import {Input} from "@/components/ui/input.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -16,10 +16,12 @@ import {toastConfig} from "@/components/toastConfig.ts";
 interface EditProductModalProps {
     children: React.ReactNode;
     product: Product;
+    onDelete?: () => void;
 }
 
-const EditProductModal: React.FC<EditProductModalProps> = ({children, product}) => {
-    const [updateProduct, {isLoading}] = useUpdateProductMutation();
+const EditProductModal: React.FC<EditProductModalProps> = ({children, product, onDelete}) => {
+    const [updateProduct, {isLoading: isUpdating}] = useUpdateProductMutation();
+    const [deleteProduct, {isLoading: isDeleting}] = useDeleteProductMutation();
 
     const [images, setImages] = useState<File[]>([]);
     const [name, setName] = useState(product.name);
@@ -69,6 +71,26 @@ const EditProductModal: React.FC<EditProductModalProps> = ({children, product}) 
         } catch (error) {
             console.error("Update error:", error);
             toast.error("Product update failed", toastConfig);
+        }
+    };
+
+    const handleDelete = async () => {
+        if (!product._id) {
+            toast.error("Product ID is missing", toastConfig);
+            return;
+        }
+
+        if (window.confirm("Are you sure you want to delete this product? This action cannot be undone.")) {
+            try {
+                await deleteProduct(product._id).unwrap();
+                toast.success("Product deleted successfully", toastConfig);
+                if (onDelete) {
+                    onDelete();
+                }
+            } catch (error) {
+                console.error("Delete error:", error);
+                toast.error("Failed to delete product", toastConfig);
+            }
         }
     };
 
@@ -158,9 +180,20 @@ const EditProductModal: React.FC<EditProductModalProps> = ({children, product}) 
                         placeholder="Return Info"
                         className="border border-gray-500"
                     />
-                    <Button className="w-full bg-[#FF773E] hover:bg-[#FF773E] font-bold" type="submit"
-                            disabled={isLoading}>
-                        {isLoading ? "Updating..." : "Update Product"}
+                    <Button
+                        className="w-full bg-[#FF773E] hover:bg-[#FF773E] font-bold"
+                        type="submit"
+                        disabled={isUpdating}
+                    >
+                        {isUpdating ? "Updating..." : "Update Product"}
+                    </Button>
+                    <Button
+                        className="w-full bg-red-600 hover:bg-red-700 font-bold text-white"
+                        type="button"
+                        onClick={handleDelete}
+                        disabled={isDeleting}
+                    >
+                        {isDeleting ? "Deleting..." : "Delete Product"}
                     </Button>
                 </form>
             </DialogContent>
