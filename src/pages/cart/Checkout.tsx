@@ -20,11 +20,6 @@ import {RootState} from "@/redux/store.ts";
 import {useProcessCartMutation} from "@/redux/api/paymentApiSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
-import masterCard from "@/assets/Rectangle 71.png";
-import visa from "@/assets/Rectangle 75.png";
-import amex from "@/assets/Rectangle 74.png";
-import discover from "@/assets/Rectangle 73.png";
-import plus4 from "@/assets/Group 49450.png";
 import {clearCartItems} from "@/redux/features/cartSlice.ts";
 
 const Checkout = () => {
@@ -39,10 +34,6 @@ const Checkout = () => {
     const [state, setState] = useState("");
     const [zip, setZip] = useState("");
     const [phone, setPhone] = useState("");
-    const [cardNumber, setCardNumber] = useState("");
-    const [expiryDate, setExpiryDate] = useState("");
-    const [securityCode, setSecurityCode] = useState("");
-    const [nameOnCard, setNameOnCard] = useState("");
     const [deliveryType, setDeliveryType] = useState("door delivery");
     const [voucherCode, setVoucherCode] = useState("");
 
@@ -283,123 +274,6 @@ const Checkout = () => {
                                     placeholder="Enter your Phone number"
                                     required
                                 />
-                            </div>
-
-                            {/* Shipping Method */}
-                            <div className="flex flex-col gap-2 w-full mt-4">
-                                <Label className="font-bold">Shipping Method</Label>
-                                <RadioGroup defaultValue="option-one">
-                                    <div
-                                        className="flex items-center justify-between border border-gray-500 p-3 rounded-lg w-full">
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="option-one" id="option-one"/>
-                                            <div className="flex flex-col gap-1">
-                                                <Label htmlFor="option-one" className="font-bold">
-                                                    UPS Worldwide Expedited
-                                                </Label>
-                                                <Label htmlFor="option-one">8 business days</Label>
-                                            </div>
-                                        </div>
-                                        <p className="font-bold">#81,200.00</p>
-                                    </div>
-                                    <div
-                                        className="flex items-center justify-between border border-gray-500 p-3 rounded-lg w-full">
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="option-two" id="option-two"/>
-                                            <div className="flex flex-col gap-1">
-                                                <Label htmlFor="option-two" className="font-bold">
-                                                    DHL Express Worldwide
-                                                </Label>
-                                                <Label htmlFor="option-two">3 to 5 business days</Label>
-                                            </div>
-                                        </div>
-                                        <p className="font-bold">#154,000.00</p>
-                                    </div>
-                                </RadioGroup>
-                            </div>
-
-                            {/* Payment Information */}
-                            <div className="flex flex-col gap-2 w-full mt-4">
-                                <div className="flex flex-col gap-1">
-                                    <Label className="font-bold">Payment</Label>
-                                    <span>All transactions are secure and encrypted</span>
-                                </div>
-                                <div className="flex flex-col gap-2 bg-[#DDDDDD] p-5 rounded-lg">
-                                    <div
-                                        className="flex md:flex-row flex-col md:gap-0 gap-2 items-center justify-between bg-[#F4F9FE] border border-gray-500 p-3 rounded-lg">
-                                        <p>Credit card</p>
-                                        <div className="grid md:grid-cols-5 grid-cols-3 items-center gap-1">
-                                            <LazyImage
-                                                src={masterCard}
-                                                alt="mastercard"
-                                                className="w-[70px] h-[35px] object-cover"/>
-                                            <LazyImage
-                                                src={visa}
-                                                alt="visa"
-                                                className="w-[70px] h-[35px] object-cover"
-                                            />
-                                            <LazyImage
-                                                src={amex}
-                                                alt="amex"
-                                                className="w-[70px] h-[35px] object-cover"
-                                            />
-                                            <LazyImage
-                                                src={discover}
-                                                alt="discover"
-                                                className="w-[70px] h-[35px] object-cover"
-                                            />
-                                            <LazyImage
-                                                src={plus4}
-                                                alt="plus4"
-                                                className="w-[70px] h-[35px] object-cover"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="relative">
-                                        <Input
-                                            className="border border-gray-500 w-full"
-                                            name="cardNumber"
-                                            type="text"
-                                            value={cardNumber}
-                                            onChange={(e) => setCardNumber(e.target.value)}
-                                            placeholder="Credit card number"
-                                            required
-                                        />
-                                        <GiPadlock className="absolute top-3 right-2"/>
-                                    </div>
-
-                                    <div className="flex items-center gap-2">
-                                        <Input
-                                            className="border border-gray-500 w-full"
-                                            name="expiryDate"
-                                            type="text"
-                                            value={expiryDate}
-                                            onChange={(e) => setExpiryDate(e.target.value)}
-                                            placeholder="Expiration date (MM / YY)"
-                                            required
-                                        />
-                                        <Input
-                                            className="border border-gray-500 w-full"
-                                            name="securityCode"
-                                            type="text"
-                                            value={securityCode}
-                                            onChange={(e) => setSecurityCode(e.target.value)}
-                                            placeholder="Security code"
-                                            required
-                                        />
-                                    </div>
-
-                                    <Input
-                                        className="border border-gray-500 w-full"
-                                        name="nameOnCard"
-                                        type="text"
-                                        value={nameOnCard}
-                                        onChange={(e) => setNameOnCard(e.target.value)}
-                                        placeholder="Name on card"
-                                        required
-                                    />
-                                </div>
                             </div>
 
                             {/* Remember Me */}
