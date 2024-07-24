@@ -7,7 +7,7 @@ import Pagination from "@/components/Pagination.tsx";
 import EditProductModal from "@/pages/admin/EditProductModal.tsx";
 import {useGetProductsQuery} from "@/redux/api/productApiSlice.ts";
 import {SkeletonCard} from "@/components/Loader.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const ProductList: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -55,11 +55,13 @@ const ProductList: React.FC = () => {
                                 key={product._id}
                                 className="relative flex items-center justify-center rounded-xl shadow-lg bg-[#FCEEE8] w-full h-[357.23px] max-w-[450px] mx-auto"
                             >
-                                <LazyImage
-                                    src={product.images[0]}
-                                    alt={product.name}
-                                    className="object-cover w-[335.08px] h-[216px]"
-                                />
+                                <div className="overflow-hidden relative group rounded-lg">
+                                    <LazyImage
+                                        src={product.images[0]}
+                                        alt={product.name}
+                                        className="object-cover w-[335.08px] h-[216px]"
+                                    />
+                                </div>
                                 <EditProductModal product={product}>
                                     <div
                                         className="absolute lg:bottom-5 bottom-5 p-1 right-5 cursor-pointer bg-[#E0551B] text-white font-bold rounded-full"

@@ -1,5 +1,5 @@
 import {IoIosCheckmark} from "react-icons/io";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const SuccessMessage = () => {
     return (

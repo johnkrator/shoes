@@ -16,7 +16,7 @@ import {setCredentials} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
 import {SkeletonDemo} from "@/components/Loader.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Login = () => {
     const [email, setEmail] = useState("");

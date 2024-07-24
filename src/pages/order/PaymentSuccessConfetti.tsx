@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {GoChevronLeft} from "react-icons/go";
 import Container from "@/Container.tsx";
 import SuccessMessage from "@/pages/order/SuccessMessage.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 
 const PaymentSuccessConfetti = () => {

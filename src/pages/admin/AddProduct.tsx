@@ -7,7 +7,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {useNavigate} from "react-router-dom";
 import {useCreateProductMutation} from "@/redux/api/productApiSlice.ts";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const AddProduct = () => {
     const [images, setImages] = useState<File[]>([]);

@@ -12,7 +12,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 interface EditProductModalProps {
     children: React.ReactNode;

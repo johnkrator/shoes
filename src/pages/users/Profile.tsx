@@ -11,7 +11,7 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {toastConfig} from "@/components/toastConfig.ts";
 import Container from "@/Container.tsx";
 import {SkeletonDemo} from "@/components/Loader.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Profile = () => {
     const [firstName, setFirstName] = useState("");

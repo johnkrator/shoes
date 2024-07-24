@@ -4,7 +4,7 @@ import {SkeletonDemo} from "@/components/Loader.tsx";
 import React, {useState} from "react";
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Contact = () => {
     const [name, setName] = useState("");
