@@ -12,11 +12,7 @@ const ProductDetails = () => {
                 <div className="flex flex-col gap-10">
                     <RevelOnScroll>
                         <ProductDesc/>
-                    </RevelOnScroll>
-                    <RevelOnScroll>
                         <ProductReview/>
-                    </RevelOnScroll>
-                    <RevelOnScroll>
                         <SimilarProducts/>
                     </RevelOnScroll>
                 </div>
