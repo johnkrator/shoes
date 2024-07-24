@@ -106,15 +106,15 @@ const EditProductModal: React.FC<EditProductModalProps> = ({children, product, o
     };
 
     return (
-        <RevelOnScroll>
-            <Dialog>
-                <DialogTrigger asChild>
-                    {children}
-                </DialogTrigger>
-                <DialogContent className="max-w-md w-full max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                        <DialogTitle>Edit Product</DialogTitle>
-                    </DialogHeader>
+        <Dialog>
+            <DialogTrigger asChild>
+                {children}
+            </DialogTrigger>
+            <DialogContent className="max-w-md w-full max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                    <DialogTitle>Edit Product</DialogTitle>
+                </DialogHeader>
+                <RevelOnScroll>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -198,9 +198,9 @@ const EditProductModal: React.FC<EditProductModalProps> = ({children, product, o
                             {isDeleting ? "Deleting..." : "Delete Product"}
                         </Button>
                     </form>
-                </DialogContent>
-            </Dialog>
-        </RevelOnScroll>
+                </RevelOnScroll>
+            </DialogContent>
+        </Dialog>
     );
 };
 
