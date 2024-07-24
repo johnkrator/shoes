@@ -198,16 +198,9 @@ const ProductDesc: React.FC = () => {
                                     onClick={handleAddToCart}>
                                 Add to Cart
                             </Button>
-                            <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold w-full sm:w-auto">Buy
-                                Now</Button>
-                        </div>
-
-                        {/* Description and specifications */}
-                        <div className="flex flex-col gap-5 mt-8">
-                            <div>
-                                <h4 className="text-base font-bold mb-2">Description</h4>
-                                <p className="text-sm">{product.description}</p>
-                            </div>
+                            <Button className="bg-[#ff6b2d] hover:bg-[#ff6b2d] font-bold w-full sm:w-auto">
+                                Buy Now
+                            </Button>
                         </div>
 
                         <div className="flex flex-col md:flex-row gap-8 my-6">
