@@ -3,8 +3,8 @@ import LazyImage from "@/components/LazyImage.tsx";
 
 const ActionPurpose = () => {
     return (
-        <div className="flex flex-col gap-5">
-            <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col gap-5 ">
+            <div className="flex flex-col items-center justify-center mt-32 mb-5">
                 <h1 className="font-bold md:text-5xl text-2xl text-center">Putting Our Purpose into Action</h1>
                 <p className="text-lg text-center">Our marketplace empowers and unites people.</p>
             </div>

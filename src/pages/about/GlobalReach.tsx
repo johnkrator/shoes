@@ -1,6 +1,6 @@
 const GlobalReach = () => {
     return (
-        <div className="bg-custom-brown-gradient text-white my-10 rounded-xl">
+        <div className="bg-custom-brown-gradient text-white my-10 rounded-xl mt-32">
             <h1 className="md:text-5xl text-2xl font-bold text-center pt-5">Global Scale & Reach</h1>
             <div className="flex lg:flex-row flex-col items-center justify-center gap-3 py-5">
                 <div className="flex flex-col items-center gap-2">
