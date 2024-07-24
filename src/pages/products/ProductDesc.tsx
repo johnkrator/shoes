@@ -210,7 +210,7 @@ const ProductDesc: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col md:flex-row gap-8 mt-6">
+                        <div className="flex flex-col md:flex-row gap-8 my-6">
                             <div className="flex flex-col gap-2">
                                 <h4 className="text-base font-bold">Specifications</h4>
                                 <div>
