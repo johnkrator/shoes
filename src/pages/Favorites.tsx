@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import Container from "@/Container.tsx";
 import {selectFavoriteProduct} from "@/redux/features/favoriteSlice.ts";
 import ProductCard from "@/components/products/ProductCard.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Favorites = () => {
     const favorites = useSelector(selectFavoriteProduct) as Product[];

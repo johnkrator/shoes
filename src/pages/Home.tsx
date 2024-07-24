@@ -3,26 +3,24 @@ import AboutComponent from "@/components/AboutComponent.tsx";
 import ProductDetailsComponent from "@/components/ProductDetailsComponent.tsx";
 import CustomersReview from "@/components/CustomersReview.tsx";
 import Products from "@/components/products/Products.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevealOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Home = () => {
     return (
-        <div className="flex flex-col md:overflow-x-visible overflow-x-hidden">
-            <RevelOnScroll>
+        <div className="flex flex-col overflow-x-hidden">
+            <RevealOnScroll>
                 <HeroSection/>
-            </RevelOnScroll>
-            <RevelOnScroll>
+            </RevealOnScroll>
+            <RevealOnScroll>
                 <Products/>
-            </RevelOnScroll>
-            <RevelOnScroll>
+            </RevealOnScroll>
+            <RevealOnScroll>
                 <AboutComponent/>
-            </RevelOnScroll>
-            <RevelOnScroll>
+            </RevealOnScroll>
+            <RevealOnScroll>
                 <ProductDetailsComponent/>
-            </RevelOnScroll>
-            <RevelOnScroll>
-                <CustomersReview/>
-            </RevelOnScroll>
+            </RevealOnScroll>
+            <CustomersReview/>
         </div>
     );
 };

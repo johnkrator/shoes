@@ -8,7 +8,7 @@ import {Separator} from "@/components/ui/separator.tsx";
 import {GoChevronLeft} from "react-icons/go";
 import {Link} from "react-router-dom";
 import TrackOrderProgressSteps from "@/components/TrackOrderProgressSteps.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const OrderDetails = () => {
     return (

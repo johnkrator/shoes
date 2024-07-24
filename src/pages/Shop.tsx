@@ -1,6 +1,6 @@
 import Container from "@/Container.tsx";
 import ProductCard from "@/components/products/ProductCard.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Shop = () => {
     return (

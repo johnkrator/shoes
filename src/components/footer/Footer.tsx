@@ -1,7 +1,7 @@
 import FooterSocials from "./FooterSocials.tsx";
 import FooterLinks from "./FooterLinks.tsx";
 import Newsletter from "@/components/footer/Newsletter.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const Footer = () => {
     return (

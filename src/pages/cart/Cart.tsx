@@ -24,7 +24,7 @@ import {useDeleteCartMutation, useUpdateCartMutation} from "@/redux/api/cartApiS
 import {CartItem} from "@/types/Cart.ts";
 import {toastConfig} from "@/components/toastConfig.ts";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 interface RootState {
     cart: {

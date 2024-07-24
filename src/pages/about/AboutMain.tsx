@@ -6,7 +6,7 @@ import ActionPurpose from "@/pages/about/ActionPurpose.tsx";
 import GlobalReach from "@/pages/about/GlobalReach.tsx";
 import OurLeader from "@/pages/about/OurLeader.tsx";
 import Technologies from "@/pages/about/Technologies.tsx";
-import RevelOnScroll from "@/components/RevelOnScroll.tsx";
+import RevelOnScroll from "@/components/RevealOnScroll.tsx";
 
 const AboutMain = () => {
     return (
