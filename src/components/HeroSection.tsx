@@ -8,7 +8,7 @@ const HeroSection = () => {
     return (
         <div className="bg-gradient-to-b from-[#180a01] to-[#6e3002] text-[#fff] py-10">
             <Container>
-                <div className="md:flex justify-center items-center gap-20">
+                <div className="flex md:flex-row flex-col-reverse justify-center items-center gap-20 py-24">
                     <div className="flex flex-col gap-5">
                         <h1 className="lg:text-[64px] md:text-[70px] text-[40px] md:leading-[65px] leading-10 font-bold">
                             Discover your <br/> best shoes

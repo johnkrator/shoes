@@ -6,18 +6,31 @@ import ActionPurpose from "@/pages/about/ActionPurpose.tsx";
 import GlobalReach from "@/pages/about/GlobalReach.tsx";
 import OurLeader from "@/pages/about/OurLeader.tsx";
 import Technologies from "@/pages/about/Technologies.tsx";
+import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 const AboutMain = () => {
     return (
         <div className="flex flex-col">
             <SmallAboutNav/>
-            <AboutHero/>
+            <RevelOnScroll>
+                <AboutHero/>
+            </RevelOnScroll>
             <Container>
-                <SectionAfterHero/>
-                <ActionPurpose/>
-                <GlobalReach/>
-                <OurLeader/>
-                <Technologies/>
+                <RevelOnScroll>
+                    <SectionAfterHero/>
+                </RevelOnScroll>
+                <RevelOnScroll>
+                    <ActionPurpose/>
+                </RevelOnScroll>
+                <RevelOnScroll>
+                    <GlobalReach/>
+                </RevelOnScroll>
+                <RevelOnScroll>
+                    <OurLeader/>
+                </RevelOnScroll>
+                <RevelOnScroll>
+                    <Technologies/>
+                </RevelOnScroll>
             </Container>
         </div>
     );

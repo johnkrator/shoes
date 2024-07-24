@@ -7,6 +7,7 @@ import Pagination from "@/components/Pagination.tsx";
 import EditProductModal from "@/pages/admin/EditProductModal.tsx";
 import {useGetProductsQuery} from "@/redux/api/productApiSlice.ts";
 import {SkeletonCard} from "@/components/Loader.tsx";
+import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 const ProductList: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +44,7 @@ const ProductList: React.FC = () => {
     }
 
     return (
-        <div>
+        <RevelOnScroll>
             <SmallNav/>
             <Container>
                 <div className="my-10">
@@ -80,7 +81,7 @@ const ProductList: React.FC = () => {
                     )}
                 </div>
             </Container>
-        </div>
+        </RevelOnScroll>
     );
 };
 
