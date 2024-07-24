@@ -8,7 +8,9 @@ const ScrollReveal = ({children}: { children: React.ReactNode }) => {
 
     useEffect(() => {
         if (inView) {
-            controls.start("visible").then(r => r.start("hidden"));
+            controls.start("visible");
+        } else {
+            controls.start("hidden");
         }
     }, [controls, inView]);
 
