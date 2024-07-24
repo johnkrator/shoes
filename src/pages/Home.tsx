@@ -7,7 +7,7 @@ import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 const Home = () => {
     return (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col md:overflow-x-visible overflow-x-hidden">
             <RevelOnScroll>
                 <HeroSection/>
             </RevelOnScroll>
