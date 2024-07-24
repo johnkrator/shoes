@@ -2,7 +2,7 @@ import {MdChevronRight} from "react-icons/md";
 
 const OurLeader = () => {
     return (
-        <div className="our-leader flex ">
+        <div className="our-leader flex mt-32">
             <div className="w-[50vw]"></div>
             <div className="flex flex-col gap-10 text-white w-[50vw] m-auto">
                 <div className="flex flex-col gap-5">
