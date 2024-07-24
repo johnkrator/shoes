@@ -21,6 +21,7 @@ import {useProcessCartMutation} from "@/redux/api/paymentApiSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
 import {clearCartItems} from "@/redux/features/cartSlice.ts";
+import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 const Checkout = () => {
     const [isProcessing, setIsProcessing] = useState(false);
@@ -95,7 +96,7 @@ const Checkout = () => {
     };
 
     return (
-        <div>
+        <RevelOnScroll>
             <Container>
                 <ProgressSteps step1={true} step2={true} step3={false}/>
                 <div>
@@ -380,7 +381,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </Container>
-        </div>
+        </RevelOnScroll>
     );
 };
 

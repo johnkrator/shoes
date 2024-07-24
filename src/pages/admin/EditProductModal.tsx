@@ -12,6 +12,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
+import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 interface EditProductModalProps {
     children: React.ReactNode;
@@ -105,99 +106,101 @@ const EditProductModal: React.FC<EditProductModalProps> = ({children, product, o
     };
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                {children}
-            </DialogTrigger>
-            <DialogContent className="max-w-md w-full max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                    <DialogTitle>Edit Product</DialogTitle>
-                </DialogHeader>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block mb-2 text-sm font-medium text-gray-900">
-                            Upload Images
-                            <Input
-                                type="file"
-                                name="images"
-                                accept="image/*"
-                                onChange={uploadFileHandler}
-                                multiple
-                                className="mt-1 border border-gray-500 cursor-pointer"
-                            />
-                        </label>
-                    </div>
-                    <Input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Product Name"
-                        className="border border-gray-500"
-                    />
-                    <Textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Description"
-                        className="border border-gray-500"
-                    />
-                    <Input
-                        type="number"
-                        value={price}
-                        onChange={(e) => setPrice(Number(e.target.value))}
-                        placeholder="Price"
-                        className="border border-gray-500"
-                    />
-                    <Input
-                        type="number"
-                        value={discountPrice}
-                        onChange={(e) => setDiscountPrice(e.target.value)}
-                        placeholder="Discount Price"
-                        className="border border-gray-500"
-                    />
-                    <Input
-                        type="text"
-                        value={colors.join(", ")}
-                        onChange={(e) => setColors(e.target.value.split(",").map(color => color.trim()))}
-                        placeholder="Colors (comma-separated)"
-                        className="border border-gray-500"
-                    />
-                    <Input
-                        type="text"
-                        value={sizes.join(", ")}
-                        onChange={(e) => setSizes(e.target.value.split(",").map(size => size.trim()))}
-                        placeholder="Sizes (comma-separated)"
-                        className="border border-gray-500"
-                    />
-                    <Textarea
-                        value={deliveryInfo}
-                        onChange={(e) => setDeliveryInfo(e.target.value)}
-                        placeholder="Delivery Info"
-                        className="border border-gray-500"
-                    />
-                    <Textarea
-                        value={returnInfo}
-                        onChange={(e) => setReturnInfo(e.target.value)}
-                        placeholder="Return Info"
-                        className="border border-gray-500"
-                    />
-                    <Button
-                        className="w-full bg-[#FF773E] hover:bg-[#FF773E] font-bold"
-                        type="submit"
-                        disabled={isUpdating}
-                    >
-                        {isUpdating ? "Updating..." : "Update Product"}
-                    </Button>
-                    <Button
-                        className="w-full bg-red-600 hover:bg-red-700 font-bold text-white"
-                        type="button"
-                        onClick={handleDelete}
-                        disabled={isDeleting}
-                    >
-                        {isDeleting ? "Deleting..." : "Delete Product"}
-                    </Button>
-                </form>
-            </DialogContent>
-        </Dialog>
+        <RevelOnScroll>
+            <Dialog>
+                <DialogTrigger asChild>
+                    {children}
+                </DialogTrigger>
+                <DialogContent className="max-w-md w-full max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Edit Product</DialogTitle>
+                    </DialogHeader>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900">
+                                Upload Images
+                                <Input
+                                    type="file"
+                                    name="images"
+                                    accept="image/*"
+                                    onChange={uploadFileHandler}
+                                    multiple
+                                    className="mt-1 border border-gray-500 cursor-pointer"
+                                />
+                            </label>
+                        </div>
+                        <Input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Product Name"
+                            className="border border-gray-500"
+                        />
+                        <Textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Description"
+                            className="border border-gray-500"
+                        />
+                        <Input
+                            type="number"
+                            value={price}
+                            onChange={(e) => setPrice(Number(e.target.value))}
+                            placeholder="Price"
+                            className="border border-gray-500"
+                        />
+                        <Input
+                            type="number"
+                            value={discountPrice}
+                            onChange={(e) => setDiscountPrice(e.target.value)}
+                            placeholder="Discount Price"
+                            className="border border-gray-500"
+                        />
+                        <Input
+                            type="text"
+                            value={colors.join(", ")}
+                            onChange={(e) => setColors(e.target.value.split(",").map(color => color.trim()))}
+                            placeholder="Colors (comma-separated)"
+                            className="border border-gray-500"
+                        />
+                        <Input
+                            type="text"
+                            value={sizes.join(", ")}
+                            onChange={(e) => setSizes(e.target.value.split(",").map(size => size.trim()))}
+                            placeholder="Sizes (comma-separated)"
+                            className="border border-gray-500"
+                        />
+                        <Textarea
+                            value={deliveryInfo}
+                            onChange={(e) => setDeliveryInfo(e.target.value)}
+                            placeholder="Delivery Info"
+                            className="border border-gray-500"
+                        />
+                        <Textarea
+                            value={returnInfo}
+                            onChange={(e) => setReturnInfo(e.target.value)}
+                            placeholder="Return Info"
+                            className="border border-gray-500"
+                        />
+                        <Button
+                            className="w-full bg-[#FF773E] hover:bg-[#FF773E] font-bold"
+                            type="submit"
+                            disabled={isUpdating}
+                        >
+                            {isUpdating ? "Updating..." : "Update Product"}
+                        </Button>
+                        <Button
+                            className="w-full bg-red-600 hover:bg-red-700 font-bold text-white"
+                            type="button"
+                            onClick={handleDelete}
+                            disabled={isDeleting}
+                        >
+                            {isDeleting ? "Deleting..." : "Delete Product"}
+                        </Button>
+                    </form>
+                </DialogContent>
+            </Dialog>
+        </RevelOnScroll>
     );
 };
 

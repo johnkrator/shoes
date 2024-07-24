@@ -16,6 +16,7 @@ import {setCredentials} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
 import {SkeletonDemo} from "@/components/Loader.tsx";
+import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -57,7 +58,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <RevelOnScroll>
             <Container>
                 <section className="flex flex-col items-center justify-center min-h-screen px-4">
                     <h1 className="text-2xl font-bold mb-8">Sign In To Your Account</h1>
@@ -137,7 +138,7 @@ const Login = () => {
                     </div>
                 </div>
             </Container>
-        </div>
+        </RevelOnScroll>
     );
 };
 

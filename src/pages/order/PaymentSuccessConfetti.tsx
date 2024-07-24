@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {GoChevronLeft} from "react-icons/go";
 import Container from "@/Container.tsx";
 import SuccessMessage from "@/pages/order/SuccessMessage.tsx";
+import RevelOnScroll from "@/components/RevelOnScroll.tsx";
 
 
 const PaymentSuccessConfetti = () => {
@@ -18,16 +19,18 @@ const PaymentSuccessConfetti = () => {
     }, []);
 
     return (
-        <Container>
-            <ProgressSteps step1={true} step2={true} step3={true}/>
-            <div className="flex flex-col items-center justify-center my-20">
-                <SuccessMessage/>
-                <Link className="flex items-center capitalize font-bold hover:underline mt-10" to="/orders">
-                    <GoChevronLeft/>
-                    see your order history
-                </Link>
-            </div>
-        </Container>
+        <RevelOnScroll>
+            <Container>
+                <ProgressSteps step1={true} step2={true} step3={true}/>
+                <div className="flex flex-col items-center justify-center my-20">
+                    <SuccessMessage/>
+                    <Link className="flex items-center capitalize font-bold hover:underline mt-10" to="/orders">
+                        <GoChevronLeft/>
+                        see your order history
+                    </Link>
+                </div>
+            </Container>
+        </RevelOnScroll>
     );
 };
 
