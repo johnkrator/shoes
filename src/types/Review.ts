@@ -1,8 +1,10 @@
 export interface Review {
     _id: string;
-    name: string;
+    productId: string;
+    userId: string;
     rating: number;
     comment: string;
-    user: string;
-    userId: string;
+    createdAt: string;
+    updatedAt: string;
+    v: number;
 }
