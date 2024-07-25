@@ -17,7 +17,11 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import pickup from "@/assets/product-details/Group 49533.png";
 import delivery from "@/assets/product-details/Group 49534.png";
 import returnPolicy from "@/assets/product-details/Group 49535.png";
-import {useCreateReviewMutation, useGetProductDetailsQuery} from "@/redux/api/productApiSlice.ts";
+import {
+    useCreateReviewMutation,
+    useGetProductDetailsQuery,
+    useGetAllReviewsQuery
+} from "@/redux/api/productApiSlice.ts";
 import LazyImage from "@/components/LazyImage.tsx";
 import Pagination from "@/components/Pagination.tsx";
 import {toastConfig} from "@/components/toastConfig.ts";
@@ -30,20 +34,30 @@ const ProductReview = () => {
     const [rating, setRating] = useState<number>(0);
     const [comment, setComment] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
+    const [reviews, setReviews] = useState<Review[]>([]);
 
-    const {data, refetch} = useGetProductDetailsQuery(productId);
+    const {refetch: refetchProductDetails} = useGetProductDetailsQuery(productId);
+    const {data: reviewsData, refetch: refetchReviews} = useGetAllReviewsQuery(productId);
     const [createReview, {isLoading: loadingProductReview}] = useCreateReviewMutation();
 
     const {userInfo} = useSelector((state: any) => state.auth);
 
-    const [reviews, setReviews] = useState<Review[]>([]);
+    useEffect(() => {
+        // Load reviews from localStorage on component mount
+        const storedReviews = localStorage.getItem(`reviews_${productId}`);
+        if (storedReviews) {
+            setReviews(JSON.parse(storedReviews));
+        }
+    }, [productId]);
 
     useEffect(() => {
-        if (data?.Product?.reviews) {
-            console.log("Reviews from API:", data.Product.reviews);
-            setReviews(data.Product.reviews);
+        if (reviewsData?.data) {
+            console.log("Reviews from API:", reviewsData.data);
+            setReviews(reviewsData.data);
+            // Store reviews in localStorage
+            localStorage.setItem(`reviews_${productId}`, JSON.stringify(reviewsData.data));
         }
-    }, [data]);
+    }, [reviewsData, productId]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -57,19 +71,25 @@ const ProductReview = () => {
         try {
             const result = await createReview({productId, rating, comment}).unwrap();
             const newReview: Review = {
-                _id: result._id,
-                name: userInfo.name,
-                rating,
-                comment,
-                user: userInfo._id,
-                userId: userInfo._id,
+                _id: result.data.review._id,
+                productId: result.data.review.productId,
+                userId: result.data.review.userId,
+                rating: result.data.review.rating,
+                comment: result.data.review.comment,
+                createdAt: result.data.review.createdAt,
+                updatedAt: result.data.review.updatedAt,
+                v: result.data.review.v,
             };
-            setReviews(prevReviews => [newReview, ...prevReviews]);
-            console.log("Updated reviews:", [newReview, ...reviews]);
+            const updatedReviews = [newReview, ...reviews];
+            setReviews(updatedReviews);
+            // Update localStorage
+            localStorage.setItem(`reviews_${productId}`, JSON.stringify(updatedReviews));
+            console.log("Updated reviews:", updatedReviews);
             toast.success("Review submitted successfully", toastConfig);
             setRating(0);
             setComment("");
-            refetch();
+            refetchProductDetails();
+            refetchReviews();
         } catch (err: unknown) {
             const error = err as { data?: { message?: string } };
             toast.error(error.data?.message || "Something went wrong", toastConfig);
@@ -96,7 +116,7 @@ const ProductReview = () => {
                             {paginatedReviews.map((review: Review) => (
                                 <div key={review._id}
                                      className="border-b pb-3 mb-3 last:border-b-0 last:pb-0 last:mb-0">
-                                    <h5 className="font-bold">{review.name || "Anonymous"}</h5>
+                                    <h5 className="font-bold">User ID: {review.userId}</h5>
                                     <div className="flex items-center gap-1 my-1">
                                         {[...Array(5)].map((_, index) => (
                                             <MdOutlineStar
@@ -107,6 +127,7 @@ const ProductReview = () => {
                                         ))}
                                     </div>
                                     <p className="text-sm mt-2">{review.comment}</p>
+                                    <p className="text-xs text-gray-500 mt-1">Created: {new Date(review.createdAt).toLocaleString()}</p>
                                 </div>
                             ))}
                         </div>
@@ -181,6 +202,7 @@ const ProductReview = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </Container>
         </div>
