@@ -336,7 +336,7 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <p className="md:text-base text-xs">
-                                        #{((item.discount_price || item.price) * item.quantity).toFixed(2)}
+                                        ₦{((item.discount_price || item.price) * item.quantity).toFixed(2)}
                                     </p>
                                 </div>
                             ))}
@@ -358,24 +358,24 @@ const Checkout = () => {
                         <div className="flex flex-col gap-2">
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Subtotal</p>
-                                <p className="capitalize text-sm">#{subtotal.toFixed(2)}</p>
+                                <p className="capitalize text-sm">₦{subtotal.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Shipping</p>
-                                <p className="capitalize text-sm">#{shippingCost.toFixed(2)}</p>
+                                <p className="capitalize text-sm">₦{shippingCost.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Duties</p>
-                                <p className="capitalize text-sm">#{duties.toFixed(2)}</p>
+                                <p className="capitalize text-sm">₦{duties.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-xs">Taxes</p>
-                                <p className="capitalize text-sm">#{taxes.toFixed(2)}</p>
+                                <p className="capitalize text-sm">₦{taxes.toFixed(2)}</p>
                             </div>
                             <Separator/>
                             <div className="flex items-center justify-between">
                                 <p className="capitalize text-lg font-bold">Total</p>
-                                <p className="capitalize font-bold">#{total.toFixed(2)}</p>
+                                <p className="capitalize font-bold">₦{total.toFixed(2)}</p>
                             </div>
                         </div>
                     </div>

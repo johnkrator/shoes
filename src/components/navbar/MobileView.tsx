@@ -19,7 +19,7 @@ const MobileView = () => {
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-                <GiHamburgerMenu className="h-6 w-6 cursor-pointer md:hidden"/>
+                <GiHamburgerMenu className="h-6 w-6 cursor-pointer lg:hidden"/>
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col gap-6">

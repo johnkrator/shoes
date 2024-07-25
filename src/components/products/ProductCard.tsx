@@ -88,10 +88,10 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
                             </div>
 
                             <h2 className="font-bold">
-                                $ {product.discount_price || product.price}
+                                ₦ {product.discount_price || product.price}
                                 {product.discount_price && (
                                     <span className="ml-2 text-sm line-through text-gray-500">
-                                        ${product.price}
+                                        ₦ {product.price}
                                     </span>
                                 )}
                             </h2>
