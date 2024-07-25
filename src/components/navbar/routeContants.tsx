@@ -33,7 +33,11 @@ export const headerLinks = [
     }
 ];
 
-export const QueryItems: React.FC = () => {
+interface QueryItemsProps {
+    onLinkClick?: () => void;
+}
+
+export const QueryItems: React.FC<QueryItemsProps> = ({onLinkClick}) => {
     const [searchQuery, setSearchQuery] = useState<string>("");
     const navigate = useNavigate();
 
@@ -48,6 +52,7 @@ export const QueryItems: React.FC = () => {
         if (searchQuery.trim()) {
             navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
             setSearchQuery(""); // reset the search query on successful search
+            onLinkClick?.(); // Close sidenav after search
         }
     };
 
@@ -63,10 +68,10 @@ export const QueryItems: React.FC = () => {
                 />
             </form>
             <div className="flex gap-5 lg:mt-0 mt-5">
-                <Link to="/favorites">
+                <Link to="/favorites" onClick={onLinkClick}>
                     <FaRegHeart size={25}/>
                 </Link>
-                <Link to="/cart" className="relative">
+                <Link to="/cart" className="relative" onClick={onLinkClick}>
                     <MdOutlineShoppingCart size={25}/>
                     {itemCount > 0 && (
                         <p
