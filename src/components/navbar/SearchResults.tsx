@@ -63,7 +63,7 @@ const SearchResults: React.FC = () => {
                     <p className="text-gray-600">No results found for "{query}"</p>
                 )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {results.map((product) => (
                         <Link to={`/product/${product._id}`} key={product._id}>
                             <div className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3 h-[29rem]">
@@ -78,7 +78,7 @@ const SearchResults: React.FC = () => {
                                     <h2 className="font-bold">{product.name.substring(0, 25)}...</h2>
                                     <h2 className="font-bold">
                                         <div className="flex items-center">
-                                            $ {product.discount_price || product.price}
+                                            ₦ {product.discount_price || product.price}
                                             {product.discount_price && (
                                                 <p className="ml-2 text-xs line-through text-gray-500">
                                                     ${product.price}
