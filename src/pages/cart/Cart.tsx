@@ -107,9 +107,9 @@ const Cart: React.FC = () => {
     );
 
     const shippingOptions = [
-        {label: "Standard - $5.00", value: "standard", price: 5, date: "Sat July, 28th"},
-        {label: "EXPRESS - $15.00", value: "express", price: 15, date: "Thu July, 18th"},
-        {label: "RUSH - $30.00", value: "rush", price: 30, date: "Sun July, 14th"},
+        {label: "Standard - ₦5.00", value: "standard", price: 5, date: "Sat July, 28th"},
+        {label: "EXPRESS - ₦15.00", value: "express", price: 15, date: "Thu July, 18th"},
+        {label: "RUSH - ₦30.00", value: "rush", price: 30, date: "Sun July, 14th"},
     ];
 
     const [selectedShipping, setSelectedShipping] = useState(shippingOptions[0]);
@@ -189,10 +189,12 @@ const Cart: React.FC = () => {
                         <div>
                             <h4 className="font-bold mb-1 text-sm">Each</h4>
                             <p className="text-xs sm:text-sm">
-                                ${item.discount_price ? item.discount_price.toFixed(2) : item.price.toFixed(2)}
+                                ₦{item.discount_price ? item.discount_price.toFixed(2) : item.price.toFixed(2)}
                             </p>
                             {item.discount_price && (
-                                <p className="text-xs sm:text-sm line-through text-gray-400">${item.price.toFixed(2)}</p>
+                                <p className="text-xs sm:text-sm line-through text-gray-400">
+                                    ₦{item.price.toFixed(2)}
+                                </p>
                             )}
                         </div>
                         <div>
@@ -220,7 +222,7 @@ const Cart: React.FC = () => {
                         <div>
                             <h4 className="font-bold mb-1 text-sm">Subtotal</h4>
                             <p className="text-xs sm:text-sm">
-                                ${((item.discount_price || item.price) * item.quantity).toFixed(2)}
+                                ₦{((item.discount_price || item.price) * item.quantity).toFixed(2)}
                             </p>
                         </div>
                     </div>
@@ -326,28 +328,27 @@ const Cart: React.FC = () => {
                                         <div className="flex flex-col gap-2 text-sm sm:text-base">
                                             <div className="flex justify-between">
                                                 <p>Product Total</p>
-                                                <p>${subtotal.toFixed(2)}</p>
+                                                <p>₦{subtotal.toFixed(2)}</p>
                                             </div>
                                             <div className="flex justify-between">
                                                 <div>
                                                     <p>Shipping {selectedShipping.label.split(" - ")[0]}</p>
                                                     <p className="text-xs sm:text-sm">{selectedShipping.date}</p>
                                                 </div>
-                                                <p>${selectedShipping.price.toFixed(2)}</p>
+                                                <p>₦{selectedShipping.price.toFixed(2)}</p>
                                             </div>
                                             <div className="flex justify-between">
                                                 <p>You saved</p>
                                                 <p>
-                                                    -$
-                                                    {cartItems
-                                                        .reduce(
-                                                            (acc, item) =>
-                                                                acc +
-                                                                (item.price - (item.discount_price || item.price)) *
-                                                                item.quantity,
-                                                            0
-                                                        )
-                                                        .toFixed(2)}
+                                                    -₦{cartItems
+                                                    .reduce(
+                                                        (acc, item) =>
+                                                            acc +
+                                                            (item.price - (item.discount_price || item.price)) *
+                                                            item.quantity,
+                                                        0
+                                                    )
+                                                    .toFixed(2)}
                                                 </p>
                                             </div>
                                             <div className="flex justify-between">
@@ -361,7 +362,7 @@ const Cart: React.FC = () => {
 
                                     <div className="flex justify-between items-center font-bold">
                                         <h1>Subtotal</h1>
-                                        <h1>${(subtotal + selectedShipping.price).toFixed(2)}</h1>
+                                        <h1>₦{(subtotal + selectedShipping.price).toFixed(2)}</h1>
                                     </div>
 
                                     <Button

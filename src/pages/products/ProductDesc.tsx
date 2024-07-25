@@ -130,10 +130,11 @@ const ProductDesc: React.FC = () => {
                         <div className="flex flex-col">
                             <p className="text-sm font-bold">{product.description}</p>
                             <div className="flex items-center gap-5 mt-2">
-                                <span className="font-bold text-lg">$ {product.discount_price || product.price}</span>
+                                <span
+                                    className="font-bold text-lg">₦ {product.discount_price || product.price}</span>
                                 {product.discount_price && (
                                     <>
-                                        <span className="line-through text-sm">$ {product.price}</span>
+                                        <span className="line-through text-sm">₦ {product.price}</span>
                                         <span className="text-[#e0551b] text-sm">
                                             -{Math.round((1 - product.discount_price / product.price) * 100)}%
                                         </span>
