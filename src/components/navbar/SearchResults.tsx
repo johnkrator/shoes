@@ -66,7 +66,7 @@ const SearchResults: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {results.map((product) => (
                         <Link to={`/product/${product._id}`} key={product._id}>
-                            <div className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3">
+                            <div className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3 h-[29rem]">
                                 <div className="overflow-hidden w-full relative group rounded-lg">
                                     <LazyImage
                                         src={product.images[0]}

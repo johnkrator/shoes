@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, ScrollRestoration} from "react-router-dom";
 import SearchResults from "@/components/navbar/SearchResults.tsx";
 import Layout from "@/Layout.tsx";
 import Home from "@/pages/Home.tsx";
@@ -24,7 +24,12 @@ const Routes = () => {
     return createBrowserRouter([
         {
             path: "/",
-            element: <Layout/>,
+            element: (
+                <>
+                    <ScrollRestoration/>
+                    <Layout/>
+                </>
+            ),
             children: [
                 {path: "", element: <Home/>},
                 {path: "login", element: <Login/>},
