@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
         <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {currentItems.map((product: Product) => (
-                    <div key={product._id} className="bg-[#ffe4cc] shadow rounded-xl px-5 py-3">
+                    <div key={product._id} className="bg-[#ffe4cc] dark:bg-gray-800 shadow rounded-xl px-5 py-3">
                         <Link to={`/product/${product._id}`}>
                             <div className="overflow-hidden w-full relative group rounded-lg">
                                 <LazyImage
