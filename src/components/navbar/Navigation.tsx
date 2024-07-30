@@ -71,7 +71,7 @@ const Navigation = () => {
 
     return (
         <div className={`sticky top-0 z-20 backdrop-blur-md text-white transition-colors duration-300 ${
-            isScrolled ? "bg-transparent" : "bg-black"
+            isScrolled ? "bg-transparent" : "bg-black dark:bg-gray-800"
         }`}>
             <Container className="flex items-center justify-between py-3">
                 <Logo/>
