@@ -344,7 +344,7 @@ const Checkout = () => {
 
                         <div className="flex md:flex-row flex-col gap-1">
                             <Input
-                                className="border border-gray-500 w-full text-black"
+                                className="border border-gray-500 w-full text-black dark:text-white"
                                 type="text"
                                 value={voucherCode}
                                 onChange={(e) => setVoucherCode(e.target.value)}
