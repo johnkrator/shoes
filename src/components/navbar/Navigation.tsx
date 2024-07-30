@@ -17,6 +17,7 @@ import {logout} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
 import ModeToggle from "@/components/theme-provider/ModeToggle.tsx";
+import {useEffect, useState} from "react";
 
 interface User {
     email: string;
@@ -34,9 +35,25 @@ interface UserInfo {
 }
 
 const Navigation = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const {userInfo} = useSelector((state: RootState) => state.auth) as { userInfo: UserInfo | null };
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem("jwtToken");
@@ -53,7 +70,9 @@ const Navigation = () => {
     const isAdmin = userInfo?.user.role === "admin";
 
     return (
-        <div className="sticky top-0 z-20 bg-[#000] text-white shadow">
+        <div className={`sticky top-0 z-20 backdrop-blur-md text-white transition-colors duration-300 ${
+            isScrolled ? "bg-transparent" : "bg-black"
+        }`}>
             <Container className="flex items-center justify-between py-3">
                 <Logo/>
                 <div className="flex flex-row items-center justify-end gap-4 lg:gap-6 xl:gap-10 flex-grow">
