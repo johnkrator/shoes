@@ -16,7 +16,7 @@ import {RootState} from "@/redux/store.ts";
 import {logout} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
-import ModeToggle from "@/components/ModeToggle.tsx";
+import ModeToggle from "@/components/theme-provider/ModeToggle.tsx";
 
 interface User {
     email: string;
