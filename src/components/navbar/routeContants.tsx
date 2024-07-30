@@ -67,7 +67,7 @@ export const QueryItems: React.FC<QueryItemsProps> = ({onLinkClick}) => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
                 />
             </form>
-            <div className="flex gap-5 lg:mt-0 mt-5">
+            <div className="flex items-center gap-5 lg:mt-0 mt-5">
                 <Link to="/favorites" onClick={onLinkClick}>
                     <FaRegHeart size={25}/>
                 </Link>
