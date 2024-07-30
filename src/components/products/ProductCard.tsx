@@ -80,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
                                         <FaHeart className="text-red-500" size={25}/>
                                     ) : (
                                         <CiHeart
-                                            className="bg-[#ffd4b7] text-[#ff8855] rounded-full font-bold"
+                                            className="bg-[#ffd4b7] dark:bg-gray-700 dark:text-gray-300 text-[#ff8855] rounded-full font-bold"
                                             size={25}
                                         />
                                     )}
