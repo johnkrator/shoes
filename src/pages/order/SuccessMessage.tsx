@@ -10,7 +10,7 @@ const SuccessMessage = () => {
                     <h1 className="text-2xl text-center font-bold">
                         Thank you, your order has been completed successfully!
                     </h1>
-                    <p className="text-sm text-gray-600 md:text-start text-center">
+                    <p className="text-sm text-gray-600 dark:text-white md:text-start text-center">
                         Your request has been successfully completed and will be processed soon.
                     </p>
                 </div>

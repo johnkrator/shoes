@@ -16,6 +16,7 @@ import {RootState} from "@/redux/store.ts";
 import {logout} from "@/redux/features/authSlice.ts";
 import {toast} from "react-toastify";
 import {toastConfig} from "@/components/toastConfig.ts";
+import ModeToggle from "@/components/ModeToggle.tsx";
 
 interface User {
     email: string;
@@ -112,6 +113,7 @@ const Navigation = () => {
                     <div className="lg:block hidden">
                         <QueryItems/>
                     </div>
+                    <ModeToggle/>
                 </div>
             </Container>
         </div>

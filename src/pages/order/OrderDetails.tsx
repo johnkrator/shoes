@@ -25,7 +25,7 @@ const OrderDetails = () => {
                         </div>
 
                         <div
-                            className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-0 gap-5 justify-between p-5 bg-[#FEE8E1]">
+                            className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-0 gap-5 justify-between p-5 bg-[#FEE8E1] dark:bg-gray-800">
                             <div>
                                 <div className="flex flex-col">
                                     <h1 className="font-bold">Delivery Address</h1>
