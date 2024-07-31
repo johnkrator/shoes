@@ -54,7 +54,7 @@ const ProductList: React.FC = () => {
                         {currentProducts.map((product: Product) => (
                             <div
                                 key={product._id}
-                                className="relative flex items-center justify-center rounded-xl shadow-lg bg-[#FCEEE8] w-full h-[357.23px] max-w-[450px] mx-auto"
+                                className="relative flex items-center justify-center rounded-xl shadow-lg bg-[#FCEEE8] dark:bg-gray-800 w-full h-[357.23px] max-w-[450px] mx-auto"
                             >
                                 <div className="overflow-hidden relative group rounded-lg">
                                     <LazyImage
