@@ -1,6 +1,6 @@
 const SectionAfterHero = () => {
     return (
-        <div className="flex lg:flex-row flex-col my-5 items-center gap-5">
+        <div className="flex lg:flex-row flex-col my-5 items-center gap-5 lg:mt-32 mt-10">
             <div
                 className="section-after-hero-a text-gray-800 flex flex-col justify-center lg:px-10 px-3 border border-gray-200 rounded-xl">
                 <div
