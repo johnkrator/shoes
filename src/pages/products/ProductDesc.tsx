@@ -79,7 +79,14 @@ const ProductDesc: React.FC = () => {
         }
     };
 
-    if (isLoading) return <SkeletonDemo/>;
+    if (isLoading) return(
+        <Container>
+            <div className='my-10'>
+                <SkeletonDemo/>
+            </div>
+        </Container>
+    );
+
     if (error) {
         let errorMessage = "An error occurred";
         if (typeof error === "object" && error !== null) {
@@ -197,8 +204,19 @@ const ProductDesc: React.FC = () => {
                         <div className="flex flex-col sm:flex-row items-center gap-3 mt-6">
                             <Button
                                 className="bg-black dark:bg-gray-800 dark:text-white hover:bg-black font-bold w-full sm:w-auto"
-                                onClick={handleAddToCart}>
-                                Add to Cart
+                                onClick={handleAddToCart}
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <span className="spinner"></span>
+                                        Loading...
+                                    </>
+                                ) : (
+                                    <>
+                                        Add to cart
+                                    </>
+                                )}
                             </Button>
                             <Button
                                 className="bg-[#ff6b2d] dark:text-white hover:bg-[#ff6b2d] font-bold w-full sm:w-auto">
