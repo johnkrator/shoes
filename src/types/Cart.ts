@@ -7,7 +7,7 @@ export interface CartItem {
     quantity: number;
     selectedColor?: string;
     selectedSize?: string | number | null;
-    countInStock: number;
+    countInStock?: number;
     colors?: string[];
     sizes?: (string | number | null)[];
 }
