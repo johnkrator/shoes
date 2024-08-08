@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@/Container.tsx";
 
 interface TimeLeft {
@@ -29,10 +29,10 @@ const ComingSoon: React.FC = () => {
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                setTimeLeft({days, hours, minutes, seconds});
+                setTimeLeft({ days, hours, minutes, seconds });
             } else {
                 clearInterval(interval);
-                setTimeLeft({days: 0, hours: 0, minutes: 0, seconds: 0});
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
             }
         }, 1000);
 
@@ -43,11 +43,11 @@ const ComingSoon: React.FC = () => {
         <Container>
             <div className="flex flex-col items-center justify-center min-h-screen">
                 <h1 className="text-4xl font-bold mb-8">Coming <span className="text-[#e0551b]">Soon!</span></h1>
-                <div className="flex space-x-4">
-                    <TimeBlock value={timeLeft.days} label="Days"/>
-                    <TimeBlock value={timeLeft.hours} label="Hours"/>
-                    <TimeBlock value={timeLeft.minutes} label="Minutes"/>
-                    <TimeBlock value={timeLeft.seconds} label="Seconds"/>
+                <div className="flex space-x-4 dark:text-black">
+                    <TimeBlock value={timeLeft.days} label="Days" />
+                    <TimeBlock value={timeLeft.hours} label="Hours" />
+                    <TimeBlock value={timeLeft.minutes} label="Minutes" />
+                    <TimeBlock value={timeLeft.seconds} label="Seconds" />
                 </div>
                 <p className="mt-8 text-sm text-[#e0551b] font-bold">Stay tuned for something amazing!</p>
             </div>
@@ -60,12 +60,14 @@ interface TimeBlockProps {
     label: string;
 }
 
-const TimeBlock: React.FC<TimeBlockProps> = ({value, label}) => (
+const TimeBlock: React.FC<TimeBlockProps> = ({ value, label }) => (
     <div className="flex flex-col items-center">
         <div className="text-4xl font-bold bg-white p-4 rounded-lg shadow">
             {value.toString().padStart(2, "0")}
         </div>
-        <span className="mt-2 text-sm">{label}</span>
+        <span className={`mt-2 text-sm ${typeof document !== 'undefined' && document.documentElement.classList.contains('dark') ? 'text-white' : 'text-[#333]'}`}>
+            {label}
+        </span>
     </div>
 );
 
