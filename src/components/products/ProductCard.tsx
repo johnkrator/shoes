@@ -14,12 +14,12 @@ import {useGetProductsQuery} from "@/redux/api/productApiSlice.ts";
 import {SkeletonCard} from "@/components/Loader.tsx";
 import Pagination from "@/components/Pagination.tsx";
 import {Product} from "@/types/Product.ts";
-import {MdOutlineShoppingCart} from "react-icons/md";
-import {toast} from "react-toastify";
-import {useCartMutation} from "@/redux/api/cartApiSlice.ts";
-import {addToCart} from "@/redux/features/cartSlice.ts";
-import {CartItem} from "@/types/Cart.ts";
-import {toastConfig} from "@/components/toastConfig.ts";
+// import {MdOutlineShoppingCart} from "react-icons/md";
+// import {toast} from "react-toastify";
+// import {useCartMutation} from "@/redux/api/cartApiSlice.ts";
+// import {addToCart} from "@/redux/features/cartSlice.ts";
+// import {CartItem} from "@/types/Cart.ts";
+// import {toastConfig} from "@/components/toastConfig.ts";
 
 interface ProductCardProps {
     products?: Product[];
@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const {data, isLoading, error, isError} = useGetProductsQuery({});
-    const [addToCartMutation] = useCartMutation();
+    // const [addToCartMutation] = useCartMutation();
 
     const products = propProducts || data?.data || [];
     const totalProducts = products.length;
@@ -55,35 +55,35 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
         }
     };
 
-    const handleAddToCart = async (product: Product) => {
-        try {
-            const cartItemForApi = {
-                productId: product._id,
-                quantity: 1
-            };
-
-            await addToCartMutation(cartItemForApi).unwrap();
-
-            const cartItemForRedux: CartItem = {
-                _id: product._id,
-                name: product.name,
-                images: product.images,
-                price: product.price,
-                discount_price: product.discount_price,
-                quantity: 1,
-                colors: product.colors,
-                sizes: product.sizes,
-                // We're not setting selectedColor and selectedSize here
-                // as they should be chosen on the product detail page
-            };
-
-            dispatch(addToCart(cartItemForRedux));
-
-            toast.success("Item added to cart successfully", toastConfig);
-        } catch (error) {
-            toast.error("Failed to add item to cart", toastConfig);
-        }
-    };
+    // const handleAddToCart = async (product: Product) => {
+    //     try {
+    //         const cartItemForApi = {
+    //             productId: product._id,
+    //             quantity: 1
+    //         };
+    //
+    //         await addToCartMutation(cartItemForApi).unwrap();
+    //
+    //         const cartItemForRedux: CartItem = {
+    //             _id: product._id,
+    //             name: product.name,
+    //             images: product.images,
+    //             price: product.price,
+    //             discount_price: product.discount_price,
+    //             quantity: 1,
+    //             colors: product.colors,
+    //             sizes: product.sizes,
+    //             // We're not setting selectedColor and selectedSize here
+    //             // as they should be chosen on the product detail page
+    //         };
+    //
+    //         dispatch(addToCart(cartItemForRedux));
+    //
+    //         toast.success("Item added to cart successfully", toastConfig);
+    //     } catch (error) {
+    //         toast.error("Failed to add item to cart", toastConfig);
+    //     }
+    // };
 
     if (isLoading) return (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
@@ -124,11 +124,11 @@ const ProductCard: React.FC<ProductCardProps> = ({products: propProducts}) => {
                                             />
                                         )}
                                     </button>
-                                    <MdOutlineShoppingCart
-                                        className="cursor-pointer"
-                                        size={25}
-                                        onClick={() => handleAddToCart(product)}
-                                    />
+                                    {/*<MdOutlineShoppingCart*/}
+                                    {/*    className="cursor-pointer"*/}
+                                    {/*    size={25}*/}
+                                    {/*    onClick={() => handleAddToCart(product)}*/}
+                                    {/*/>*/}
                                 </div>
                             </div>
 

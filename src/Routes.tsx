@@ -51,8 +51,8 @@ const Routes = () => {
                     element: <PrivateRoute/>,
                     children: [
                         {path: "profile", element: <Profile/>},
-                        {path: "orders/:orderId", element: <OrderDetails/>},
-                        // {path: "orders", element: <OrderDetails/>},
+                        // {path: "orders/:orderId", element: <OrderDetails/>},
+                        {path: "orders", element: <OrderDetails/>},
                     ],
                 },
 
@@ -62,7 +62,7 @@ const Routes = () => {
                     element: <AdminRoute/>,
                     children: [
                         {path: "add-product", element: <AddProduct/>},
-                        {path: "orders", element: <OrderHistory/>},
+                        {path: "orders-history", element: <OrderHistory/>},
                         {path: "product-list", element: <ProductList/>},
                     ],
                 },
