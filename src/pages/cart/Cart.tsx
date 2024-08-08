@@ -6,8 +6,6 @@ import Container from "@/Container.tsx";
 import ProgressSteps from "@/components/ProgressSteps.tsx";
 import {GoChevronLeft} from "react-icons/go";
 import LazyImage from "@/components/LazyImage.tsx";
-import paypal from "@/assets/Rectangle 5724.png";
-import googlePay from "@/assets/Rectangle 5747.png";
 import {Separator} from "@/components/ui/separator.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Label} from "@/components/ui/label";
@@ -173,7 +171,6 @@ const Cart: React.FC = () => {
                                         ))}
                                     </SelectContent>
                                 </Select>
-                                <p className="text-xs sm:text-sm">Item #: {item._id}</p>
                             </div>
                             <div className="mt-2">
                                 <p
@@ -277,19 +274,6 @@ const Cart: React.FC = () => {
                                 </Button>
 
                                 <div className="flex flex-col gap-3 w-full">
-                                    <div className="flex flex-row gap-3 sm:gap-5">
-                                        <LazyImage
-                                            src={paypal}
-                                            alt="paypal"
-                                            className="w-[48%] h-[60px] object-cover shadow-md rounded-xl p-2 cursor-pointer"
-                                        />
-                                        <LazyImage
-                                            src={googlePay}
-                                            alt="google pay"
-                                            className="w-[48%] h-[60px] object-cover shadow-md rounded-xl p-2 cursor-pointer"
-                                        />
-                                    </div>
-
                                     <div>
                                         <h1 className="font-bold text-xl sm:text-2xl">Shipping Options</h1>
                                         <div>
