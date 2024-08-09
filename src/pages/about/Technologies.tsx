@@ -2,7 +2,7 @@ import {MdChevronRight} from "react-icons/md";
 
 const Technologies = () => {
     return (
-        <div className="flex lg:flex-row flex-col gap-5 lg:mt-32 mb-10">
+        <div className="flex lg:flex-row flex-col gap-5 lg:mt-32 mt-10 mb-10">
             <div className="flex flex-col gap-10 p-5 rounded-xl border border-gray-500 lg:w[50vw]">
                 <div className="flex flex-col gap-5">
                     <h1 className="md:text-5xl text-lg text-gray-800 font-bold dark:text-white">Technology</h1>
